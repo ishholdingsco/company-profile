@@ -7,16 +7,16 @@ export default function NotFound() {
     <div className="min-h-screen bg-background w-full flex flex-col">
       <Header />
       <main className="w-full flex-1 flex items-center justify-center px-12">
-        <div className="w-full max-w-2xl text-center space-y-8">
+        <div className="w-full max-w-2xl text-center space-y-12">
           {/* 404 Number */}
-          <div className="space-y-4">
+          <div className="space-y-6">
             <div className="w-full border-t-2 border-foreground" />
             <h1 className="text-9xl font-bold">404</h1>
             <div className="w-full border-t-2 border-foreground" />
           </div>
 
           {/* Message */}
-          <div className="space-y-4">
+          <div className="space-y-6">
             <h2 className="text-3xl font-bold">Page Not Found</h2>
             <p className="text-lg text-muted-foreground">
               Oops! The page you are looking for does not exist or has been moved.
@@ -24,7 +24,7 @@ export default function NotFound() {
           </div>
 
           {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-6">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8">
             <Link
               href="/"
               className="px-8 py-3 bg-foreground text-background font-bold rounded-lg hover:opacity-90 transition-all border-2 border-foreground w-full sm:w-auto text-center"
@@ -40,9 +40,9 @@ export default function NotFound() {
           </div>
 
           {/* Additional Info */}
-          <div className="pt-8">
-            <div className="p-6 border-2 border-foreground rounded-lg bg-muted/30">
-              <h3 className="font-bold mb-2">Need Help?</h3>
+          <div className="pt-16">
+            <div className="p-8 border-2 border-foreground rounded-lg bg-muted/30">
+              <h3 className="font-bold mb-4">Need Help?</h3>
               <p className="text-sm text-muted-foreground">
                 If you believe this is an error, please contact us or navigate back to the homepage.
               </p>

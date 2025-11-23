@@ -20,7 +20,7 @@ const item = {
 
 export function IndustriesSection() {
   return (
-    <section id="industries" className="py-24 px-12">
+    <section id="industries" className="py-12 page-container">
       <div className="w-full">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

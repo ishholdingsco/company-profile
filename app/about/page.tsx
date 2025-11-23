@@ -1,13 +1,16 @@
+"use client";
+
+import { motion } from "framer-motion";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-background w-full">
+    <div className="min-h-screen bg-background w-full flex flex-col">
       <Header />
-      <main className="w-full pt-32 pb-20 px-12">
-        <div className="w-full">
-          <div className="flex flex-col gap-20">
+      <main className="w-full flex-1">
+        <div className="page-container pb-6 md:pb-8 lg:pb-12">
+          <div className="flex flex-col gap-8 md:gap-10 lg:gap-12">
             {/* Hero */}
             <div className="space-y-6">
               <div className="w-full border-t-2 border-foreground" />
@@ -16,7 +19,7 @@ export default function AboutPage() {
             </div>
 
             {/* Content */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
               <div className="space-y-6">
                 <h2 className="text-3xl font-bold">Who We Are</h2>
                 <p className="text-lg leading-relaxed">
@@ -53,7 +56,7 @@ export default function AboutPage() {
             </div>
 
             {/* Expertise */}
-            <div className="space-y-6 mt-16">
+            <div className="space-y-6">
               <h2 className="text-3xl font-bold">Our Expertise</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="p-6 border-2 border-foreground rounded-lg hover:bg-foreground hover:text-background transition-all">
@@ -70,6 +73,43 @@ export default function AboutPage() {
                 </div>
               </div>
             </div>
+
+            {/* Mining: Our Primary Focus */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="space-y-6"
+            >
+              <h2 className="text-3xl font-bold">Mining: Our Primary Focus</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2, duration: 0.4 }}
+                  className="p-6 border-2 border-foreground rounded-lg"
+                >
+                  <h3 className="text-xl font-bold mb-3">Specialized Expertise</h3>
+                  <p className="text-base leading-relaxed">
+                    We have developed extensive experience in mining technology, creating solutions that address the unique challenges of the mining industry.
+                  </p>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3, duration: 0.4 }}
+                  className="p-6 border-2 border-foreground rounded-lg"
+                >
+                  <h3 className="text-xl font-bold mb-3">Proven Track Record</h3>
+                  <p className="text-base leading-relaxed">
+                    Our mining applications have been successfully deployed in various operations, improving safety, efficiency, and environmental compliance.
+                  </p>
+                </motion.div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </main>

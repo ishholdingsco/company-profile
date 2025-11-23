@@ -47,7 +47,7 @@ const item = {
 
 export function ProductsSection() {
   return (
-    <section id="products" className="py-24 px-12">
+    <section id="products" className="py-12 page-container">
       <div className="w-full">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -65,7 +65,7 @@ export function ProductsSection() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="flex flex-col gap-20 items-center"
+            className="flex flex-col gap-12 items-center"
           >
             {products.map((product) => (
               <motion.div

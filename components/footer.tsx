@@ -2,20 +2,23 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { Mail, Phone, Linkedin } from "lucide-react";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t-2 border-foreground mt-32">
-      <div className="w-full px-12 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          {/* Company Info */}
+    <footer className="mt-6 md:mt-8 lg:mt-12 pt-6 md:pt-8">
+      <div className="page-container pb-8">
+        {/* Responsive Grid Layout */}
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-12">
+          {/* Company Info - Full width on mobile, 1 column on desktop */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
+            className="col-span-2 md:col-span-1"
           >
             <h3 className="text-2xl font-bold mb-4">ISH Technologies</h3>
             <p className="text-base text-muted-foreground mb-3">Perteknologian ISH</p>
@@ -64,7 +67,41 @@ export function Footer() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <h3 className="text-xl font-semibold mb-4">Contact</h3>
-            <ul className="space-y-3 text-base">
+
+            {/* Mobile - Icons Only */}
+            <div className="flex flex-col gap-4 md:hidden">
+              <p className="text-sm text-muted-foreground">Jakarta, Indonesia</p>
+              <div className="flex gap-4">
+                <a
+                  href="https://wa.me/6281222337568"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-foreground transition-all"
+                  aria-label="WhatsApp"
+                >
+                  <Phone className="w-6 h-6" />
+                </a>
+                <a
+                  href="mailto:ish.holdings.co@gmail.com"
+                  className="text-muted-foreground hover:text-foreground transition-all"
+                  aria-label="Email"
+                >
+                  <Mail className="w-6 h-6" />
+                </a>
+                <a
+                  href="https://id.linkedin.com/company/soft-roc"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-foreground transition-all"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin className="w-6 h-6" />
+                </a>
+              </div>
+            </div>
+
+            {/* Desktop - Full Text */}
+            <ul className="hidden md:flex md:flex-col space-y-3 text-base">
               <li className="text-muted-foreground">
                 Jakarta, Indonesia
               </li>
@@ -106,7 +143,7 @@ export function Footer() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-16 pt-8 border-t-2 border-foreground text-center"
+          className="mt-8 pt-6 border-t-2 border-foreground text-center"
         >
           <p className="text-base text-muted-foreground">
             © {currentYear} ISH Technologies. All rights reserved.

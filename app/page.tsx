@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background w-full">
       <Header />
-      <main className="w-full flex flex-col gap-16">
+      <main className="w-full flex flex-col gap-12">
         <HeroSection />
         <SolutionsSection />
         <IndustriesSection />

@@ -40,7 +40,7 @@ export function HeroSection() {
   };
 
   return (
-    <section className="pt-24 pb-0">
+    <section className="mt-0 pb-4">
       <Carousel
         setApi={setApi}
         opts={{
@@ -67,7 +67,7 @@ export function HeroSection() {
               </div>
 
               {/* Content */}
-              <div className="relative h-full flex items-center px-12">
+              <div className="relative h-full flex items-center page-container">
                 <motion.div
                   key={`slide-0-${current}`}
                   initial={{ opacity: 0, x: -50, y: 20 }}
@@ -130,7 +130,7 @@ export function HeroSection() {
               </div>
 
               {/* Content */}
-              <div className="relative h-full flex items-center px-12">
+              <div className="relative h-full flex items-center page-container">
                 <motion.div
                   key={`slide-1-${current}`}
                   initial={{ opacity: 0, x: -50, y: 20 }}
@@ -201,7 +201,7 @@ export function HeroSection() {
               </div>
 
               {/* Content */}
-              <div className="relative h-full flex items-center px-12">
+              <div className="relative h-full flex items-center page-container">
                 <motion.div
                   key={`slide-2-${current}`}
                   initial={{ opacity: 0, x: -50, y: 20 }}
