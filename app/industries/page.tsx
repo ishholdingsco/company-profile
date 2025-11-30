@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
@@ -15,7 +15,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-export default function IndustriesPage() {
+function IndustriesContent() {
   const searchParams = useSearchParams();
   const initialId = searchParams.get("id") || sectors[0].id;
 
@@ -292,5 +292,23 @@ export default function IndustriesPage() {
       </main>
       <Footer />
     </div>
+  );
+}
+
+export default function IndustriesPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-background w-full">
+        <Header />
+        <main className="w-full flex items-center justify-center min-h-[60vh]">
+          <div className="relative">
+            <div className="w-16 h-16 border-4 border-foreground border-t-transparent rounded-full animate-spin shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]" />
+          </div>
+        </main>
+        <Footer />
+      </div>
+    }>
+      <IndustriesContent />
+    </Suspense>
   );
 }
