@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { Mail, Phone, Linkedin } from "lucide-react";
 
 export function Footer() {
@@ -20,10 +21,17 @@ export function Footer() {
             transition={{ duration: 0.6 }}
             className="col-span-2 md:col-span-1"
           >
-            <h3 className="text-2xl font-bold mb-4">ISH Technologies</h3>
-            <p className="text-base text-muted-foreground mb-3">Perteknologian ISH</p>
+            <Link href="/" className="block mb-4">
+              <Image
+                src="/logo.png"
+                alt="ISH Technologies"
+                width={656}
+                height={129}
+                className="h-10 md:h-12 w-auto"
+              />
+            </Link>
             <p className="text-base text-muted-foreground leading-relaxed">
-              Consolidated technologies company, offering cutting-edge solutions at scale.
+              A consolidated technologies company delivering cutting-edge solutions in AI, IoT, and software development to empower businesses across diverse industries.
             </p>
           </motion.div>
 

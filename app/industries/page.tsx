@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Header } from "@/components/header";
@@ -15,9 +16,21 @@ import {
 } from "@/components/ui/select";
 
 export default function IndustriesPage() {
-  const [selectedSectorId, setSelectedSectorId] = useState(sectors[0].id);
+  const searchParams = useSearchParams();
+  const initialId = searchParams.get("id") || sectors[0].id;
+
+  const [selectedSectorId, setSelectedSectorId] = useState(initialId);
   const [currentSolutionIndex, setCurrentSolutionIndex] = useState(0);
   const selectedSector = sectors.find((s) => s.id === selectedSectorId);
+
+  // Update selected sector when URL parameter changes
+  useEffect(() => {
+    const urlId = searchParams.get("id");
+    if (urlId && sectors.find((s) => s.id === urlId)) {
+      setSelectedSectorId(urlId);
+      setCurrentSolutionIndex(0);
+    }
+  }, [searchParams]);
 
   if (!selectedSector) return null;
 
@@ -182,11 +195,21 @@ export default function IndustriesPage() {
                   >
                     {selectedSector.name}
                   </motion.h2>
+                  {/* Mobile description - shorter version */}
                   <motion.p
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.2, duration: 0.3 }}
-                    className="text-base mb-6 leading-relaxed"
+                    className="text-base mb-6 leading-relaxed md:hidden"
+                  >
+                    {selectedSector.shortDescription}
+                  </motion.p>
+                  {/* Desktop/Tablet description - full version */}
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.2, duration: 0.3 }}
+                    className="text-base mb-6 leading-relaxed hidden md:block"
                   >
                     {selectedSector.description}
                   </motion.p>

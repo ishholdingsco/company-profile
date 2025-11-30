@@ -9,7 +9,7 @@ const ibmPlexSans = IBM_Plex_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "ISH Technologies - Perteknologian ISH",
+  title: "ISH Technologies",
   description: "We are a consolidated technologies company, offering cutting-edge solutions at scale. Specializing in automation, computer vision, machine learning, and mining technology solutions.",
 };
 

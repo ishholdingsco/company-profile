@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 
 export function Header() {
@@ -22,28 +23,34 @@ export function Header() {
           <div className="flex items-center justify-between">
             <div>
               <Link href="/" className="block" onClick={closeMenu}>
-                <h1 className="text-2xl md:text-4xl font-bold tracking-tight">ISH Technologies</h1>
-                <p className="text-sm md:text-base text-muted-foreground mt-1">Perteknologian ISH</p>
+                <Image
+                  src="/logo.png"
+                  alt="ISH Technologies"
+                  width={656}
+                  height={129}
+                  className="h-12 md:h-16 w-auto"
+                  priority
+                />
               </Link>
             </div>
 
             {/* Desktop Navigation - Shows at 768px+ (md) */}
-            <nav className="hidden md:flex items-center gap-3 md:gap-4">
+            <nav className="hidden md:flex items-center gap-2 md:gap-3 lg:gap-4">
               <Link
                 href="/solutions"
-                className="w-32 h-11 lg:w-48 lg:h-14 flex items-center justify-center border-2 border-gray-800 text-lg lg:text-xl font-medium bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] lg:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] lg:hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] lg:hover:translate-x-[3px] lg:hover:translate-y-[3px] transition-all active:shadow-none active:translate-x-[4px] active:translate-y-[4px] lg:active:translate-x-[6px] lg:active:translate-y-[6px]"
+                className="w-28 h-10 md:w-32 md:h-11 lg:w-48 lg:h-14 flex items-center justify-center border-2 border-gray-800 text-base md:text-lg lg:text-xl font-medium bg-white shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] md:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] lg:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] lg:hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] lg:hover:translate-x-[3px] lg:hover:translate-y-[3px] transition-all active:shadow-none active:translate-x-[3px] active:translate-y-[3px] md:active:translate-x-[4px] md:active:translate-y-[4px] lg:active:translate-x-[6px] lg:active:translate-y-[6px]"
               >
                 Solutions
               </Link>
               <Link
                 href="/industries"
-                className="w-32 h-11 lg:w-48 lg:h-14 flex items-center justify-center border-2 border-gray-800 text-lg lg:text-xl font-medium bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] lg:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] lg:hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] lg:hover:translate-x-[3px] lg:hover:translate-y-[3px] transition-all active:shadow-none active:translate-x-[4px] active:translate-y-[4px] lg:active:translate-x-[6px] lg:active:translate-y-[6px]"
+                className="w-28 h-10 md:w-32 md:h-11 lg:w-48 lg:h-14 flex items-center justify-center border-2 border-gray-800 text-base md:text-lg lg:text-xl font-medium bg-white shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] md:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] lg:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] lg:hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] lg:hover:translate-x-[3px] lg:hover:translate-y-[3px] transition-all active:shadow-none active:translate-x-[3px] active:translate-y-[3px] md:active:translate-x-[4px] md:active:translate-y-[4px] lg:active:translate-x-[6px] lg:active:translate-y-[6px]"
               >
                 Industries
               </Link>
               <Link
                 href="/about"
-                className="w-32 h-11 lg:w-48 lg:h-14 flex items-center justify-center border-2 border-gray-800 text-lg lg:text-xl font-medium bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] lg:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] lg:hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] lg:hover:translate-x-[3px] lg:hover:translate-y-[3px] transition-all active:shadow-none active:translate-x-[4px] active:translate-y-[4px] lg:active:translate-x-[6px] lg:active:translate-y-[6px]"
+                className="w-28 h-10 md:w-32 md:h-11 lg:w-48 lg:h-14 flex items-center justify-center border-2 border-gray-800 text-base md:text-lg lg:text-xl font-medium bg-white shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] md:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] lg:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] lg:hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] lg:hover:translate-x-[3px] lg:hover:translate-y-[3px] transition-all active:shadow-none active:translate-x-[3px] active:translate-y-[3px] md:active:translate-x-[4px] md:active:translate-y-[4px] lg:active:translate-x-[6px] lg:active:translate-y-[6px]"
               >
                 About Us
               </Link>
@@ -121,9 +128,14 @@ export function Header() {
                 </nav>
 
                 {/* Logo */}
-                <div className="text-center mt-4">
-                  <h2 className="text-xl font-bold">ISH Technologies</h2>
-                  <p className="text-sm text-muted-foreground mt-1">Perteknologian ISH</p>
+                <div className="mt-4 flex justify-center">
+                  <Image
+                    src="/logo.png"
+                    alt="ISH Technologies"
+                    width={656}
+                    height={129}
+                    className="h-12 w-auto"
+                  />
                 </div>
 
                 {/* Copyright */}

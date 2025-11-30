@@ -5,6 +5,7 @@ export interface SolutionData {
   id: string;
   name: Solution;
   description: string;
+  shortDescription: string;
   featured?: boolean;
 }
 
@@ -12,6 +13,8 @@ export interface SectorData {
   id: string;
   name: Sector;
   description: string;
+  shortDescription: string;
+  detailedDescription?: string;
   featured?: boolean;
 }
 
@@ -20,26 +23,31 @@ export const solutions: SolutionData[] = [
     id: "cv",
     name: "CV",
     description: "Our Computer Vision solutions leverage advanced artificial intelligence and deep learning algorithms to enable machines to see, understand, and analyze visual data with remarkable accuracy. From real-time object detection and tracking to sophisticated pattern recognition and anomaly detection, we deliver cutting-edge visual intelligence systems that transform how businesses operate, enhance safety protocols, optimize quality control, and drive operational efficiency across diverse industries.",
+    shortDescription: "AI-powered visual intelligence for object detection, pattern recognition, and quality control to enhance safety and operational efficiency.",
   },
   {
     id: "iot",
     name: "IoT",
     description: "We deliver comprehensive Internet of Things solutions that connect physical devices, sensors, and systems to create intelligent, data-driven environments. Our IoT platforms enable real-time monitoring, predictive analytics, and automated decision-making through seamlessly integrated networks of smart devices. From environmental monitoring and asset tracking to fleet management and cold chain integrity, our solutions empower businesses to optimize operations, reduce costs, and unlock new opportunities through connected intelligence.",
+    shortDescription: "Connect devices and sensors for real-time monitoring, predictive analytics, and automated decision-making across your operations.",
   },
   {
     id: "nlp",
     name: "NLP",
     description: "Our Natural Language Processing solutions harness the power of advanced AI to understand, interpret, and generate human language at scale. We develop intelligent systems that automate document processing, extract meaningful insights from unstructured text, enable conversational interfaces, and facilitate seamless human-machine communication. From automated customer service and sentiment analysis to contract review and regulatory compliance, our NLP technologies help organizations process information faster, make smarter decisions, and deliver enhanced user experiences.",
+    shortDescription: "AI-powered language understanding for automated document processing, conversational interfaces, and intelligent text analysis.",
   },
   {
     id: "robotics",
     name: "Robotics & Engineering",
     description: "We specialize in advanced robotics and automation engineering solutions that combine mechanical design, intelligent control systems, and cutting-edge software to create autonomous solutions for complex industrial challenges. Our expertise spans from automated guided vehicles and drone systems to sophisticated conveyor optimization and robotic process automation. These solutions enhance productivity, improve workplace safety, and enable businesses to scale operations while maintaining precision and reliability.",
+    shortDescription: "Advanced robotics and automation solutions for complex industrial challenges, enhancing productivity and workplace safety.",
   },
   {
     id: "web-mobile",
     name: "Web & Mobile Development",
     description: "We create powerful, user-centric web and mobile applications tailored to your specific business needs and objectives. Our development expertise encompasses modern frameworks, cloud-native architectures, and responsive design principles to deliver scalable, secure, and high-performance solutions. From enterprise dashboards with AI-powered analytics to customer-facing e-commerce platforms and mobile apps, we build digital experiences that drive engagement, streamline operations, and accelerate business growth.",
+    shortDescription: "Scalable web and mobile applications with modern frameworks and cloud-native architecture tailored to your business needs.",
   },
 ];
 
@@ -48,47 +56,65 @@ export const sectors: SectorData[] = [
     id: "logistics",
     name: "Logistics",
     description: "In logistics, we provide comprehensive technology solutions that streamline supply chain operations, optimize warehouse management, and enhance transportation efficiency. Our cutting-edge systems help businesses track inventory in real-time, ensure package integrity, and maintain optimal conditions throughout the delivery process.",
+    shortDescription: "Streamline supply chain operations with warehouse management and real-time inventory tracking solutions.",
+    detailedDescription: "Transform your logistics operations with our cutting-edge technology solutions designed to optimize every aspect of your supply chain. From intelligent warehouse management systems to real-time package tracking and cold chain monitoring, we ensure seamless operations and enhanced visibility across your entire delivery network.",
   },
   {
     id: "mining",
     name: "Mining",
     description: "We specialize in delivering advanced mining technology solutions that revolutionize operations, enhance safety protocols, and maximize resource optimization. Our expertise spans from autonomous vehicle systems to environmental monitoring, helping mining companies achieve operational excellence while maintaining the highest safety standards.",
+    shortDescription: "Advanced technology for mining operations, safety enhancement, and resource optimization.",
+    detailedDescription: "Revolutionize your mining operations with our advanced technology solutions that combine autonomous systems, environmental monitoring, and safety enhancement. Our proven expertise helps mining companies maximize productivity, ensure worker safety, and achieve sustainable resource extraction through intelligent automation and data-driven insights.",
     featured: true,
   },
   {
     id: "government",
     name: "Government & Public Sector",
     description: "We empower government and public sector organizations with smart city solutions, intelligent infrastructure monitoring, and digital transformation services. Our technologies help create safer, more efficient communities through automated systems for traffic management, waste monitoring, and public service optimization.",
+    shortDescription: "Smart city solutions and infrastructure monitoring for safer, more efficient communities.",
+    detailedDescription: "Build smarter, more efficient communities with our comprehensive smart city solutions. We deliver intelligent infrastructure monitoring, automated public services, and data-driven governance tools that enhance citizen safety, optimize resource allocation, and improve quality of life through advanced technology integration.",
   },
   {
     id: "retail",
     name: "Retail",
     description: "In the retail sector, we deliver innovative solutions that enhance customer experience, optimize inventory management, and drive operational efficiency. Our technologies enable real-time stock monitoring, intelligent planogram compliance, and data-driven insights into customer behavior and foot traffic patterns.",
+    shortDescription: "Enhance customer experience and optimize inventory with real-time monitoring and analytics.",
+    detailedDescription: "Elevate your retail business with intelligent solutions that optimize inventory management, enhance customer experience, and drive sales growth. Our advanced systems provide real-time stock visibility, customer behavior analytics, and automated compliance monitoring to help you stay competitive in the modern retail landscape.",
   },
   {
     id: "manufacturing",
     name: "Manufacturing",
     description: "We provide industrial manufacturing solutions that ensure quality control, enhance workplace safety, and drive automation. Our advanced systems monitor production lines, detect defects in real-time, verify assembly processes, and enable predictive maintenance to minimize downtime and maximize productivity.",
+    shortDescription: "Quality control, workplace safety, and automation solutions for manufacturing operations.",
+    detailedDescription: "Maximize manufacturing efficiency with our comprehensive industrial solutions featuring automated quality control, predictive maintenance, and workplace safety monitoring. Our intelligent systems ensure product excellence, minimize production downtime, and create safer working environments through advanced computer vision and IoT technologies.",
   },
   {
     id: "agriculture",
     name: "Agriculture & Farming",
     description: "In agriculture and farming, we offer smart farming solutions that leverage technology to increase crop yields, optimize resource usage, and improve farm management. Our systems provide disease detection, nutrient mapping, yield forecasting, and automated irrigation to help farmers make data-driven decisions.",
+    shortDescription: "Smart farming technology for increased yields, disease detection, and optimized resource usage.",
+    detailedDescription: "Modernize your farming operations with precision agriculture solutions that increase crop yields and optimize resource utilization. Our smart farming technologies enable early disease detection, precision irrigation, yield forecasting, and data-driven farm management for sustainable and profitable agricultural production.",
   },
   {
     id: "construction",
     name: "Construction",
     description: "We deliver construction technology solutions focused on site safety, project management, and quality assurance. Our systems monitor PPE compliance, detect hazards in real-time, enable digital twin modeling, and streamline permit management to ensure projects are completed safely and efficiently.",
+    shortDescription: "Construction technology for site safety, project management, and quality assurance.",
+    detailedDescription: "Enhance construction site safety and project efficiency with our comprehensive technology solutions. From real-time hazard detection and PPE compliance monitoring to digital twin modeling and permit management, we help construction companies deliver projects on time, on budget, and with zero safety incidents.",
   },
   {
     id: "finance",
     name: "Finance",
     description: "In the financial sector, we provide intelligent solutions for document processing, identity verification, and data analysis. Our technologies automate expense management, ensure secure authentication, analyze contracts, and generate actionable insights from financial statements and market news.",
+    shortDescription: "Automate document processing, identity verification, and financial data analysis.",
+    detailedDescription: "Streamline financial operations with our intelligent automation solutions for document processing, identity verification, and data analysis. Our advanced AI-powered systems accelerate contract review, automate expense management, and extract actionable insights from financial data to drive informed decision-making.",
   },
   {
     id: "healthcare",
     name: "Healthcare",
     description: "We offer healthcare technology solutions that enhance patient care, improve operational efficiency, and enable better health outcomes. Our systems monitor patient behavior, manage bed occupancy, process medical transcriptions, and maintain critical cold chain integrity for pharmaceuticals and vaccines.",
+    shortDescription: "Enhance patient care and operational efficiency with advanced healthcare technology.",
+    detailedDescription: "Improve patient outcomes and operational efficiency with our advanced healthcare technology solutions. From intelligent patient monitoring and bed management to medical transcription automation and pharmaceutical cold chain monitoring, we help healthcare providers deliver superior care while optimizing resources.",
   },
 ];
 

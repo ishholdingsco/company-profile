@@ -3,51 +3,9 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-const products = [
-  {
-    name: "PocketMine",
-    description: "Mobile application for navigation and visualization of mining block models",
-    image: "/pocketmine.png",
-    features: [
-      "3D Block Model Visualization",
-      "Real-time Navigation",
-      "Offline Capability",
-      "Mobile Optimized",
-      "Subscription-based Access"
-    ]
-  },
-  {
-    name: "Lite Fleet",
-    description: "Fleet management system for vehicle tracking using smartphones, monitored through web dashboard",
-    image: "/fms.png",
-    features: [
-      "Real-time Vehicle Tracking",
-      "Smartphone Integration",
-      "Web Dashboard Monitoring",
-      "Fleet Analytics",
-      "Subscription-based Access"
-    ]
-  }
-];
-
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-    },
-  },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0 },
-};
-
 export function ProductsSection() {
   return (
-    <section id="products" className="py-12 page-container">
+    <section id="products" className="py-16 page-container">
       <div className="w-full">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -55,65 +13,216 @@ export function ProductsSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl font-bold mb-4">Our Products</h2>
-          <p className="text-muted-foreground mb-10 text-lg">
-            Innovative solutions designed to enhance efficiency and productivity
+          <h2 className="text-4xl font-bold mb-4">Our Product</h2>
+          <p className="text-muted-foreground mb-12 text-lg">
+            Advanced mobile technology solutions for the mining industry
           </p>
 
-          <motion.div
-            variants={container}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="flex flex-col gap-12 items-center"
-          >
-            {products.map((product) => (
-              <motion.div
-                key={product.name}
-                variants={item}
-                whileHover={{ scale: 1.01 }}
-                className="group w-full max-w-5xl"
-              >
-                <div className="border-2 border-foreground rounded-lg overflow-hidden hover:shadow-xl transition-all bg-background w-full">
-                  {/* Product Image */}
-                  <div className="relative w-full bg-muted overflow-hidden h-[400px]">
-                    <Image
-                      src={product.image}
-                      alt={product.name}
-                      fill
-                      className="object-contain group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
+          {/* PocketMine Product - Desktop Layout */}
+          <div className="hidden lg:grid lg:grid-cols-2 gap-12 items-start">
+            {/* Left: Image, Logo, Description */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="space-y-6"
+            >
+              {/* App Screenshot - Large with border & shadow */}
+              <div className="relative h-[500px] rounded-lg overflow-hidden border-2 border-foreground shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+                <Image
+                  src="/pocketmine/pocketmine.png"
+                  alt="PocketMine - Advanced Mining Data Visualization"
+                  fill
+                  className="object-contain bg-muted p-4"
+                  priority
+                />
+              </div>
 
-                  {/* Product Info */}
-                  <div className="p-6">
-                    <h3 className="text-2xl font-bold mb-3">{product.name}</h3>
-                    <p className="text-muted-foreground mb-4">
-                      {product.description}
-                    </p>
-
-                    {/* Features */}
-                    <div className="space-y-2">
-                      <h4 className="font-semibold text-sm uppercase tracking-wide">
-                        Key Features
-                      </h4>
-                      <ul className="space-y-2">
-                        {product.features.map((feature) => (
-                          <li
-                            key={feature}
-                            className="text-sm text-muted-foreground flex items-start"
-                          >
-                            <span className="mr-2">•</span>
-                            <span>{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
+              {/* Logo and Description - Flex Horizontal */}
+              <div className="flex items-center gap-1">
+                {/* Logo */}
+                <div className="relative w-40 h-20 flex-shrink-0">
+                  <Image
+                    src="/pocketmine/logo+tulisan.png"
+                    alt="PocketMine"
+                    fill
+                    className="object-contain object-left"
+                  />
                 </div>
+
+                {/* Description */}
+                <p className="text-base leading-relaxed text-muted-foreground">
+                  Advanced mobile application for mining operations, enabling real-time geological data visualization and navigation directly in the field. Built with cutting-edge technology to transform how mining professionals interact with geological data.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Right: Key Features */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="space-y-6"
+            >
+              <h3 className="text-3xl font-bold">Key Features</h3>
+              <ul className="space-y-4 text-muted-foreground">
+                <li className="flex items-start gap-3">
+                  <span className="text-foreground mt-1 font-bold">•</span>
+                  <div>
+                    <strong className="text-foreground">PDF Map Overlay</strong> - Import and overlay engineering maps and geological reports for enhanced visualization and field reference
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-foreground mt-1 font-bold">•</span>
+                  <div>
+                    <strong className="text-foreground">Pit Design Processing</strong> - CAD drawing integration (DXF format) for pit boundaries, mine planning, and design validation in the field
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-foreground mt-1 font-bold">•</span>
+                  <div>
+                    <strong className="text-foreground">Cross-Section Visualization</strong> - Interactive geological cross-section analysis with real-time rendering and multi-layer support
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-foreground mt-1 font-bold">•</span>
+                  <div>
+                    <strong className="text-foreground">3D Block Model View</strong> - Top-down and interactive visualization of mining block models with customizable color schemes and attribute filtering
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-foreground mt-1 font-bold">•</span>
+                  <div>
+                    <strong className="text-foreground">GPS Navigation</strong> - Real-time location tracking with continuous position updates for precise navigation within mining sites
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-foreground mt-1 font-bold">•</span>
+                  <div>
+                    <strong className="text-foreground">Coordinate System Support</strong> - Multiple UTM zones (46-57) and coordinate transformations (WGS84, local mine coordinates) for global operations
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-foreground mt-1 font-bold">•</span>
+                  <div>
+                    <strong className="text-foreground">Offline Capability</strong> - Full functionality without internet connection, with local data storage and processing for remote mining locations
+                  </div>
+                </li>
+              </ul>
+            </motion.div>
+          </div>
+
+          {/* Mobile & Tablet Layout - Vertical */}
+          <div className="lg:hidden space-y-6">
+            {/* App Screenshot */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="relative h-[450px] md:h-[450px] rounded-lg overflow-hidden border-2 border-foreground shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
+            >
+              <Image
+                src="/pocketmine/pocketmine.png"
+                alt="PocketMine - Advanced Mining Data Visualization"
+                fill
+                className="object-cover md:object-contain bg-muted md:p-4"
+                priority
+              />
+            </motion.div>
+
+            {/* Logo and Description - Horizontal on Tablet, Vertical on Mobile */}
+            <div className="flex flex-col md:flex-row md:items-center md:gap-1 space-y-4 md:space-y-0">
+              {/* Logo */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="relative w-full max-w-sm mx-auto md:mx-0 md:w-40 h-20 md:flex-shrink-0"
+              >
+                <Image
+                  src="/pocketmine/logo+tulisan.png"
+                  alt="PocketMine"
+                  fill
+                  className="object-contain md:object-left"
+                />
               </motion.div>
-            ))}
-          </motion.div>
+
+              {/* Description */}
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="text-base leading-relaxed text-muted-foreground"
+              >
+                <span className="md:hidden">
+                  Mobile app for real-time geological data visualization and navigation in mining operations.
+                </span>
+                <span className="hidden md:inline">
+                  Advanced mobile application for mining operations, enabling real-time geological data visualization and navigation directly in the field. Built with cutting-edge technology to transform how mining professionals interact with geological data.
+                </span>
+              </motion.p>
+            </div>
+
+            {/* Key Features */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="space-y-4"
+            >
+              <h3 className="text-2xl font-bold">Key Features</h3>
+              <ul className="space-y-3 text-muted-foreground">
+                <li className="flex items-start gap-3">
+                  <span className="text-foreground mt-1 font-bold">•</span>
+                  <div>
+                    <strong className="text-foreground">PDF Map Overlay</strong> - Import and overlay engineering maps
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-foreground mt-1 font-bold">•</span>
+                  <div>
+                    <strong className="text-foreground">Pit Design Processing</strong> - CAD drawing integration (DXF)
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-foreground mt-1 font-bold">•</span>
+                  <div>
+                    <strong className="text-foreground">Cross-Section Visualization</strong> - Interactive geological analysis
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-foreground mt-1 font-bold">•</span>
+                  <div>
+                    <strong className="text-foreground">3D Block Model View</strong> - Mining block model visualization
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-foreground mt-1 font-bold">•</span>
+                  <div>
+                    <strong className="text-foreground">GPS Navigation</strong> - Real-time location tracking
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-foreground mt-1 font-bold">•</span>
+                  <div>
+                    <strong className="text-foreground">Coordinate System Support</strong> - Multiple UTM zones
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-foreground mt-1 font-bold">•</span>
+                  <div>
+                    <strong className="text-foreground">Offline Capability</strong> - Works without internet
+                  </div>
+                </li>
+              </ul>
+            </motion.div>
+          </div>
         </motion.div>
       </div>
     </section>

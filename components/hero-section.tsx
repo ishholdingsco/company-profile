@@ -57,13 +57,14 @@ export function HeroSection() {
               {/* Background Image */}
               <div className="absolute inset-0">
                 <Image
-                  src="/hero.png"
+                  src="/hero.jpg"
                   alt="Hero Background"
                   fill
-                  className="object-cover"
+                  className="object-cover brightness-75 grayscale"
                   priority
+                  quality={100}
                 />
-                <div className="absolute inset-0 bg-black/40" />
+                <div className="absolute inset-0 bg-black/50" />
               </div>
 
               {/* Content */}
@@ -125,6 +126,7 @@ export function HeroSection() {
                   alt="Technology Background"
                   fill
                   className="object-cover brightness-75 grayscale"
+                  quality={100}
                 />
                 <div className="absolute inset-0 bg-black/50" />
               </div>
@@ -170,8 +172,8 @@ export function HeroSection() {
                       transition={{ delay: 0.5, duration: 0.6 }}
                     >
                       We are a <span className="font-bold">digital technology startup</span> with
-                      expertise in developing innovative solutions for the mining and
-                      logistics industries.
+                      expertise in developing innovative solutions for a broad range of
+                      industries.
                     </motion.p>
                     <motion.div
                       className="w-full border-t-2 border-white"
@@ -196,6 +198,7 @@ export function HeroSection() {
                   alt="Products Background"
                   fill
                   className="object-cover brightness-75 grayscale"
+                  quality={100}
                 />
                 <div className="absolute inset-0 bg-black/50" />
               </div>
@@ -211,9 +214,9 @@ export function HeroSection() {
                     duration: 0.7,
                     ease: [0.43, 0.13, 0.23, 0.96]
                   }}
-                  className="max-w-5xl w-full"
+                  className="w-full"
                 >
-                  <div className="space-y-8">
+                  <div className="space-y-6">
                     <motion.div
                       className="w-full border-t-2 border-white"
                       initial={{ scaleX: 0 }}
@@ -222,47 +225,87 @@ export function HeroSection() {
                       style={{ transformOrigin: "left" }}
                     />
                     <motion.h2
-                      className="text-4xl md:text-5xl font-bold text-white"
+                      className="text-4xl md:text-5xl font-bold text-white mb-6"
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.3, duration: 0.6 }}
                     >
-                      Our Products
+                      Our Product
                     </motion.h2>
 
-                    <div className="grid md:grid-cols-2 gap-8">
-                      {/* PocketMine */}
+                    {/* PocketMine - Left-Right Layout */}
+                    <div className="grid md:grid-cols-2 gap-6 md:gap-12 items-center">
+                      {/* Left: Icon */}
                       <motion.div
-                        className="bg-white/10 backdrop-blur-md border-2 border-white rounded-lg p-6"
-                        initial={{ opacity: 0, y: 30, scale: 0.9 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        transition={{ delay: 0.5, duration: 0.6, ease: "easeOut" }}
+                        className="flex items-center justify-center"
+                        initial={{ opacity: 0, x: -30 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.4, duration: 0.6 }}
                       >
-                        <h3 className="text-2xl font-bold text-white mb-3">PocketMine</h3>
-                        <p className="text-white/90 text-lg">
-                          Mobile application for navigation and visualization of mining block models
-                        </p>
+                        <Image
+                          src="/pocketmine/icon.png"
+                          alt="PocketMine"
+                          width={300}
+                          height={300}
+                          className="w-32 md:w-full md:max-w-sm h-auto"
+                        />
                       </motion.div>
 
-                      {/* Lite Fleet */}
+                      {/* Right: Content */}
                       <motion.div
-                        className="bg-white/10 backdrop-blur-md border-2 border-white rounded-lg p-6"
-                        initial={{ opacity: 0, y: 30, scale: 0.9 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        transition={{ delay: 0.7, duration: 0.6, ease: "easeOut" }}
+                        className="space-y-3 md:space-y-4"
+                        initial={{ opacity: 0, x: 30 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.5, duration: 0.6 }}
                       >
-                        <h3 className="text-2xl font-bold text-white mb-3">Lite Fleet</h3>
-                        <p className="text-white/90 text-lg">
-                          Fleet management system for vehicle tracking using smartphones
+                        <h3 className="text-xl md:text-3xl font-bold text-white">PocketMine</h3>
+                        <p className="text-white/95 text-sm md:text-lg leading-relaxed">
+                          Advanced mobile application for mining operations.
                         </p>
+
+                        <div className="space-y-2 md:space-y-3">
+                          <h4 className="text-base md:text-xl font-semibold text-white/90">Key Features:</h4>
+                          <ul className="space-y-1 md:space-y-2 text-white/90 text-sm md:text-base">
+                            <li className="flex items-start gap-2">
+                              <span className="text-white mt-1">•</span>
+                              <span className="md:hidden"><strong>PDF Map Overlay</strong></span>
+                              <span className="hidden md:inline"><strong>PDF Map Overlay</strong> - Import and overlay engineering maps for enhanced visualization</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <span className="text-white mt-1">•</span>
+                              <span className="md:hidden"><strong>Pit Design Processing</strong></span>
+                              <span className="hidden md:inline"><strong>Pit Design Processing</strong> - CAD drawing integration (DXF) for pit boundaries and mine planning</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <span className="text-white mt-1">•</span>
+                              <span className="md:hidden"><strong>Cross-Section Visualization</strong></span>
+                              <span className="hidden md:inline"><strong>Cross-Section Visualization</strong> - Interactive geological cross-section analysis with real-time rendering</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <span className="text-white mt-1">•</span>
+                              <span className="md:hidden"><strong>3D Block Model View</strong></span>
+                              <span className="hidden md:inline"><strong>3D Block Model View</strong> - Top-down and interactive visualization of mining block models</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <span className="text-white mt-1">•</span>
+                              <span className="md:hidden"><strong>GPS Navigation</strong></span>
+                              <span className="hidden md:inline"><strong>GPS Navigation</strong> - Real-time location tracking and navigation within mining sites</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <span className="text-white mt-1">•</span>
+                              <span className="md:hidden"><strong>Coordinate System Support</strong></span>
+                              <span className="hidden md:inline"><strong>Coordinate System Support</strong> - Multiple UTM zones and coordinate transformations for global operations</span>
+                            </li>
+                          </ul>
+                        </div>
                       </motion.div>
                     </div>
 
                     <motion.div
-                      className="w-full border-t-2 border-white"
+                      className="w-full border-t-2 border-white mt-6"
                       initial={{ scaleX: 0 }}
                       animate={{ scaleX: 1 }}
-                      transition={{ delay: 0.8, duration: 0.6, ease: "easeOut" }}
+                      transition={{ delay: 0.7, duration: 0.6, ease: "easeOut" }}
                       style={{ transformOrigin: "left" }}
                     />
                   </div>
