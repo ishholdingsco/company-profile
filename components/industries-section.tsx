@@ -12,6 +12,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Container } from "@/components/ui/container";
+import { Skeleton } from "@/components/ui/skeleton";
 
 // Industry icon mapping
 const getIndustryIcon = (sectorId: string) => {
@@ -47,6 +49,7 @@ const getIndustryImage = (sectorId: string) => {
 
 export function IndustriesSection() {
   const [currentPage, setCurrentPage] = useState(1);
+  const [loadingImages, setLoadingImages] = useState<Record<string, boolean>>({});
   const totalPages = sectors.length;
 
   const currentIndustry = sectors[currentPage - 1];
@@ -105,8 +108,9 @@ export function IndustriesSection() {
   };
 
   return (
-    <section id="industries" className="py-12 page-container">
-      <motion.div
+    <section id="industries" className="py-12">
+      <Container>
+        <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -149,12 +153,18 @@ export function IndustriesSection() {
                 <div className="space-y-6">
                   {/* Icon and Title - Side by Side */}
                   <div className="flex items-center gap-4">
-                    <div className="w-16 h-16 relative flex-shrink-0">
+                    <div className="w-16 h-16 relative shrink-0">
+                      {loadingImages[`icon-${currentIndustry.id}`] !== false && (
+                        <Skeleton className="absolute inset-0" />
+                      )}
                       <Image
                         src={getIndustryIcon(currentIndustry.id)}
                         alt={`${currentIndustry.name} icon`}
                         fill
-                        className="object-contain"
+                        className={`object-contain ${loadingImages[`icon-${currentIndustry.id}`] !== false ? 'opacity-0' : 'opacity-100'}`}
+                        onLoadingComplete={() => {
+                          setLoadingImages(prev => ({ ...prev, [`icon-${currentIndustry.id}`]: false }));
+                        }}
                       />
                     </div>
                     <h3 className="text-3xl font-bold">{currentIndustry.name}</h3>
@@ -176,11 +186,17 @@ export function IndustriesSection() {
 
                 {/* Right: Image */}
                 <div className="relative h-[400px] rounded-lg overflow-hidden border-2 border-foreground">
+                  {loadingImages[`main-${currentIndustry.id}`] !== false && (
+                    <Skeleton className="absolute inset-0 rounded-none" />
+                  )}
                   <Image
                     src={getIndustryImage(currentIndustry.id)}
                     alt={currentIndustry.name}
                     fill
-                    className="object-cover brightness-75 grayscale"
+                    className={`object-cover brightness-75 grayscale ${loadingImages[`main-${currentIndustry.id}`] !== false ? 'opacity-0' : 'opacity-100'}`}
+                    onLoadingComplete={() => {
+                      setLoadingImages(prev => ({ ...prev, [`main-${currentIndustry.id}`]: false }));
+                    }}
                   />
                   <div className="absolute inset-0 bg-black/30" />
                 </div>
@@ -190,11 +206,17 @@ export function IndustriesSection() {
               <div className="lg:hidden space-y-6">
                 {/* Image - Larger for tablet, full view for mobile */}
                 <div className="relative h-[250px] md:h-[350px] rounded-lg overflow-hidden border-2 border-foreground">
+                  {loadingImages[`mobile-${currentIndustry.id}`] !== false && (
+                    <Skeleton className="absolute inset-0 rounded-none" />
+                  )}
                   <Image
                     src={getIndustryImage(currentIndustry.id)}
                     alt={currentIndustry.name}
                     fill
-                    className="object-contain md:object-cover brightness-75 grayscale"
+                    className={`object-contain md:object-cover brightness-75 grayscale ${loadingImages[`mobile-${currentIndustry.id}`] !== false ? 'opacity-0' : 'opacity-100'}`}
+                    onLoadingComplete={() => {
+                      setLoadingImages(prev => ({ ...prev, [`mobile-${currentIndustry.id}`]: false }));
+                    }}
                   />
                   <div className="absolute inset-0 bg-black/30" />
                 </div>
@@ -203,12 +225,18 @@ export function IndustriesSection() {
                 <div className="space-y-4 md:space-y-5">
                   {/* Icon and Title - Side by Side */}
                   <div className="flex items-center gap-3 md:gap-4">
-                    <div className="w-12 h-12 md:w-14 md:h-14 relative flex-shrink-0">
+                    <div className="w-12 h-12 md:w-14 md:h-14 relative shrink-0">
+                      {loadingImages[`icon-mobile-${currentIndustry.id}`] !== false && (
+                        <Skeleton className="absolute inset-0" />
+                      )}
                       <Image
                         src={getIndustryIcon(currentIndustry.id)}
                         alt={`${currentIndustry.name} icon`}
                         fill
-                        className="object-contain"
+                        className={`object-contain ${loadingImages[`icon-mobile-${currentIndustry.id}`] !== false ? 'opacity-0' : 'opacity-100'}`}
+                        onLoadingComplete={() => {
+                          setLoadingImages(prev => ({ ...prev, [`icon-mobile-${currentIndustry.id}`]: false }));
+                        }}
                       />
                     </div>
                     <h3 className="text-2xl md:text-3xl font-bold">{currentIndustry.name}</h3>
@@ -315,6 +343,7 @@ export function IndustriesSection() {
           )}
         </div>
       </motion.div>
+      </Container>
     </section>
   );
 }

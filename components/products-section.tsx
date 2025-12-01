@@ -1,12 +1,17 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { Container } from "@/components/ui/container";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export function ProductsSection() {
+  const [loadingImages, setLoadingImages] = useState<Record<string, boolean>>({});
+
   return (
-    <section id="products" className="py-16 page-container">
-      <div className="w-full">
+    <section id="products" className="py-16">
+      <Container>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -30,24 +35,36 @@ export function ProductsSection() {
             >
               {/* App Screenshot - Large with border & shadow */}
               <div className="relative h-[500px] rounded-lg overflow-hidden border-2 border-foreground shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+                {loadingImages['screenshot-desktop'] !== false && (
+                  <Skeleton className="absolute inset-0 rounded-none" />
+                )}
                 <Image
                   src="/pocketmine/pocketmine.png"
                   alt="PocketMine - Advanced Mining Data Visualization"
                   fill
-                  className="object-contain bg-muted p-4"
+                  className={`object-contain bg-muted p-4 ${loadingImages['screenshot-desktop'] !== false ? 'opacity-0' : 'opacity-100'}`}
                   priority
+                  onLoadingComplete={() => {
+                    setLoadingImages(prev => ({ ...prev, 'screenshot-desktop': false }));
+                  }}
                 />
               </div>
 
               {/* Logo and Description - Flex Horizontal */}
               <div className="flex items-center gap-1">
                 {/* Logo */}
-                <div className="relative w-40 h-20 flex-shrink-0">
+                <div className="relative w-40 h-20 shrink-0">
+                  {loadingImages['logo-desktop'] !== false && (
+                    <Skeleton className="absolute inset-0" />
+                  )}
                   <Image
                     src="/pocketmine/logo+tulisan.png"
                     alt="PocketMine"
                     fill
-                    className="object-contain object-left"
+                    className={`object-contain object-left ${loadingImages['logo-desktop'] !== false ? 'opacity-0' : 'opacity-100'}`}
+                    onLoadingComplete={() => {
+                      setLoadingImages(prev => ({ ...prev, 'logo-desktop': false }));
+                    }}
                   />
                 </div>
 
@@ -124,12 +141,18 @@ export function ProductsSection() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="relative h-[450px] md:h-[450px] rounded-lg overflow-hidden border-2 border-foreground shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
             >
+              {loadingImages['screenshot-mobile'] !== false && (
+                <Skeleton className="absolute inset-0 rounded-none" />
+              )}
               <Image
                 src="/pocketmine/pocketmine.png"
                 alt="PocketMine - Advanced Mining Data Visualization"
                 fill
-                className="object-cover md:object-contain bg-muted md:p-4"
+                className={`object-cover md:object-contain bg-muted md:p-4 ${loadingImages['screenshot-mobile'] !== false ? 'opacity-0' : 'opacity-100'}`}
                 priority
+                onLoadingComplete={() => {
+                  setLoadingImages(prev => ({ ...prev, 'screenshot-mobile': false }));
+                }}
               />
             </motion.div>
 
@@ -141,13 +164,19 @@ export function ProductsSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="relative w-full max-w-sm mx-auto md:mx-0 md:w-40 h-20 md:flex-shrink-0"
+                className="relative w-full max-w-sm mx-auto md:mx-0 md:w-40 h-20 md:shrink-0"
               >
+                {loadingImages['logo-mobile'] !== false && (
+                  <Skeleton className="absolute inset-0" />
+                )}
                 <Image
                   src="/pocketmine/logo+tulisan.png"
                   alt="PocketMine"
                   fill
-                  className="object-contain md:object-left"
+                  className={`object-contain md:object-left ${loadingImages['logo-mobile'] !== false ? 'opacity-0' : 'opacity-100'}`}
+                  onLoadingComplete={() => {
+                    setLoadingImages(prev => ({ ...prev, 'logo-mobile': false }));
+                  }}
                 />
               </motion.div>
 
@@ -224,7 +253,7 @@ export function ProductsSection() {
             </motion.div>
           </div>
         </motion.div>
-      </div>
+      </Container>
     </section>
   );
 }

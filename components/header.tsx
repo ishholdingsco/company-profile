@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import { Container } from "@/components/ui/container";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,7 +20,7 @@ export function Header() {
         transition={{ duration: 0.6 }}
         className="sticky top-0 z-50 bg-white/95 backdrop-blur-md w-full"
       >
-        <div className="page-container py-3 md:py-4">
+        <Container className="py-3 md:py-4">
           <div className="flex items-center justify-between">
             <div>
               <Link href="/" className="block" onClick={closeMenu}>
@@ -76,7 +77,7 @@ export function Header() {
               />
             </button>
           </div>
-        </div>
+        </Container>
       </motion.header>
 
       {/* Mobile Sidebar Overlay */}

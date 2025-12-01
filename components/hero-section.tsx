@@ -10,6 +10,7 @@ import {
   type CarouselApi,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
+import { Container } from "@/components/ui/container";
 
 export function HeroSection() {
   const [api, setApi] = useState<CarouselApi>();
@@ -68,7 +69,7 @@ export function HeroSection() {
               </div>
 
               {/* Content */}
-              <div className="relative h-full flex items-center page-container">
+              <Container className="relative h-full flex items-center">
                 <motion.div
                   key={`slide-0-${current}`}
                   initial={{ opacity: 0, x: -50, y: 20 }}
@@ -112,7 +113,7 @@ export function HeroSection() {
                     />
                   </motion.div>
                 </motion.div>
-              </div>
+              </Container>
             </div>
           </CarouselItem>
 
@@ -132,7 +133,7 @@ export function HeroSection() {
               </div>
 
               {/* Content */}
-              <div className="relative h-full flex items-center page-container">
+              <Container className="relative h-full flex items-center">
                 <motion.div
                   key={`slide-1-${current}`}
                   initial={{ opacity: 0, x: -50, y: 20 }}
@@ -184,7 +185,7 @@ export function HeroSection() {
                     />
                   </motion.div>
                 </motion.div>
-              </div>
+              </Container>
             </div>
           </CarouselItem>
 
@@ -204,7 +205,7 @@ export function HeroSection() {
               </div>
 
               {/* Content */}
-              <div className="relative h-full flex items-center page-container">
+              <Container className="relative h-full flex items-center">
                 <motion.div
                   key={`slide-2-${current}`}
                   initial={{ opacity: 0, x: -50, y: 20 }}
@@ -310,7 +311,7 @@ export function HeroSection() {
                     />
                   </div>
                 </motion.div>
-              </div>
+              </Container>
             </div>
           </CarouselItem>
         </CarouselContent>

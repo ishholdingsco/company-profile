@@ -14,6 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Container } from "@/components/ui/container";
 
 function SolutionsContent() {
   const searchParams = useSearchParams();
@@ -74,7 +75,7 @@ function SolutionsContent() {
               />
               <div className="absolute inset-0 bg-black/50" />
             </div>
-            <div className="relative h-full flex items-center page-container">
+            <Container className="relative h-full flex items-center">
               <motion.div
                 initial={{ opacity: 0, x: -50, y: 20 }}
                 animate={{ opacity: 1, x: 0, y: 0 }}
@@ -117,11 +118,11 @@ function SolutionsContent() {
                   />
                 </div>
               </motion.div>
-            </div>
+            </Container>
           </div>
 
           {/* Content with Sidebar */}
-          <div className="page-container flex gap-8 pb-12">
+          <Container className="flex gap-8 pb-12">
             {/* Left Sidebar - Glossary Navigation */}
             <aside className="hidden lg:block w-64 shrink-0">
               <div className="sticky top-32 space-y-4">
@@ -286,7 +287,7 @@ function SolutionsContent() {
                 </motion.div>
               </AnimatePresence>
             </div>
-          </div>
+          </Container>
         </div>
       </main>
       <Footer />

@@ -4,13 +4,14 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { Mail, Phone, Linkedin } from "lucide-react";
+import { Container } from "@/components/ui/container";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
     <footer className="mt-6 md:mt-8 lg:mt-12 pt-6 md:pt-8">
-      <div className="page-container pb-8">
+      <Container className="pb-8">
         {/* Responsive Grid Layout */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-12">
           {/* Company Info - Full width on mobile, 1 column on desktop */}
@@ -157,7 +158,7 @@ export function Footer() {
             © {currentYear} ISH Technologies. All rights reserved.
           </p>
         </motion.div>
-      </div>
+      </Container>
     </footer>
   );
 }

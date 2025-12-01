@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import Image from "next/image";
+import { Container } from "@/components/ui/container";
 
 export default function AboutPage() {
   return (
@@ -22,7 +23,7 @@ export default function AboutPage() {
             />
             <div className="absolute inset-0 bg-black/50" />
           </div>
-          <div className="relative h-full flex items-center page-container">
+          <Container className="relative h-full flex items-center">
             <motion.div
               initial={{ opacity: 0, x: -50, y: 20 }}
               animate={{ opacity: 1, x: 0, y: 0 }}
@@ -65,10 +66,10 @@ export default function AboutPage() {
                 />
               </div>
             </motion.div>
-          </div>
+          </Container>
         </div>
 
-        <div className="page-container pb-6 md:pb-8 lg:pb-12">
+        <Container className="pb-6 md:pb-8 lg:pb-12">
           <div className="flex flex-col gap-8 md:gap-10 lg:gap-12">
 
             {/* Content */}
@@ -414,7 +415,7 @@ export default function AboutPage() {
               </div>
             </motion.div>
           </div>
-        </div>
+        </Container>
       </main>
       <Footer />
     </div>
