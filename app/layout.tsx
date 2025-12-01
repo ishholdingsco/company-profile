@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
+import { UNDER_CONSTRUCTION } from "./config";
+import { UnderConstruction } from "@/components/under-construction";
 
 const ibmPlexSans = IBM_Plex_Sans({
   variable: "--font-ibm-plex-sans",
@@ -23,7 +25,7 @@ export default function RootLayout({
       <body
         className={`${ibmPlexSans.variable} antialiased`}
       >
-        {children}
+        {UNDER_CONSTRUCTION ? <UnderConstruction /> : children}
       </body>
     </html>
   );
