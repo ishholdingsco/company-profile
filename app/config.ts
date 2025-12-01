@@ -5,4 +5,4 @@
  * Set to true to enable Under Construction page
  * Set to false to show the normal website
  */
-export const UNDER_CONSTRUCTION = false;
+export const UNDER_CONSTRUCTION = true;
