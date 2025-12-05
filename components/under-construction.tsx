@@ -56,18 +56,18 @@ export function UnderConstruction() {
             >
               <div className="space-y-4">
                 <h1 className="text-4xl md:text-6xl font-bold text-foreground tracking-tight">
-                  Under Construction
+                  We Are Evolving!
                 </h1>
               </div>
 
               <p className="text-xl md:text-2xl text-foreground/80 leading-relaxed max-w-2xl mx-auto">
-                We're working on something amazing.
+                Our digital home is going through a major level-up.
                 <br />
-                Our website is currently under development.
+                To match our growing capabilities and vision, we are meticulously re-engineering our digital presence.
               </p>
 
               <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto">
-                Please check back soon to see what we've been building!
+                Please check back soon to watch us coming back better than ever before!
               </p>
             </motion.div>
           </motion.div>
