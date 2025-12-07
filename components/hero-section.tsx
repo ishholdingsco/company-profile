@@ -1,337 +1,201 @@
 "use client";
 
-import { motion } from "framer-motion";
-import Image from "next/image";
-import { useState, useEffect, useRef } from "react";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  type CarouselApi,
-} from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { Container } from "@/components/ui/container";
+import { useEffect } from "react";
 
 export function HeroSection() {
-  const [api, setApi] = useState<CarouselApi>();
-  const [current, setCurrent] = useState(0);
-  const autoplayRef = useRef(
-    Autoplay({
-      delay: 5000,
-      stopOnInteraction: false,
-    })
-  );
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  // Smooth spring animation for mouse position
+  const springConfig = { damping: 25, stiffness: 150 };
+  const smoothMouseX = useSpring(mouseX, springConfig);
+  const smoothMouseY = useSpring(mouseY, springConfig);
+
+  // Transform mouse position to wave offset values (smaller range for subtler effect)
+  const mouseInfluenceY = useTransform(smoothMouseY, [0, 800], [-30, 30]);
+  const mouseInfluenceX = useTransform(smoothMouseX, [0, 1200], [-20, 20]);
 
   useEffect(() => {
-    if (!api) {
-      return;
-    }
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
+    };
 
-    setCurrent(api.selectedScrollSnap());
-
-    api.on("select", () => {
-      setCurrent(api.selectedScrollSnap());
-    });
-  }, [api]);
-
-  const scrollTo = (index: number) => {
-    api?.scrollTo(index);
-    // Reset autoplay timer ketika user klik pagination dot
-    autoplayRef.current.reset();
-  };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [mouseX, mouseY]);
 
   return (
-    <section className="mt-0 pb-4">
-      <Carousel
-        setApi={setApi}
-        opts={{
-          align: "start",
-          loop: true,
+    <section className="relative w-full h-screen overflow-hidden bg-gradient-to-br from-[#e8e8f0] via-[#e0e0ea] to-[#d8d8e5]">
+      {/* Animated Wave Background with Mouse Tracking */}
+      <div className="absolute inset-0 overflow-hidden">
+        <svg
+          className="absolute w-full h-full"
+          viewBox="0 0 1200 800"
+          preserveAspectRatio="xMidYMid slice"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <linearGradient id="wave-gradient-1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style={{ stopColor: "#2626a8", stopOpacity: 0.15 }} />
+              <stop offset="100%" style={{ stopColor: "#4040c0", stopOpacity: 0.08 }} />
+            </linearGradient>
+            <linearGradient id="wave-gradient-2" x1="100%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style={{ stopColor: "#3535b5", stopOpacity: 0.12 }} />
+              <stop offset="100%" style={{ stopColor: "#5050d0", stopOpacity: 0.06 }} />
+            </linearGradient>
+            <linearGradient id="wave-gradient-3" x1="50%" y1="0%" x2="50%" y2="100%">
+              <stop offset="0%" style={{ stopColor: "#4545bb", stopOpacity: 0.1 }} />
+              <stop offset="100%" style={{ stopColor: "#6060dd", stopOpacity: 0.05 }} />
+            </linearGradient>
+          </defs>
+
+          {/* Wave 1 - Primary wave with ambient + mouse tracking */}
+          <motion.path
+            fill="url(#wave-gradient-1)"
+            animate={{
+              d: [
+                `M0,300 Q300,100 600,300 T1200,300 L1200,0 L0,0 Z`,
+                `M0,280 Q300,120 600,280 T1200,280 L1200,0 L0,0 Z`,
+                `M0,300 Q300,100 600,300 T1200,300 L1200,0 L0,0 Z`,
+              ],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            style={{
+              translateY: mouseInfluenceY,
+            }}
+          />
+
+          {/* Wave 2 - Secondary wave with different timing + mouse */}
+          <motion.path
+            fill="url(#wave-gradient-2)"
+            animate={{
+              d: [
+                `M0,200 Q300,50 600,200 T1200,200 L1200,0 L0,0 Z`,
+                `M0,230 Q300,80 600,230 T1200,230 L1200,0 L0,0 Z`,
+                `M0,200 Q300,50 600,200 T1200,200 L1200,0 L0,0 Z`,
+              ],
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 1,
+            }}
+            style={{
+              translateY: useTransform(mouseInfluenceY, (y) => y * 0.7),
+              translateX: useTransform(mouseInfluenceX, (x) => x * 0.5),
+            }}
+          />
+
+          {/* Wave 3 - Tertiary wave + mouse */}
+          <motion.path
+            fill="url(#wave-gradient-3)"
+            opacity="0.6"
+            animate={{
+              d: [
+                `M0,150 Q200,80 400,150 T800,150 T1200,150 L1200,0 L0,0 Z`,
+                `M0,170 Q200,100 400,170 T800,170 T1200,170 L1200,0 L0,0 Z`,
+                `M0,150 Q200,80 400,150 T800,150 T1200,150 L1200,0 L0,0 Z`,
+              ],
+            }}
+            transition={{
+              duration: 12,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 2,
+            }}
+            style={{
+              translateY: useTransform(mouseInfluenceY, (y) => y * 0.5),
+              translateX: useTransform(mouseInfluenceX, (x) => x * 0.8),
+            }}
+          />
+
+          {/* Wave 4 - Background ambient wave */}
+          <motion.path
+            d="M0,350 Q400,250 800,350 T1200,350 L1200,0 L0,0 Z"
+            fill="url(#wave-gradient-1)"
+            opacity="0.04"
+            animate={{
+              d: [
+                "M0,350 Q400,250 800,350 T1200,350 L1200,0 L0,0 Z",
+                "M0,320 Q400,220 800,320 T1200,320 L1200,0 L0,0 Z",
+                "M0,350 Q400,250 800,350 T1200,350 L1200,0 L0,0 Z",
+              ],
+            }}
+            transition={{
+              duration: 15,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            style={{
+              translateY: useTransform(mouseInfluenceY, (y) => y * 0.3),
+            }}
+          />
+        </svg>
+      </div>
+
+      {/* Interactive particles/dots following mouse */}
+      <motion.div
+        className="absolute w-3 h-3 rounded-full bg-blue-400/30 pointer-events-none"
+        style={{
+          x: smoothMouseX,
+          y: smoothMouseY,
+          translateX: "-50%",
+          translateY: "-50%",
         }}
-        plugins={[autoplayRef.current]}
-        className="w-full"
-      >
-        <CarouselContent>
-          {/* Slide 1: Consolidated Technologies */}
-          <CarouselItem>
-            <div className="relative w-full h-[90vh] overflow-hidden">
-              {/* Background Image */}
-              <div className="absolute inset-0">
-                <Image
-                  src="/hero.jpg"
-                  alt="Hero Background"
-                  fill
-                  className="object-cover brightness-75 grayscale"
-                  priority
-                  quality={100}
-                />
-                <div className="absolute inset-0 bg-black/50" />
-              </div>
+      />
+      <motion.div
+        className="absolute w-2 h-2 rounded-full bg-blue-300/20 pointer-events-none"
+        style={{
+          x: useTransform(smoothMouseX, (x) => x * 0.8),
+          y: useTransform(smoothMouseY, (y) => y * 0.8),
+          translateX: "-50%",
+          translateY: "-50%",
+        }}
+      />
+      <motion.div
+        className="absolute w-4 h-4 rounded-full bg-blue-500/15 pointer-events-none"
+        style={{
+          x: useTransform(smoothMouseX, (x) => x * 1.2),
+          y: useTransform(smoothMouseY, (y) => y * 1.2),
+          translateX: "-50%",
+          translateY: "-50%",
+        }}
+      />
 
-              {/* Content */}
-              <Container className="relative h-full flex items-center">
-                <motion.div
-                  key={`slide-0-${current}`}
-                  initial={{ opacity: 0, x: -50, y: 20 }}
-                  animate={{ opacity: 1, x: 0, y: 0 }}
-                  exit={{ opacity: 0, x: 50 }}
-                  transition={{
-                    duration: 0.7,
-                    ease: [0.43, 0.13, 0.23, 0.96]
-                  }}
-                  className="max-w-4xl"
-                >
-                  <motion.div
-                    className="space-y-6"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.3, duration: 0.6 }}
-                  >
-                    <motion.div
-                      className="w-full border-t-2 border-white"
-                      initial={{ scaleX: 0 }}
-                      animate={{ scaleX: 1 }}
-                      transition={{ delay: 0.2, duration: 0.6, ease: "easeOut" }}
-                      style={{ transformOrigin: "left" }}
-                    />
-                    <motion.p
-                      className="text-3xl md:text-4xl text-white leading-relaxed"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.4, duration: 0.6 }}
-                    >
-                      We are a{" "}
-                      <span className="font-bold">consolidated technologies company</span>
-                      , offering cutting-edge solutions at scale.
-                    </motion.p>
-                    <motion.div
-                      className="w-full border-t-2 border-white"
-                      initial={{ scaleX: 0 }}
-                      animate={{ scaleX: 1 }}
-                      transition={{ delay: 0.5, duration: 0.6, ease: "easeOut" }}
-                      style={{ transformOrigin: "left" }}
-                    />
-                  </motion.div>
-                </motion.div>
-              </Container>
-            </div>
-          </CarouselItem>
-
-          {/* Slide 2: Digital Technology Startup */}
-          <CarouselItem>
-            <div className="relative w-full h-[90vh] overflow-hidden">
-              {/* Background Image */}
-              <div className="absolute inset-0">
-                <Image
-                  src="/about-bg.jpg"
-                  alt="Technology Background"
-                  fill
-                  className="object-cover brightness-75 grayscale"
-                  quality={100}
-                />
-                <div className="absolute inset-0 bg-black/50" />
-              </div>
-
-              {/* Content */}
-              <Container className="relative h-full flex items-center">
-                <motion.div
-                  key={`slide-1-${current}`}
-                  initial={{ opacity: 0, x: -50, y: 20 }}
-                  animate={{ opacity: 1, x: 0, y: 0 }}
-                  exit={{ opacity: 0, x: 50 }}
-                  transition={{
-                    duration: 0.7,
-                    ease: [0.43, 0.13, 0.23, 0.96]
-                  }}
-                  className="max-w-4xl"
-                >
-                  <motion.div
-                    className="space-y-6"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.3, duration: 0.6 }}
-                  >
-                    <motion.div
-                      className="w-full border-t-2 border-white"
-                      initial={{ scaleX: 0 }}
-                      animate={{ scaleX: 1 }}
-                      transition={{ delay: 0.2, duration: 0.6, ease: "easeOut" }}
-                      style={{ transformOrigin: "left" }}
-                    />
-                    <motion.h2
-                      className="text-4xl md:text-5xl font-bold text-white mb-4"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.4, duration: 0.6 }}
-                    >
-                      About Us
-                    </motion.h2>
-                    <motion.p
-                      className="text-2xl md:text-3xl text-white leading-relaxed"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.5, duration: 0.6 }}
-                    >
-                      We are a <span className="font-bold">digital technology startup</span> with
-                      expertise in developing innovative solutions for a broad range of
-                      industries.
-                    </motion.p>
-                    <motion.div
-                      className="w-full border-t-2 border-white"
-                      initial={{ scaleX: 0 }}
-                      animate={{ scaleX: 1 }}
-                      transition={{ delay: 0.6, duration: 0.6, ease: "easeOut" }}
-                      style={{ transformOrigin: "left" }}
-                    />
-                  </motion.div>
-                </motion.div>
-              </Container>
-            </div>
-          </CarouselItem>
-
-          {/* Slide 3: Our Products */}
-          <CarouselItem>
-            <div className="relative w-full h-[90vh] overflow-hidden">
-              {/* Background Image */}
-              <div className="absolute inset-0">
-                <Image
-                  src="/products-bg.jpg"
-                  alt="Products Background"
-                  fill
-                  className="object-cover brightness-75 grayscale"
-                  quality={100}
-                />
-                <div className="absolute inset-0 bg-black/50" />
-              </div>
-
-              {/* Content */}
-              <Container className="relative h-full flex items-center">
-                <motion.div
-                  key={`slide-2-${current}`}
-                  initial={{ opacity: 0, x: -50, y: 20 }}
-                  animate={{ opacity: 1, x: 0, y: 0 }}
-                  exit={{ opacity: 0, x: 50 }}
-                  transition={{
-                    duration: 0.7,
-                    ease: [0.43, 0.13, 0.23, 0.96]
-                  }}
-                  className="w-full"
-                >
-                  <div className="space-y-6">
-                    <motion.div
-                      className="w-full border-t-2 border-white"
-                      initial={{ scaleX: 0 }}
-                      animate={{ scaleX: 1 }}
-                      transition={{ delay: 0.2, duration: 0.6, ease: "easeOut" }}
-                      style={{ transformOrigin: "left" }}
-                    />
-                    <motion.h2
-                      className="text-4xl md:text-5xl font-bold text-white mb-6"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.3, duration: 0.6 }}
-                    >
-                      Our Product
-                    </motion.h2>
-
-                    {/* PocketMine - Left-Right Layout */}
-                    <div className="grid md:grid-cols-2 gap-6 md:gap-12 items-center">
-                      {/* Left: Icon */}
-                      <motion.div
-                        className="flex items-center justify-center"
-                        initial={{ opacity: 0, x: -30 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.4, duration: 0.6 }}
-                      >
-                        <Image
-                          src="/pocketmine/icon.png"
-                          alt="PocketMine"
-                          width={300}
-                          height={300}
-                          className="w-32 md:w-full md:max-w-sm h-auto"
-                        />
-                      </motion.div>
-
-                      {/* Right: Content */}
-                      <motion.div
-                        className="space-y-3 md:space-y-4"
-                        initial={{ opacity: 0, x: 30 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.5, duration: 0.6 }}
-                      >
-                        <h3 className="text-xl md:text-3xl font-bold text-white">PocketMine</h3>
-                        <p className="text-white/95 text-sm md:text-lg leading-relaxed">
-                          Advanced mobile application for mining operations.
-                        </p>
-
-                        <div className="space-y-2 md:space-y-3">
-                          <h4 className="text-base md:text-xl font-semibold text-white/90">Key Features:</h4>
-                          <ul className="space-y-1 md:space-y-2 text-white/90 text-sm md:text-base">
-                            <li className="flex items-start gap-2">
-                              <span className="text-white mt-1">•</span>
-                              <span className="md:hidden"><strong>PDF Map Overlay</strong></span>
-                              <span className="hidden md:inline"><strong>PDF Map Overlay</strong> - Import and overlay engineering maps for enhanced visualization</span>
-                            </li>
-                            <li className="flex items-start gap-2">
-                              <span className="text-white mt-1">•</span>
-                              <span className="md:hidden"><strong>Pit Design Processing</strong></span>
-                              <span className="hidden md:inline"><strong>Pit Design Processing</strong> - CAD drawing integration (DXF) for pit boundaries and mine planning</span>
-                            </li>
-                            <li className="flex items-start gap-2">
-                              <span className="text-white mt-1">•</span>
-                              <span className="md:hidden"><strong>Cross-Section Visualization</strong></span>
-                              <span className="hidden md:inline"><strong>Cross-Section Visualization</strong> - Interactive geological cross-section analysis with real-time rendering</span>
-                            </li>
-                            <li className="flex items-start gap-2">
-                              <span className="text-white mt-1">•</span>
-                              <span className="md:hidden"><strong>3D Block Model View</strong></span>
-                              <span className="hidden md:inline"><strong>3D Block Model View</strong> - Top-down and interactive visualization of mining block models</span>
-                            </li>
-                            <li className="flex items-start gap-2">
-                              <span className="text-white mt-1">•</span>
-                              <span className="md:hidden"><strong>GPS Navigation</strong></span>
-                              <span className="hidden md:inline"><strong>GPS Navigation</strong> - Real-time location tracking and navigation within mining sites</span>
-                            </li>
-                            <li className="flex items-start gap-2">
-                              <span className="text-white mt-1">•</span>
-                              <span className="md:hidden"><strong>Coordinate System Support</strong></span>
-                              <span className="hidden md:inline"><strong>Coordinate System Support</strong> - Multiple UTM zones and coordinate transformations for global operations</span>
-                            </li>
-                          </ul>
-                        </div>
-                      </motion.div>
-                    </div>
-
-                    <motion.div
-                      className="w-full border-t-2 border-white mt-6"
-                      initial={{ scaleX: 0 }}
-                      animate={{ scaleX: 1 }}
-                      transition={{ delay: 0.7, duration: 0.6, ease: "easeOut" }}
-                      style={{ transformOrigin: "left" }}
-                    />
-                  </div>
-                </motion.div>
-              </Container>
-            </div>
-          </CarouselItem>
-        </CarouselContent>
-
-        {/* Pagination Dots */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-3 z-10">
-          {[0, 1, 2].map((index) => (
-            <button
-              key={index}
-              onClick={() => scrollTo(index)}
-              className={`transition-all duration-300 ${
-                current === index
-                  ? "w-12 h-3 bg-white rounded-full"
-                  : "w-3 h-3 bg-white/50 hover:bg-white/75 rounded-full"
-              }`}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
-        </div>
-      </Carousel>
+      {/* Content Overlay - Centered */}
+      <Container className="relative h-full flex items-center justify-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.2 }}
+          className="text-center"
+        >
+          <motion.h1
+            className="text-3xl md:text-5xl lg:text-6xl font-light leading-tight"
+            style={{ fontFamily: "var(--font-plus-jakarta-sans)" }}
+          >
+            <span className="text-gray-900">Make idea </span>
+            <motion.span
+              className="italic font-normal"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0.6 }}
+              style={{ fontFamily: "var(--font-merriweather)" }}
+            >
+              make sense
+            </motion.span>
+            <span className="text-gray-900">.</span>
+          </motion.h1>
+        </motion.div>
+      </Container>
     </section>
   );
 }
