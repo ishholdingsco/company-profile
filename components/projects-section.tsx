@@ -24,8 +24,8 @@ const projects: Project[] = [
     subtitle: "",
     image: "/products/pocketmine.png",
     size: "large",
-    width: 741,
-    height: 563,
+    width: 762,
+    height: 584,
     textColor: "text-white",
   },
   {
@@ -68,36 +68,33 @@ export function ProjectsSection() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="relative"
               >
-                {/* Card with shadow - no container background */}
-                <div
-                  className="relative overflow-hidden rounded-2xl shadow-2xl bg-transparent"
-                  style={{
-                    width: `${project.width}px`,
-                    height: `${project.height}px`,
-                    maxWidth: '100%',
-                  }}
-                >
+                {/* Card wrapper for overlays */}
+                <div className="relative" style={{ borderRadius: '48px', overflow: 'hidden' }}>
                   {/* Loading skeleton */}
                   {loadingImages[project.id] !== false && (
-                    <Skeleton className="absolute inset-0 rounded-2xl" />
+                    <div className="absolute inset-0 z-20">
+                      <Skeleton className="w-full h-full" />
+                    </div>
                   )}
 
-                  {/* Image */}
+                  {/* Image - Direct render without container constraints */}
                   <Image
                     src={project.image}
                     alt={project.title}
-                    fill
-                    className={`object-cover ${
+                    width={project.width}
+                    height={project.height}
+                    className={`w-full h-auto shadow-2xl ${
                       loadingImages[project.id] !== false ? 'opacity-0' : 'opacity-100'
                     }`}
+                    style={{ borderRadius: '48px', display: 'block' }}
                     priority={index === 0}
-                    onLoadingComplete={() => {
+                    onLoad={() => {
                       setLoadingImages(prev => ({ ...prev, [project.id]: false }));
                     }}
                   />
 
-                  {/* White shadow-like gradient overlay at bottom - fade effect */}
-                  <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-white via-white/60 to-transparent pointer-events-none" />
+                  {/* Gradient overlay at bottom - fade effect */}
+                  <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#F8F6F3] via-[#F8F6F3]/60 to-transparent pointer-events-none" />
 
                   {/* Text overlay at bottom */}
                   <div className="absolute bottom-0 left-0 right-0 p-6 lg:p-8 z-10">
@@ -127,35 +124,33 @@ export function ProjectsSection() {
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   className="flex-shrink-0"
                 >
-                  {/* Card with shadow - no container background */}
-                  <div
-                    className="relative overflow-hidden rounded-2xl shadow-2xl bg-transparent"
-                    style={{
-                      width: `${project.width * 0.4}px`,
-                      height: `${project.height * 0.4}px`,
-                    }}
-                  >
+                  {/* Card wrapper for overlays */}
+                  <div className="relative" style={{ borderRadius: '48px', overflow: 'hidden', width: `${project.width * 0.4}px` }}>
                     {/* Loading skeleton */}
                     {loadingImages[`${project.id}-mobile`] !== false && (
-                      <Skeleton className="absolute inset-0 rounded-2xl" />
+                      <div className="absolute inset-0 z-20">
+                        <Skeleton className="w-full h-full" />
+                      </div>
                     )}
 
-                    {/* Image */}
+                    {/* Image - Direct render without container constraints */}
                     <Image
                       src={project.image}
                       alt={project.title}
-                      fill
-                      className={`object-cover ${
+                      width={project.width}
+                      height={project.height}
+                      className={`w-full h-auto shadow-2xl ${
                         loadingImages[`${project.id}-mobile`] !== false ? 'opacity-0' : 'opacity-100'
                       }`}
+                      style={{ borderRadius: '48px', display: 'block' }}
                       priority={index === 0}
-                      onLoadingComplete={() => {
+                      onLoad={() => {
                         setLoadingImages(prev => ({ ...prev, [`${project.id}-mobile`]: false }));
                       }}
                     />
 
-                    {/* White shadow-like gradient overlay at bottom - fade effect */}
-                    <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white via-white/60 to-transparent pointer-events-none" />
+                    {/* Gradient overlay at bottom - fade effect */}
+                    <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#F8F6F3] via-[#F8F6F3]/60 to-transparent pointer-events-none" />
 
                     {/* Text overlay at bottom */}
                     <div className="absolute bottom-0 left-0 right-0 p-4 z-10">

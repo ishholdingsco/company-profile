@@ -1,56 +1,104 @@
+"use client";
+
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
-import Link from "next/link";
+import { motion } from "framer-motion";
 
 export default function NotFound() {
   return (
     <div className="min-h-screen bg-background w-full flex flex-col">
-      <Header />
-      <main className="w-full flex-1 flex items-center justify-center px-12">
-        <div className="w-full max-w-2xl text-center space-y-12">
-          {/* 404 Number */}
-          <div className="space-y-6">
-            <div className="w-full border-t-2 border-foreground" />
-            <h1 className="text-9xl font-bold">404</h1>
-            <div className="w-full border-t-2 border-foreground" />
-          </div>
+      <Header variant="blue" />
+      <main className="w-full flex-1 flex items-center justify-center px-6 py-12">
+        <div className="w-full max-w-2xl text-center space-y-8">
+          {/* Animated 404 Face SVG */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="flex justify-center"
+          >
+            <svg
+              className="face"
+              viewBox="0 0 320 380"
+              width="320px"
+              height="380px"
+              aria-label="A 404 becomes a face, looks to the sides, and blinks."
+            >
+              <g
+                fill="none"
+                stroke="#003680"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="25"
+              >
+                <g className="face__eyes" transform="translate(0, 112.5)">
+                  <g transform="translate(15, 0)">
+                    <polyline
+                      className="face__eye-lid"
+                      points="37,0 0,120 75,120"
+                    />
+                    <polyline
+                      className="face__pupil"
+                      points="55,120 55,155"
+                      strokeDasharray="35 35"
+                    />
+                  </g>
+                  <g transform="translate(230, 0)">
+                    <polyline
+                      className="face__eye-lid"
+                      points="37,0 0,120 75,120"
+                    />
+                    <polyline
+                      className="face__pupil"
+                      points="55,120 55,155"
+                      strokeDasharray="35 35"
+                    />
+                  </g>
+                </g>
+                <rect
+                  className="face__nose"
+                  rx="4"
+                  ry="4"
+                  x="132.5"
+                  y="112.5"
+                  width="55"
+                  height="155"
+                />
+                <g strokeDasharray="102 102" transform="translate(65, 334)">
+                  <path
+                    className="face__mouth-left"
+                    d="M 0 30 C 0 30 40 0 95 0"
+                    strokeDashoffset="-102"
+                    fill="none"
+                  />
+                  <path
+                    className="face__mouth-right"
+                    d="M 95 0 C 150 0 190 30 190 30"
+                    strokeDashoffset="102"
+                    fill="none"
+                  />
+                </g>
+              </g>
+            </svg>
+          </motion.div>
 
           {/* Message */}
-          <div className="space-y-6">
-            <h2 className="text-3xl font-bold">Page Not Found</h2>
-            <p className="text-lg text-muted-foreground">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="space-y-4"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold font-serif text-[#003680]">
+              Page Not Found
+            </h2>
+            <p className="text-base md:text-lg font-sans text-gray-600 max-w-4xl mx-auto whitespace-nowrap">
               Oops! The page you are looking for does not exist or has been moved.
             </p>
-          </div>
-
-          {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8">
-            <Link
-              href="/"
-              className="px-8 py-3 bg-foreground text-background font-bold rounded-lg hover:opacity-90 transition-all border-2 border-foreground w-full sm:w-auto text-center"
-            >
-              Back to Home
-            </Link>
-            <Link
-              href="/solutions"
-              className="px-8 py-3 border-2 border-foreground font-bold rounded-lg hover:bg-foreground hover:text-background transition-all w-full sm:w-auto text-center"
-            >
-              View Solutions
-            </Link>
-          </div>
-
-          {/* Additional Info */}
-          <div className="pt-16">
-            <div className="p-8 border-2 border-foreground rounded-lg bg-muted/30">
-              <h3 className="font-bold mb-4">Need Help?</h3>
-              <p className="text-sm text-muted-foreground">
-                If you believe this is an error, please contact us or navigate back to the homepage.
-              </p>
-            </div>
-          </div>
+          </motion.div>
         </div>
       </main>
-      <Footer />
+      <Footer variant="blue" />
     </div>
   );
 }

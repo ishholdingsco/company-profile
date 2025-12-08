@@ -4,8 +4,15 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Container } from "@/components/ui/container";
 
-export function Footer() {
+interface FooterProps {
+  variant?: "default" | "blue";
+}
+
+export function Footer({ variant = "default" }: FooterProps) {
   const pathname = usePathname();
+  const isBlue = variant === "blue";
+  const textColor = isBlue ? "text-[#003680]" : "";
+  const borderColor = isBlue ? "border-[#003680]" : "border-foreground";
 
   const navItems = [
     { href: "/", label: "Home" },
@@ -16,7 +23,40 @@ export function Footer() {
   return (
     <footer className="py-8">
       <Container>
-        <div className="flex items-center justify-between">
+        {/* Mobile Layout - Centered and Compact */}
+        <div className="md:hidden">
+          <nav className="flex items-center justify-center gap-1 mb-4">
+            {navItems.map((item) => {
+              const isActive = pathname === item.href;
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`px-3 py-2 text-sm transition-all ${textColor} ${
+                    isActive
+                      ? `border ${borderColor} rounded-[50px] font-medium`
+                      : "hover:font-medium"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+          </nav>
+          <div className="flex justify-center">
+            <a
+              href="https://id.linkedin.com/company/soft-roc"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`text-sm hover:font-medium transition-all ${textColor}`}
+            >
+              LinkedIn
+            </a>
+          </div>
+        </div>
+
+        {/* Desktop/Tablet Layout - Original */}
+        <div className="hidden md:flex items-center justify-between">
           {/* Navigation Links */}
           <nav className="flex items-center gap-2">
             {navItems.map((item) => {
@@ -25,9 +65,9 @@ export function Footer() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`px-6 py-3 text-sm transition-all ${
+                  className={`px-6 py-3 text-sm transition-all ${textColor} ${
                     isActive
-                      ? "border border-foreground rounded-[50px] font-medium"
+                      ? `border ${borderColor} rounded-[50px] font-medium`
                       : "hover:font-medium"
                   }`}
                 >
@@ -42,7 +82,7 @@ export function Footer() {
             href="https://id.linkedin.com/company/soft-roc"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm hover:font-medium transition-all"
+            className={`text-sm hover:font-medium transition-all ${textColor}`}
           >
             LinkedIn
           </a>
