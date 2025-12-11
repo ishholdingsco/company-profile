@@ -4,25 +4,27 @@ import Image from "next/image";
 import { Container } from "@/components/ui/container";
 import { motion } from "framer-motion";
 
-export function PocketMineContent() {
+export function FMSContent() {
   return (
     <>
-      {/* PocketMine: Section 1: Beyond the ground */}
+      {/* FMS: Section 1: Fleet Management */}
       <section className="w-full pt-0 pb-24 md:pb-32 lg:pb-40 bg-background relative overflow-visible">
         <div className="relative min-h-[600px] md:min-h-[700px] lg:min-h-[800px]">
-          {/* Left: Image - positioned at edge */}
+          {/* Left: Image - positioned at center-left with margin */}
           <motion.div
             initial={{ opacity: 0, x: -100 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="absolute left-0 top-0 w-[45%] md:w-[40%] lg:w-[35%] z-10"
+            className="absolute left-16 md:left-20 lg:left-34 top-1/2 -translate-y-[20%] w-[42%] md:w-[38%] lg:w-[35%] z-10"
           >
             <Image
-              src="/project/product/pocketmine/pocketmine-section.png"
-              alt="PocketMine Mobile App"
-              width={600}
-              height={800}
+              src="/project/product/fms/fms-section.png"
+              alt="Fleet Management System"
+              width={1000}
+              height={1200}
+              quality={100}
+              priority
               className="w-full h-auto"
             />
           </motion.div>
@@ -34,14 +36,13 @@ export function PocketMineContent() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="ml-auto w-full md:w-[55%] lg:w-[60%] pt-8 md:pt-12"
+              className="ml-auto w-full md:w-[58%] lg:w-[60%] pt-8 md:pt-12"
             >
               <p
-                className="text-sm md:text-base text-black text-right"
+                className="text-base md:text-lg lg:text-xl text-black text-right"
                 style={{ fontFamily: "var(--font-plus-jakarta-sans)" }}
               >
-                A mining app navigation app in mobile, that can help you to improve your
-                agility and accuracy on grade control and mine design compliance.
+                FMS software aimed to make smarter fleet management as accessible as possible. Low cost and zero friction onboarding, a B2B that feels like B2C.
               </p>
             </motion.div>
           </Container>
@@ -53,15 +54,17 @@ export function PocketMineContent() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="ml-auto w-full md:w-[65%] lg:w-[70%]"
+              className="ml-auto w-full md:w-[58%] lg:w-[60%]"
             >
               <h2
-                className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground"
-                style={{ fontFamily: "var(--font-merriweather)" }}
+                className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground leading-tight"
+                style={{ fontFamily: "var(--font-merriweather)", lineHeight: "1.1" }}
               >
-                Beyond the ground,
+                Made smarter fleet
                 <br />
-                in the palm of your hand.
+                management, as
+                <br />
+                accessible as possible.
               </h2>
             </motion.div>
           </Container>
@@ -92,10 +95,9 @@ export function PocketMineContent() {
                   className="text-sm md:text-base leading-relaxed text-foreground/80"
                   style={{ fontFamily: "var(--font-plus-jakarta-sans)" }}
                 >
-                  Mining operations face a critical disconnect: geological data and mine designs live in office desktop software,
-                  while execution happens in remote pits with limited connectivity. Field personnel rely on printed maps, radio
-                  communication, and guesswork—leading to overcut, undercut, dilution, and delayed decisions that directly
-                  impact profit margins.
+                  Fleet management software has long been built for enterprises—complex implementations, expensive licenses, and months
+                  of onboarding. Small to mid-sized operators are left choosing between clunky spreadsheets or overpaying for features they&apos;ll
+                  never use. The result: inefficient fleet operations, poor visibility, and margins lost to preventable downtime.
                 </p>
               </motion.div>
 
@@ -117,7 +119,9 @@ export function PocketMineContent() {
                   className="text-sm md:text-base leading-relaxed text-foreground/80"
                   style={{ fontFamily: "var(--font-plus-jakarta-sans)" }}
                 >
-                  PocketMine puts the essentials of desktop mine plan software in every field personnel's pocket. A fully offline mobile app that overlays real-time GPS positioning with resource models, mine designs, and georeferenced maps—enabling instant, informed decisions at the pit face. No expensive hardware. No connectivity required. Just smarter mining.
+                  Our FMS makes smarter fleet management accessible to everyone. Consumer-grade simplicity meets enterprise capability—low
+                  cost, zero friction onboarding, and intuitive enough that your team starts managing fleets in minutes, not months. B2B
+                  software that finally feels like B2C. No consultants. No training. Just results.
                 </p>
               </motion.div>
             </div>
@@ -141,35 +145,34 @@ export function PocketMineContent() {
                 style={{ fontFamily: "var(--font-plus-jakarta-sans)" }}
               >
                 <li>
-                  <strong className="font-bold">Works in your mobile</strong>
+                  <strong className="font-bold">Real Time Tracking</strong>
                   <br />
-                  <span className="text-foreground/80">as a leading mobile mining software that is supported in mobile devices</span>
+                  <span className="text-foreground/80">Monitor your entire fleet&apos;s location live on an intuitive dashboard—know where every vehicle is, anytime.</span>
                 </li>
                 <li>
-                  <strong className="font-bold">Works 100% offline</strong>
+                  <strong className="font-bold">Zero Friction Onboarding</strong>
                   <br />
-                  <span className="text-foreground/80">doesn't require any network connection, works in your remote area</span>
+                  <span className="text-foreground/80">Get started in minutes, not months. No consultants, no complex setup—just sign up and go.</span>
                 </li>
                 <li>
-                  <strong className="font-bold">Works with custom maps</strong>
+                  <strong className="font-bold">Driver Management</strong>
                   <br />
-                  <span className="text-foreground/80">imports your custom maps by inputting your georeferenced pdf</span>
+                  <span className="text-foreground/80">Assign drivers, track performance, and manage schedules all in one place.</span>
                 </li>
                 <li>
-                  <strong className="font-bold">Works with mobile GPS</strong>
+                  <strong className="font-bold">Maintenance Alerts</strong>
                   <br />
-                  <span className="text-foreground/80">shows your live geolocation in overlay with all the imported data</span>
+                  <span className="text-foreground/80">Automated reminders for servicing, inspections, and repairs—prevent downtime before it happens.</span>
                 </li>
                 <li>
-                  <strong className="font-bold">Import your Resource Model & Design</strong>
+                  <strong className="font-bold">Mobile App</strong>
                   <br />
-                  <span className="text-foreground/80">shows your live geolocation in overlay with all the imported data</span>
+                  <span className="text-foreground/80">Drivers and managers stay connected on the go with full functionality from any device.</span>
                 </li>
                 <li>
-                  <strong className="font-bold">Section View</strong>
+                  <strong className="font-bold">Analytics & Reports</strong>
                   <br />
-                  <span className="text-foreground/80">visualize all your imported resource model and mine design in section view, while also showing
-                  the elevation, coordinate, and block attribute</span>
+                  <span className="text-foreground/80">Actionable insights on fleet performance, costs, and utilization—presented simply, not buried in spreadsheets.</span>
                 </li>
               </ul>
             </motion.div>

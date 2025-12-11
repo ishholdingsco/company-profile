@@ -35,19 +35,36 @@ export default function ContactPage() {
     <div className="min-h-screen flex flex-col bg-white">
       <Header variant="light" pageTitle="Contact" />
 
-      <main className="flex-1 pt-28 md:pt-36 pb-8 md:pb-12">
+      <main className="flex-1 pt-20 md:pt-36 pb-8 md:pb-12">
         <Container>
           <div className="max-w-7xl mx-auto space-y-12 md:space-y-16">
-            {/* Top Section - Email us & Form */}
-            <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-start md:items-center">
+            {/* Top Section - Contact Heading & Form */}
+            <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-start lg:items-center">
               {/* Left - Heading */}
-              <div className="flex flex-row md:flex-col text-5xl md:text-6xl font-normal" style={{ fontFamily: "var(--font-merriweather)" }}>
-                <span>Email</span>
-                <span className="ml-3 md:ml-0">us</span>
+              <div className="flex flex-col space-y-2" style={{ fontFamily: "var(--font-merriweather)" }}>
+                {/* Small text - Idea doesn't come fully formed (Desktop & Tablet only) */}
+                <p className="hidden md:block text-xl lg:text-2xl font-normal text-black">
+                  Idea doesn't come fully formed.
+                </p>
+
+                {/* Main heading */}
+                <div className="flex flex-col">
+                  <h2 className="text-4xl md:text-6xl font-normal text-black leading-tight">
+                    <span className="font-bold">Lets talk</span> to shape
+                  </h2>
+                  <h2 className="text-4xl md:text-6xl font-normal text-black leading-tight">
+                    your idea better!
+                  </h2>
+                </div>
+
+                {/* Small text - Idea doesn't come fully formed (Mobile only) */}
+                <p className="block md:hidden text-xl font-normal text-black mt-2">
+                  Idea doesn't come fully formed.
+                </p>
               </div>
 
               {/* Right - Form with Fixed Width */}
-              <form onSubmit={handleSubmit} className="space-y-6 w-full md:flex-1">
+              <form onSubmit={handleSubmit} className="space-y-6 w-full lg:flex-1">
                 {/* Email Input */}
                 <div>
                   <input

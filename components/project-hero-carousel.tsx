@@ -11,16 +11,19 @@ interface ProjectHeroCarouselProps {
 
 export function ProjectHeroCarousel({
   images,
-  interval = 5000
+  interval = 7000
 }: ProjectHeroCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isManualChange, setIsManualChange] = useState(false);
+  const [direction, setDirection] = useState<'next' | 'prev'>('next');
 
   const goToNext = useCallback(() => {
+    setDirection('next');
     setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
   }, [images.length]);
 
   const goToPrevious = useCallback(() => {
+    setDirection('prev');
     setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? images.length - 1 : prevIndex - 1
     );
@@ -58,27 +61,24 @@ export function ProjectHeroCarousel({
 
   return (
     <div className="relative w-full h-screen overflow-hidden bg-black">
-      <AnimatePresence mode="wait">
+      <AnimatePresence initial={false} mode="popLayout">
         <motion.div
           key={currentIndex}
           initial={{
-            opacity: 0,
-            filter: "blur(20px)",
-            scale: 1.1
+            x: direction === 'next' ? '100%' : '-100%',
+            opacity: 0
           }}
           animate={{
-            opacity: 1,
-            filter: "blur(0px)",
-            scale: 1
+            x: 0,
+            opacity: 1
           }}
           exit={{
-            opacity: 0,
-            filter: "blur(20px)",
-            scale: 0.95
+            x: direction === 'next' ? '-100%' : '100%',
+            opacity: 0
           }}
           transition={{
-            duration: 1.2,
-            ease: [0.43, 0.13, 0.23, 0.96]
+            duration: 1.5,
+            ease: [0.25, 0.1, 0.25, 1]
           }}
           className="absolute inset-0"
         >

@@ -4,25 +4,27 @@ import Image from "next/image";
 import { Container } from "@/components/ui/container";
 import { motion } from "framer-motion";
 
-export function PocketMineContent() {
+export function WanderoundContent() {
   return (
     <>
-      {/* PocketMine: Section 1: Beyond the ground */}
+      {/* Wanderound: Section 1 */}
       <section className="w-full pt-0 pb-24 md:pb-32 lg:pb-40 bg-background relative overflow-visible">
         <div className="relative min-h-[600px] md:min-h-[700px] lg:min-h-[800px]">
-          {/* Left: Image - positioned at edge */}
+          {/* Left: Image - positioned at center-left, moved down slightly */}
           <motion.div
             initial={{ opacity: 0, x: -100 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="absolute left-0 top-0 w-[45%] md:w-[40%] lg:w-[35%] z-10"
+            className="absolute left-0 top-1/2 -translate-y-[42%] w-[48%] md:w-[46%] lg:w-[44%] z-10"
           >
             <Image
-              src="/project/product/pocketmine/pocketmine-section.png"
-              alt="PocketMine Mobile App"
-              width={600}
-              height={800}
+              src="/project/product/wanderound/wanderound-section.png"
+              alt="Wanderound App"
+              width={1000}
+              height={1200}
+              quality={100}
+              priority
               className="w-full h-auto"
             />
           </motion.div>
@@ -34,14 +36,13 @@ export function PocketMineContent() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="ml-auto w-full md:w-[55%] lg:w-[60%] pt-8 md:pt-12"
+              className="ml-auto w-full md:w-[52%] lg:w-[54%] pt-8 md:pt-12"
             >
               <p
-                className="text-sm md:text-base text-black text-right"
+                className="text-lg md:text-xl lg:text-2xl text-black text-right"
                 style={{ fontFamily: "var(--font-plus-jakarta-sans)" }}
               >
-                A mining app navigation app in mobile, that can help you to improve your
-                agility and accuracy on grade control and mine design compliance.
+                Simple Agentic LLM assistant for planning trip with Overpass API
               </p>
             </motion.div>
           </Container>
@@ -53,15 +54,15 @@ export function PocketMineContent() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="ml-auto w-full md:w-[65%] lg:w-[70%]"
+              className="ml-auto w-full md:w-[52%] lg:w-[54%]"
             >
               <h2
-                className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground"
+                className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground"
                 style={{ fontFamily: "var(--font-merriweather)" }}
               >
-                Beyond the ground,
+                Plan like a local,
                 <br />
-                in the palm of your hand.
+                not like an algorithm.
               </h2>
             </motion.div>
           </Container>
@@ -88,15 +89,22 @@ export function PocketMineContent() {
                 >
                   Problem
                 </h3>
-                <p
-                  className="text-sm md:text-base leading-relaxed text-foreground/80"
+                <div
+                  className="text-sm md:text-base leading-relaxed text-foreground/80 space-y-3"
                   style={{ fontFamily: "var(--font-plus-jakarta-sans)" }}
                 >
-                  Mining operations face a critical disconnect: geological data and mine designs live in office desktop software,
-                  while execution happens in remote pits with limited connectivity. Field personnel rely on printed maps, radio
-                  communication, and guesswork—leading to overcut, undercut, dilution, and delayed decisions that directly
-                  impact profit margins.
-                </p>
+                  <p>
+                    Planning a trip to a new city usually means juggling Google Maps tabs, scrolling through listicles, and still ending up with a route
+                    that makes no geographic sense. You want to visit 15 places—but they're scattered, the order is inefficient, and you waste half
+                    your day in transit instead of actually exploring.
+                  </p>
+                  <p>
+                    Traditional routing tools choke on this. The math behind optimal routing (the Traveling Salesperson Problem) is computationally
+                    brutal at city scale. And most AI travel assistants? They just spit out generic "top 10" lists without understanding how places
+                    cluster together—how a morning in Blok M can naturally flow into an afternoon in Kemang, because that's how the city actually
+                    works.
+                  </p>
+                </div>
               </motion.div>
 
               {/* Solution */}
@@ -113,12 +121,17 @@ export function PocketMineContent() {
                 >
                   Solution
                 </h3>
-                <p
-                  className="text-sm md:text-base leading-relaxed text-foreground/80"
+                <div
+                  className="text-sm md:text-base leading-relaxed text-foreground/80 space-y-3"
                   style={{ fontFamily: "var(--font-plus-jakarta-sans)" }}
                 >
-                  PocketMine puts the essentials of desktop mine plan software in every field personnel's pocket. A fully offline mobile app that overlays real-time GPS positioning with resource models, mine designs, and georeferenced maps—enabling instant, informed decisions at the pit face. No expensive hardware. No connectivity required. Just smarter mining.
-                </p>
+                  <p>
+                    Wanderound uses agentic AI to generate tour itineraries that respect how cities are actually structured. It pulls real point-of-interest data from OpenStreetMap via Overpass API, clusters locations using density-based algorithms (HDBSCAN) that adapt to varying urban density, then builds routes that make spatial sense.
+                  </p>
+                  <p>
+                    The result: itineraries grouped by neighborhood, not random pins. Routes you can actually walk. Recommendations that feel like they came from someone who knows the city—not a database query.
+                  </p>
+                </div>
               </motion.div>
             </div>
 
@@ -141,35 +154,34 @@ export function PocketMineContent() {
                 style={{ fontFamily: "var(--font-plus-jakarta-sans)" }}
               >
                 <li>
-                  <strong className="font-bold">Works in your mobile</strong>
+                  <strong className="font-bold">Density-aware clustering</strong>
                   <br />
-                  <span className="text-foreground/80">as a leading mobile mining software that is supported in mobile devices</span>
+                  <span className="text-foreground/80">Uses HDBSCAN to group POIs based on how cities actually work—adapting to dense downtown areas and sparse outskirts alike</span>
                 </li>
                 <li>
-                  <strong className="font-bold">Works 100% offline</strong>
+                  <strong className="font-bold">City-to-province scale</strong>
                   <br />
-                  <span className="text-foreground/80">doesn't require any network connection, works in your remote area</span>
+                  <span className="text-foreground/80">Handles thousands of points of interest across entire metropolitan regions, not just single neighborhoods</span>
                 </li>
                 <li>
-                  <strong className="font-bold">Works with custom maps</strong>
+                  <strong className="font-bold">Real geographic data</strong>
                   <br />
-                  <span className="text-foreground/80">imports your custom maps by inputting your georeferenced pdf</span>
+                  <span className="text-foreground/80">Pulls live POI data from OpenStreetMap via Overpass API—restaurants, landmarks, attractions, all of it</span>
                 </li>
                 <li>
-                  <strong className="font-bold">Works with mobile GPS</strong>
+                  <strong className="font-bold">Neighborhood-based itineraries</strong>
                   <br />
-                  <span className="text-foreground/80">shows your live geolocation in overlay with all the imported data</span>
+                  <span className="text-foreground/80">Routes built around clusters you can actually explore on foot, not random pins scattered across the map</span>
                 </li>
                 <li>
-                  <strong className="font-bold">Import your Resource Model & Design</strong>
+                  <strong className="font-bold">Runs on free-tier AI</strong>
                   <br />
-                  <span className="text-foreground/80">shows your live geolocation in overlay with all the imported data</span>
+                  <span className="text-foreground/80">Powered by Gemini-2.0-flash-thinking—no expensive API costs, no vendor lock-in</span>
                 </li>
                 <li>
-                  <strong className="font-bold">Section View</strong>
+                  <strong className="font-bold">Open source</strong>
                   <br />
-                  <span className="text-foreground/80">visualize all your imported resource model and mine design in section view, while also showing
-                  the elevation, coordinate, and block attribute</span>
+                  <span className="text-foreground/80">Full codebase available on GitHub. Inspect it, fork it, improve it</span>
                 </li>
               </ul>
             </motion.div>

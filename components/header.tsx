@@ -8,9 +8,10 @@ interface HeaderProps {
   variant?: "dark" | "light" | "blue";
   pageTitle?: string;
   pageSubtitle?: string;
+  hideRightNav?: boolean;
 }
 
-export function Header({ variant = "light", pageTitle, pageSubtitle }: HeaderProps) {
+export function Header({ variant = "light", pageTitle, pageSubtitle, hideRightNav = false }: HeaderProps) {
   const isDark = variant === "dark";
   const isBlue = variant === "blue";
   const textColor = isBlue ? "text-[#003680]" : isDark ? "text-white" : "text-gray-900";
@@ -56,13 +57,15 @@ export function Header({ variant = "light", pageTitle, pageSubtitle }: HeaderPro
           </div>
 
           {/* Right Side - Solutions Button */}
-          <Link
-            href="/solutions"
-            className={`px-4 md:px-6 py-2 md:py-3 text-sm md:text-base font-medium ${textColor} hover:opacity-70 transition-opacity`}
-            style={{ fontFamily: "var(--font-plus-jakarta-sans)" }}
-          >
-            solutions
-          </Link>
+          {!hideRightNav && (
+            <Link
+              href="/solutions"
+              className={`px-4 md:px-6 py-2 md:py-3 text-sm md:text-base font-medium ${textColor} hover:opacity-70 transition-opacity`}
+              style={{ fontFamily: "var(--font-plus-jakarta-sans)" }}
+            >
+              solutions
+            </Link>
+          )}
         </div>
       </Container>
     </header>
