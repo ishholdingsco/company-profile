@@ -8,79 +8,160 @@ export function YantoContent() {
   return (
     <>
       {/* Yanto: One mortal thousands of monsters section */}
-      <section className="w-full py-24 md:py-32 bg-background relative">
-        <Container>
-          {/* Top Right Description */}
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="ml-auto w-full md:w-[55%] lg:w-[60%] mb-12"
-          >
-            <p
-              className="text-sm md:text-base text-black text-right"
-              style={{ fontFamily: "var(--font-plus-jakarta-sans)" }}
-            >
-              A 2D horror rogue-like bullet hell where you play as an Indonesian shaman known as a
-              Dukun, exorcizing the vengeful spirits by equipping yourself with an arsenal of items.
-            </p>
-          </motion.div>
-
-          <div className="relative flex items-center justify-between gap-0">
-            {/* Left: Character - BIGGER and shifted left */}
+      <section className="w-full pt-12 md:pt-16 lg:pt-32 pb-24 md:pb-32 bg-background relative">
+        {/* Desktop Layout (lg) - horizontal layout */}
+        <div className="hidden lg:block">
+          <Container>
+            {/* Top Description */}
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: -20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="w-[35%] md:w-[32%] lg:w-[45%] flex-shrink-0 -ml-8 md:-ml-12 lg:-ml-55"
+              className="ml-auto w-[60%] mb-12"
             >
+              <p
+                className="text-lg text-black text-right"
+                style={{ fontFamily: "var(--font-plus-jakarta-sans)" }}
+              >
+                A 2D horror rogue-like bullet hell where you play as an Indonesian shaman known as a
+                Dukun, exorcizing the vengeful spirits by equipping yourself with an arsenal of items.
+              </p>
+            </motion.div>
+
+            <div className="relative flex flex-row items-center justify-between">
+              {/* Left: Character */}
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="w-[45%] flex-shrink-0 -ml-55"
+              >
+                <Image
+                  src="/project/product/yanto/char.png"
+                  alt="Character"
+                  width={700}
+                  height={700}
+                  className="w-full h-auto"
+                />
+              </motion.div>
+
+              {/* Center: Text */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="flex-1 text-left -ml-8"
+              >
+                <h2
+                  className="text-5xl xl:text-6xl font-bold text-foreground leading-tight"
+                  style={{ fontFamily: "var(--font-merriweather)", lineHeight: "1.2" }}
+                >
+                  one mortal,
+                  <br />
+                  <span className="whitespace-nowrap">thousands of monsters</span>
+                </h2>
+              </motion.div>
+
+              {/* Right: Orb */}
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="w-[25%] flex-shrink-0 -mt-40 xl:-mt-78"
+              >
+                <Image
+                  src="/project/product/yanto/orb.png"
+                  alt="Orb"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto"
+                />
+              </motion.div>
+            </div>
+          </Container>
+        </div>
+
+        {/* Mobile & Tablet Layout - vertical layout */}
+        <div className="lg:hidden">
+          <Container>
+            {/* Top Description */}
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="mx-auto w-full mb-4 md:mb-6"
+            >
+              <p
+                className="text-lg md:text-xl text-black text-center"
+                style={{ fontFamily: "var(--font-plus-jakarta-sans)" }}
+              >
+                A 2D horror rogue-like bullet hell where you play as an Indonesian shaman known as a
+                Dukun, exorcizing the vengeful spirits by equipping yourself with an arsenal of items.
+              </p>
+            </motion.div>
+          </Container>
+
+          {/* Character - positioned at left edge, outside container */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="mb-4 md:mb-6"
+          >
+            <div className="w-[60%] md:w-[55%]">
               <Image
-                src="/yanto/char.png"
+                src="/project/product/yanto/char.png"
                 alt="Character"
                 width={700}
                 height={700}
                 className="w-full h-auto"
               />
-            </motion.div>
+            </div>
+          </motion.div>
 
-            {/* Center: Text - left aligned closer to character */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex-1 text-left -ml-4 md:-ml-6 lg:-ml-8"
+          {/* Heading - full width for perfect centering */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="mb-4 md:mb-6 px-4"
+          >
+            <h2
+              className="text-3xl md:text-5xl font-bold text-foreground text-center leading-tight"
+              style={{ fontFamily: "var(--font-merriweather)", lineHeight: "1.2" }}
             >
-              <h2
-                className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground leading-tight"
-                style={{ fontFamily: "var(--font-merriweather)" }}
-              >
-                one mortal,
-                <br />
-                <span className="whitespace-nowrap">thousands of monsters</span>
-              </h2>
-            </motion.div>
+              one mortal,
+              <br />
+              <span className="whitespace-nowrap">thousands of monsters</span>
+            </h2>
+          </motion.div>
 
-            {/* Right: Orb - positioned higher */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="w-[18%] md:w-[16%] lg:w-[25%] flex-shrink-0 -mt-24 md:-mt-32 lg:-mt-40 xl:-mt-78"
-            >
+          {/* Orb - positioned at right */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="flex justify-end pr-4"
+          >
+            <div className="w-[40%] md:w-[35%]">
               <Image
-                src="/yanto/orb.png"
+                src="/project/product/yanto/orb.png"
                 alt="Orb"
                 width={500}
                 height={500}
                 className="w-full h-auto"
               />
-            </motion.div>
-          </div>
-        </Container>
+            </div>
+          </motion.div>
+        </div>
       </section>
 
       {/* Yanto: The Beginning, Gameplay, Features section */}

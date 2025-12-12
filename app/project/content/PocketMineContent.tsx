@@ -9,14 +9,15 @@ export function PocketMineContent() {
     <>
       {/* PocketMine: Section 1: Beyond the ground */}
       <section className="w-full pt-0 pb-24 md:pb-32 lg:pb-40 bg-background relative overflow-visible">
-        <div className="relative min-h-[600px] md:min-h-[700px] lg:min-h-[800px]">
+        {/* Desktop Layout (lg) - uses absolute positioning */}
+        <div className="hidden lg:block relative min-h-[800px]">
           {/* Left: Image - positioned at edge */}
           <motion.div
             initial={{ opacity: 0, x: -100 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="absolute left-0 top-0 w-[45%] md:w-[40%] lg:w-[35%] z-10"
+            className="absolute left-0 top-0 w-[35%] z-10"
           >
             <Image
               src="/project/product/pocketmine/pocketmine-section.png"
@@ -34,10 +35,10 @@ export function PocketMineContent() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="ml-auto w-full md:w-[55%] lg:w-[60%] pt-8 md:pt-12"
+              className="ml-auto w-[60%] pt-12"
             >
               <p
-                className="text-sm md:text-base text-black text-right"
+                className="text-lg text-black text-right"
                 style={{ fontFamily: "var(--font-plus-jakarta-sans)" }}
               >
                 A mining app navigation app in mobile, that can help you to improve your
@@ -53,11 +54,72 @@ export function PocketMineContent() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="ml-auto w-full md:w-[65%] lg:w-[70%]"
+              className="ml-auto w-[70%]"
             >
               <h2
-                className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground"
+                className="text-6xl font-bold text-foreground text-left"
                 style={{ fontFamily: "var(--font-merriweather)" }}
+              >
+                Beyond the ground,
+                <br />
+                in the palm of your hand.
+              </h2>
+            </motion.div>
+          </Container>
+        </div>
+
+        {/* Mobile & Tablet Layout (default & md) - uses flex column */}
+        <div className="lg:hidden">
+          <Container>
+            {/* Top: Small text */}
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="pt-8 md:pt-12 pb-8"
+            >
+              <p
+                className="text-lg md:text-xl text-black text-center"
+                style={{ fontFamily: "var(--font-plus-jakarta-sans)" }}
+              >
+                A mining app navigation app in mobile, that can help you to improve your
+                agility and accuracy on grade control and mine design compliance.
+              </p>
+            </motion.div>
+          </Container>
+
+          {/* Middle: Image - positioned at left edge, outside container */}
+          <motion.div
+            initial={{ opacity: 0, x: -100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="pb-8 md:pb-12"
+          >
+            <div className="w-[60%] md:w-[55%]">
+              <Image
+                src="/project/product/pocketmine/pocketmine-section.png"
+                alt="PocketMine Mobile App"
+                width={600}
+                height={800}
+                className="w-full h-auto"
+              />
+            </div>
+          </motion.div>
+
+          <Container>
+            {/* Bottom: Main heading */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="pb-8"
+            >
+              <h2
+                className="text-4xl md:text-6xl font-bold text-foreground text-center leading-tight"
+                style={{ fontFamily: "var(--font-merriweather)", lineHeight: "1.2" }}
               >
                 Beyond the ground,
                 <br />

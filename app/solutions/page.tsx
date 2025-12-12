@@ -17,6 +17,7 @@ const scrollingWords = [
 interface Solution {
   id: string;
   name: string;
+  shortName?: string; // For mobile/tablet display
   title: string;
   description: string;
   images: string[];
@@ -67,6 +68,7 @@ const solutions: Solution[] = [
   {
     id: "boi",
     name: "Business & Operational Intelligence",
+    shortName: "BOI", // Used on mobile/tablet only
     title: "Business & Operational Intelligence",
     description: "Data you collect should work as hard as you do. We build dashboards and analytics systems that surface what actually matters—KPIs that drive decisions, trends that reveal opportunity, alerts that catch problems early.\n\nNo vanity metrics. No dashboard graveyards. Just clear, actionable insight designed around how your team thinks and operates. Intelligence that earns its place in your workflow.",
     folder: "boi",
@@ -75,6 +77,7 @@ const solutions: Solution[] = [
   {
     id: "dev",
     name: "Web & Mobile Dev",
+    shortName: "Web Dev", // Used on mobile/tablet only
     title: "Web & Mobile Development",
     description: "Software people actually want to use. We craft web and mobile products through design thinking—researching real behavior, prototyping relentlessly, building on modern architecture that scales.\n\nClean interfaces. Seamless experience. Robust backend. From first concept to long-term iteration, we build digital products that feel right from the first tap.",
     folder: "dev",
@@ -314,7 +317,8 @@ export default function SolutionsPage() {
                           onClick={() => setSelectedSolution(solution.id)}
                           className="w-full h-[70px] px-6 py-3 bg-[#EAE5D7] rounded-[48px] font-plus-jakarta-sans font-bold text-base text-black transition-all hover:scale-105 hover:shadow-lg flex items-center justify-center leading-tight"
                         >
-                          {solution.name}
+                          <span className="lg:hidden">{solution.shortName || solution.name}</span>
+                          <span className="hidden lg:inline">{solution.name}</span>
                         </button>
                       </motion.div>
                     ))}
@@ -419,7 +423,7 @@ export default function SolutionsPage() {
                             : 'bg-[#EAE5D7]'
                         }`}
                       >
-                        {solution.name}
+                        {solution.shortName || solution.name}
                       </button>
                     ))}
                   </motion.div>

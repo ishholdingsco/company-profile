@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -11,31 +12,71 @@ interface Project {
   title: string;
   subtitle: string;
   image: string;
-  size: "large" | "small";
-  width: number;
-  height: number;
+  category: string;
+  slug: string;
+  size: "large" | "medium";
   textColor: string;
 }
 
 const projects: Project[] = [
   {
     id: "pocketmine",
-    title: "Pocketmine",
+    title: "PocketMine",
     subtitle: "",
-    image: "/products/pocketmine.png",
+    image: "/project/product/pocketmine/hero-1.png",
+    category: "product",
+    slug: "pocketmine",
     size: "large",
-    width: 762,
-    height: 584,
     textColor: "text-white",
   },
   {
     id: "fms",
     title: "FMS",
     subtitle: "Fleet Management System",
-    image: "/products/fms.png",
-    size: "small",
-    width: 518,
-    height: 342,
+    image: "/project/product/fms/hero-1.png",
+    category: "product",
+    slug: "fms",
+    size: "medium",
+    textColor: "text-foreground",
+  },
+  {
+    id: "yanto",
+    title: "Game: \"His Name is Yanto\"",
+    subtitle: "",
+    image: "/project/product/yanto/hero-1.png",
+    category: "product",
+    slug: "yanto",
+    size: "medium",
+    textColor: "text-white",
+  },
+  {
+    id: "wanderound",
+    title: "WandeRound",
+    subtitle: "",
+    image: "/project/product/wanderound/hero-1.png",
+    category: "product",
+    slug: "wanderound",
+    size: "medium",
+    textColor: "text-white",
+  },
+  {
+    id: "transport-network",
+    title: "How Resilient is the Jakarta Transportation Network?",
+    subtitle: "",
+    image: "/project/research/transport-network/hero-1.png",
+    category: "research",
+    slug: "transport-network",
+    size: "medium",
+    textColor: "text-white",
+  },
+  {
+    id: "electric-wheeler",
+    title: "Electric 2-Wheelers Adoption Rate Modelling via System Dynamics",
+    subtitle: "",
+    image: "/project/research/electric-wheeler-modelling/hero-1.png",
+    category: "research",
+    slug: "electric-wheeler-modelling",
+    size: "medium",
     textColor: "text-foreground",
   },
 ];
@@ -57,63 +98,71 @@ export function ProjectsSection() {
             Projects
           </h2>
 
-          {/* Desktop Layout - Grid */}
-          <div className="hidden md:grid md:grid-cols-2 gap-6 lg:gap-8 items-start">
-            {projects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="relative"
-              >
-                {/* Card wrapper for overlays */}
-                <div className="relative" style={{ borderRadius: '48px', overflow: 'hidden' }}>
-                  {/* Loading skeleton */}
-                  {loadingImages[project.id] !== false && (
-                    <div className="absolute inset-0 z-20">
-                      <Skeleton className="w-full h-full" />
-                    </div>
-                  )}
+          {/* Desktop & Tablet Layout - Static Grid */}
+          <div className="hidden md:grid md:grid-cols-3 gap-4 items-start">
+            {/* First Column - PocketMine + Yanto */}
+            <div className="flex flex-col gap-4">
+              {/* PocketMine */}
+              <ProjectCard
+                project={projects[0]}
+                index={0}
+                loadingImages={loadingImages}
+                setLoadingImages={setLoadingImages}
+                height="350px"
+              />
+              {/* Yanto */}
+              <ProjectCard
+                project={projects[2]}
+                index={2}
+                loadingImages={loadingImages}
+                setLoadingImages={setLoadingImages}
+                height="230px"
+              />
+            </div>
 
-                  {/* Image - Direct render without container constraints */}
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    width={project.width}
-                    height={project.height}
-                    className={`w-full h-auto shadow-2xl ${
-                      loadingImages[project.id] !== false ? 'opacity-0' : 'opacity-100'
-                    }`}
-                    style={{ borderRadius: '48px', display: 'block' }}
-                    priority={index === 0}
-                    onLoad={() => {
-                      setLoadingImages(prev => ({ ...prev, [project.id]: false }));
-                    }}
-                  />
+            {/* Second Column - FMS + WandeRound */}
+            <div className="flex flex-col gap-4">
+              {/* FMS */}
+              <ProjectCard
+                project={projects[1]}
+                index={1}
+                loadingImages={loadingImages}
+                setLoadingImages={setLoadingImages}
+                height="180px"
+              />
+              {/* WandeRound */}
+              <ProjectCard
+                project={projects[3]}
+                index={3}
+                loadingImages={loadingImages}
+                setLoadingImages={setLoadingImages}
+                height="400px"
+              />
+            </div>
 
-                  {/* Gradient overlay at bottom - fade effect */}
-                  <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#F8F6F3] via-[#F8F6F3]/60 to-transparent pointer-events-none" />
-
-                  {/* Text overlay at bottom */}
-                  <div className="absolute bottom-0 left-0 right-0 p-6 lg:p-8 z-10">
-                    <h3 className={`text-2xl lg:text-3xl ${project.textColor} font-[family-name:var(--font-plus-jakarta-sans)] mb-1`}>
-                      {project.title}
-                    </h3>
-                    {project.subtitle && (
-                      <p className={`text-sm lg:text-base ${project.textColor} opacity-80 font-[family-name:var(--font-plus-jakarta-sans)]`}>
-                        {project.subtitle}
-                      </p>
-                    )}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+            {/* Third Column - Transport Network + Electric Wheeler */}
+            <div className="flex flex-col gap-4">
+              {/* Transport Network */}
+              <ProjectCard
+                project={projects[4]}
+                index={4}
+                loadingImages={loadingImages}
+                setLoadingImages={setLoadingImages}
+                height="350px"
+              />
+              {/* Electric Wheeler */}
+              <ProjectCard
+                project={projects[5]}
+                index={5}
+                loadingImages={loadingImages}
+                setLoadingImages={setLoadingImages}
+                height="230px"
+              />
+            </div>
           </div>
 
           {/* Mobile Layout - Horizontal Scroll */}
-          <div className="md:hidden overflow-x-auto pb-4 -mx-4 px-4">
+          <div className="md:hidden overflow-x-auto pb-4 -mx-8 px-8 scrollbar-hide">
             <div className="flex gap-4 min-w-max">
               {projects.map((project, index) => (
                 <motion.div
@@ -123,53 +172,125 @@ export function ProjectsSection() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   className="flex-shrink-0"
+                  style={{ width: "280px" }}
                 >
-                  {/* Card wrapper for overlays */}
-                  <div className="relative" style={{ borderRadius: '48px', overflow: 'hidden', width: `${project.width * 0.4}px` }}>
-                    {/* Loading skeleton */}
-                    {loadingImages[`${project.id}-mobile`] !== false && (
-                      <div className="absolute inset-0 z-20">
-                        <Skeleton className="w-full h-full" />
-                      </div>
-                    )}
-
-                    {/* Image - Direct render without container constraints */}
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      width={project.width}
-                      height={project.height}
-                      className={`w-full h-auto shadow-2xl ${
-                        loadingImages[`${project.id}-mobile`] !== false ? 'opacity-0' : 'opacity-100'
-                      }`}
-                      style={{ borderRadius: '48px', display: 'block' }}
-                      priority={index === 0}
-                      onLoad={() => {
-                        setLoadingImages(prev => ({ ...prev, [`${project.id}-mobile`]: false }));
-                      }}
-                    />
-
-                    {/* Gradient overlay at bottom - fade effect */}
-                    <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#F8F6F3] via-[#F8F6F3]/60 to-transparent pointer-events-none" />
-
-                    {/* Text overlay at bottom */}
-                    <div className="absolute bottom-0 left-0 right-0 p-4 z-10">
-                      <h3 className={`text-lg ${project.textColor} font-[family-name:var(--font-plus-jakarta-sans)] mb-1`}>
-                        {project.title}
-                      </h3>
-                      {project.subtitle && (
-                        <p className={`text-xs ${project.textColor} opacity-80 font-[family-name:var(--font-plus-jakarta-sans)]`}>
-                          {project.subtitle}
-                        </p>
+                  <Link href={`/project/${project.category}/${project.slug}`}>
+                    <div className="relative group cursor-pointer bg-black" style={{ borderRadius: "20px", overflow: "hidden", height: "360px" }}>
+                      {/* Loading skeleton */}
+                      {loadingImages[`${project.id}-mobile`] !== false && (
+                        <div className="absolute inset-0 z-20">
+                          <Skeleton className="w-full h-full" />
+                        </div>
                       )}
+
+                      {/* Image */}
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        quality={100}
+                        sizes="280px"
+                        className={`object-contain shadow-2xl transition-transform duration-300 group-hover:scale-105 ${
+                          loadingImages[`${project.id}-mobile`] !== false ? "opacity-0" : "opacity-100"
+                        }`}
+                        style={{ borderRadius: "20px" }}
+                        onLoad={() => {
+                          setLoadingImages((prev) => ({ ...prev, [`${project.id}-mobile`]: false }));
+                        }}
+                      />
+
+                      {/* Gradient overlay */}
+                      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/80 via-black/50 to-transparent pointer-events-none" />
+
+                      {/* Text overlay */}
+                      <div className="absolute bottom-0 left-0 right-0 p-4 z-10">
+                        <h3 className="text-lg text-white font-[family-name:var(--font-plus-jakarta-sans)] mb-1">
+                          {project.title}
+                        </h3>
+                        {project.subtitle && (
+                          <p className="text-xs text-white opacity-80 font-[family-name:var(--font-plus-jakarta-sans)]">
+                            {project.subtitle}
+                          </p>
+                        )}
+                      </div>
                     </div>
-                  </div>
+                  </Link>
                 </motion.div>
               ))}
             </div>
           </div>
         </motion.div>
       </Container>
+
+      <style jsx global>{`
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
     </section>
+  );
+}
+
+interface ProjectCardProps {
+  project: Project;
+  index: number;
+  loadingImages: Record<string, boolean>;
+  setLoadingImages: React.Dispatch<React.SetStateAction<Record<string, boolean>>>;
+  height: string;
+}
+
+function ProjectCard({ project, index, loadingImages, setLoadingImages, height }: ProjectCardProps) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+      className="relative"
+      style={{ height }}
+    >
+      <Link href={`/project/${project.category}/${project.slug}`}>
+        <div className="relative w-full h-full group cursor-pointer bg-black lg:bg-transparent" style={{ borderRadius: "20px", overflow: "hidden" }}>
+          {/* Loading skeleton */}
+          {loadingImages[project.id] !== false && (
+            <div className="absolute inset-0 z-20">
+              <Skeleton className="w-full h-full" />
+            </div>
+          )}
+
+          {/* Image */}
+          <Image
+            src={project.image}
+            alt={project.title}
+            fill
+            quality={100}
+            sizes="(max-width: 768px) 280px, (max-width: 1024px) 400px, 500px"
+            className={`object-contain lg:object-cover shadow-2xl transition-transform duration-300 group-hover:scale-105 ${
+              loadingImages[project.id] !== false ? "opacity-0" : "opacity-100"
+            }`}
+            style={{ borderRadius: "20px" }}
+            priority={index === 0}
+            onLoad={() => {
+              setLoadingImages((prev) => ({ ...prev, [project.id]: false }));
+            }}
+          />
+
+          {/* Gradient overlay */}
+          <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/70 via-black/40 to-transparent pointer-events-none" />
+
+          {/* Text overlay */}
+          <div className="absolute bottom-0 left-0 right-0 p-6 lg:p-8 z-10">
+            <h3 className="text-xl lg:text-2xl text-white font-[family-name:var(--font-plus-jakarta-sans)] mb-1">
+              {project.title}
+            </h3>
+            {project.subtitle && (
+              <p className="text-sm text-white opacity-80 font-[family-name:var(--font-plus-jakarta-sans)]">
+                {project.subtitle}
+              </p>
+            )}
+          </div>
+        </div>
+      </Link>
+    </motion.div>
   );
 }

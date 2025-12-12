@@ -9,14 +9,15 @@ export function WanderoundContent() {
     <>
       {/* Wanderound: Section 1 */}
       <section className="w-full pt-0 pb-24 md:pb-32 lg:pb-40 bg-background relative overflow-visible">
-        <div className="relative min-h-[600px] md:min-h-[700px] lg:min-h-[800px]">
-          {/* Left: Image - positioned at center-left, moved down slightly */}
+        {/* Desktop Layout (lg) - uses absolute positioning */}
+        <div className="hidden lg:block relative min-h-[800px]">
+          {/* Left: Image - positioned at edge */}
           <motion.div
             initial={{ opacity: 0, x: -100 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="absolute left-0 top-1/2 -translate-y-[42%] w-[48%] md:w-[46%] lg:w-[44%] z-10"
+            className="absolute left-0 top-1/2 -translate-y-[42%] w-[44%] z-10"
           >
             <Image
               src="/project/product/wanderound/wanderound-section.png"
@@ -36,10 +37,10 @@ export function WanderoundContent() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="ml-auto w-full md:w-[52%] lg:w-[54%] pt-8 md:pt-12"
+              className="ml-auto w-[54%] pt-12"
             >
               <p
-                className="text-lg md:text-xl lg:text-2xl text-black text-right"
+                className="text-lg text-black text-right"
                 style={{ fontFamily: "var(--font-plus-jakarta-sans)" }}
               >
                 Simple Agentic LLM assistant for planning trip with Overpass API
@@ -54,10 +55,72 @@ export function WanderoundContent() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="ml-auto w-full md:w-[52%] lg:w-[54%]"
+              className="ml-auto w-[54%]"
             >
               <h2
-                className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground"
+                className="text-6xl xl:text-7xl font-bold text-foreground"
+                style={{ fontFamily: "var(--font-merriweather)" }}
+              >
+                Plan like a local,
+                <br />
+                not like an algorithm.
+              </h2>
+            </motion.div>
+          </Container>
+        </div>
+
+        {/* Mobile & Tablet Layout (default & md) - uses flex column */}
+        <div className="lg:hidden">
+          <Container>
+            {/* Top: Small text */}
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="pt-8 md:pt-12 pb-8"
+            >
+              <p
+                className="text-xl md:text-2xl text-black text-center"
+                style={{ fontFamily: "var(--font-plus-jakarta-sans)" }}
+              >
+                Simple Agentic LLM assistant for planning trip with Overpass API
+              </p>
+            </motion.div>
+          </Container>
+
+          {/* Middle: Image - positioned at left edge, outside container */}
+          <motion.div
+            initial={{ opacity: 0, x: -100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="pt-4 md:pt-6 pb-8 md:pb-16"
+          >
+            <div className="w-[85%] md:w-[72%]">
+              <Image
+                src="/project/product/wanderound/wanderound-section.png"
+                alt="Wanderound App"
+                width={1000}
+                height={1200}
+                quality={100}
+                priority
+                className="w-full h-auto"
+              />
+            </div>
+          </motion.div>
+
+          <Container>
+            {/* Bottom: Main heading */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="pt-4 md:pt-8 pb-8"
+            >
+              <h2
+                className="text-4xl md:text-6xl font-bold text-foreground text-center"
                 style={{ fontFamily: "var(--font-merriweather)" }}
               >
                 Plan like a local,

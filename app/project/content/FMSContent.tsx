@@ -9,14 +9,15 @@ export function FMSContent() {
     <>
       {/* FMS: Section 1: Fleet Management */}
       <section className="w-full pt-0 pb-24 md:pb-32 lg:pb-40 bg-background relative overflow-visible">
-        <div className="relative min-h-[600px] md:min-h-[700px] lg:min-h-[800px]">
+        {/* Desktop Layout (lg) - uses absolute positioning */}
+        <div className="hidden lg:block relative min-h-[800px]">
           {/* Left: Image - positioned at center-left with margin */}
           <motion.div
             initial={{ opacity: 0, x: -100 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="absolute left-16 md:left-20 lg:left-34 top-1/2 -translate-y-[20%] w-[42%] md:w-[38%] lg:w-[35%] z-10"
+            className="absolute left-34 top-1/2 -translate-y-[20%] w-[35%] z-10"
           >
             <Image
               src="/project/product/fms/fms-section.png"
@@ -36,10 +37,10 @@ export function FMSContent() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="ml-auto w-full md:w-[58%] lg:w-[60%] pt-8 md:pt-12"
+              className="ml-auto w-[60%] pt-12"
             >
               <p
-                className="text-base md:text-lg lg:text-xl text-black text-right"
+                className="text-xl text-black text-right"
                 style={{ fontFamily: "var(--font-plus-jakarta-sans)" }}
               >
                 FMS software aimed to make smarter fleet management as accessible as possible. Low cost and zero friction onboarding, a B2B that feels like B2C.
@@ -54,10 +55,72 @@ export function FMSContent() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="ml-auto w-full md:w-[58%] lg:w-[60%]"
+              className="ml-auto w-[60%]"
             >
               <h2
-                className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground leading-tight"
+                className="text-5xl xl:text-6xl font-bold text-foreground leading-tight text-left"
+                style={{ fontFamily: "var(--font-merriweather)", lineHeight: "1.1" }}
+              >
+                Made smarter fleet
+                <br />
+                management, as
+                <br />
+                accessible as possible.
+              </h2>
+            </motion.div>
+          </Container>
+        </div>
+
+        {/* Mobile & Tablet Layout (default & md) - uses flex column */}
+        <div className="lg:hidden">
+          <Container>
+            {/* Top: Small text */}
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="pt-8 md:pt-12 pb-8"
+            >
+              <p
+                className="text-lg md:text-xl text-black text-center"
+                style={{ fontFamily: "var(--font-plus-jakarta-sans)" }}
+              >
+                FMS software aimed to make smarter fleet management as accessible as possible. Low cost and zero friction onboarding, a B2B that feels like B2C.
+              </p>
+            </motion.div>
+
+            {/* Middle: Image - centered */}
+            <motion.div
+              initial={{ opacity: 0, x: -100 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="flex justify-center pt-4 md:pt-6 pb-8 md:pb-16"
+            >
+              <div className="w-[90%] md:w-[75%]">
+                <Image
+                  src="/project/product/fms/fms-section.png"
+                  alt="Fleet Management System"
+                  width={1000}
+                  height={1200}
+                  quality={100}
+                  priority
+                  className="w-full h-auto"
+                />
+              </div>
+            </motion.div>
+
+            {/* Bottom: Main heading */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="pt-4 md:pt-8 pb-8"
+            >
+              <h2
+                className="text-4xl md:text-5xl font-bold text-foreground leading-tight text-center"
                 style={{ fontFamily: "var(--font-merriweather)", lineHeight: "1.1" }}
               >
                 Made smarter fleet
