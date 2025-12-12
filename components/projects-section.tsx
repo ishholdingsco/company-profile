@@ -221,12 +221,6 @@ export function ProjectsSection() {
           </div>
         </motion.div>
       </Container>
-
-      <style jsx global>{`
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-      `}</style>
     </section>
   );
 }
