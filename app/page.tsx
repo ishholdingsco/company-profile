@@ -1,19 +1,17 @@
 import { Header } from "@/components/header";
 import { HeroSection } from "@/components/hero-section";
-import { SolutionsSection } from "@/components/solutions-section";
-import { IndustriesSection } from "@/components/industries-section";
-import { ProductsSection } from "@/components/products-section";
+import { MottoSection } from "@/components/motto-section";
+import { ProjectsSection } from "@/components/projects-section";
 import { Footer } from "@/components/footer";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-background w-full">
-      <Header />
-      <main className="w-full flex flex-col gap-12">
+      <Header variant="dark" />
+      <main className="w-full flex flex-col">
         <HeroSection />
-        <SolutionsSection />
-        <IndustriesSection />
-        <ProductsSection />
+        <MottoSection />
+        <ProjectsSection />
       </main>
       <Footer />
     </div>
