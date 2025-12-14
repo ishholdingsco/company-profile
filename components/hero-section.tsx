@@ -6,7 +6,7 @@ import { WebGLParticles } from "@/components/webgl-particles";
 
 export function HeroSection() {
   return (
-    <section className="relative w-full h-screen overflow-hidden bg-[#14141e]">
+    <section className="relative w-full h-screen overflow-hidden bg-[#003680]">
       {/* WebGL Particle Background */}
       <WebGLParticles />
 

@@ -131,7 +131,7 @@ export default function ContactPage() {
 
                   {/* Floating WhatsApp Icon */}
                   <div
-                    className="absolute -right-10 -top-12 cursor-pointer"
+                    className="absolute -right-8 -top-14 cursor-pointer"
                     onClick={handleWhatsApp}
                   >
                     <Image
