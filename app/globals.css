@@ -44,7 +44,8 @@
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
-  --font-sans: var(--font-ibm-plex-sans);
+  --font-sans: var(--font-plus-jakarta-sans);
+  --font-serif: var(--font-merriweather);
 
   /* Custom spacing for consistent padding across app */
   --spacing-page-mobile: 2rem;      /* 32px for mobile */
@@ -101,7 +102,7 @@
   body {
     background: var(--background);
     color: var(--foreground);
-    font-family: var(--font-ibm-plex-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: var(--font-plus-jakarta-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     margin: 0;
@@ -190,4 +191,151 @@
   .scrollbar-hide::-webkit-scrollbar {
     display: none;  /* Chrome, Safari and Opera */
   }
+}
+
+/* 404 Face Animation Styles */
+.face__eyes {
+  animation: eyes 1s 0.3s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+.face__eye-lid {
+  animation: eye-lid 4s 1.3s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+.face__pupil {
+  animation: pupil 4s 1.3s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+.face__mouth-left {
+  animation: mouth-left 1s 0.3s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+}
+
+.face__mouth-right {
+  animation: mouth-right 1s 0.3s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+}
+
+.face__nose {
+  animation: nose 1s 0.3s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+@keyframes eye-lid {
+  from,
+  40%,
+  45%,
+  to {
+    transform: translateY(0);
+  }
+  42.5% {
+    transform: translateY(17.5px);
+  }
+}
+
+@keyframes eyes {
+  from {
+    transform: translateY(112.5px);
+  }
+  to {
+    transform: translateY(15px);
+  }
+}
+
+@keyframes pupil {
+  from,
+  37.5%,
+  40%,
+  45%,
+  87.5%,
+  to {
+    stroke-dashoffset: 0;
+    transform: translate(0, 0);
+  }
+  12.5%,
+  25%,
+  62.5%,
+  75% {
+    stroke-dashoffset: 0;
+    transform: translate(-35px, 0);
+  }
+  42.5% {
+    stroke-dashoffset: 35;
+    transform: translate(0, 17.5px);
+  }
+}
+
+@keyframes mouth-left {
+  from,
+  50% {
+    stroke-dashoffset: -102;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes mouth-right {
+  from,
+  50% {
+    stroke-dashoffset: 102;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes nose {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(0, 22.5px);
+  }
+}
+
+/* Solutions Page Custom Styles */
+.font-merriweather {
+  font-family: var(--font-merriweather);
+}
+
+.font-plus-jakarta-sans {
+  font-family: var(--font-plus-jakarta-sans);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #d4cfc2;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #b8b3a6;
+}
+
+/* Hide Scrollbar for Mobile Pills */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

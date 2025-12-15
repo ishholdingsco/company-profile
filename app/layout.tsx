@@ -1,8 +1,21 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Sans } from "next/font/google";
+import { Plus_Jakarta_Sans, Merriweather, IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
 import { UNDER_CONSTRUCTION } from "./config";
 import { UnderConstruction } from "@/components/under-construction";
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  variable: "--font-plus-jakarta-sans",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+});
+
+const merriweather = Merriweather({
+  variable: "--font-merriweather",
+  subsets: ["latin"],
+  weight: ["300", "400", "700", "900"],
+  style: ["normal", "italic"],
+});
 
 const ibmPlexSans = IBM_Plex_Sans({
   variable: "--font-ibm-plex-sans",
@@ -23,7 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${ibmPlexSans.variable} antialiased`}
+        className={`${plusJakartaSans.variable} ${merriweather.variable} ${ibmPlexSans.variable} antialiased`}
       >
         {UNDER_CONSTRUCTION ? <UnderConstruction /> : children}
       </body>
