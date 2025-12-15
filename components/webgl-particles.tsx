@@ -23,7 +23,7 @@ export function WebGLParticles() {
       if (canvas.width !== displayWidth || canvas.height !== displayHeight) {
         canvas.width = displayWidth;
         canvas.height = displayHeight;
-        gl.viewport(0, 0, canvas.width, canvas.height);
+        gl!.viewport(0, 0, canvas.width, canvas.height);
       }
     }
 
@@ -225,30 +225,30 @@ export function WebGLParticles() {
     }
 
     function drawScene(time: number) {
-      resizeCanvasToDisplaySize(canvas);
-      gl.clear(gl.COLOR_BUFFER_BIT);
+      resizeCanvasToDisplaySize(canvas!);
+      gl!.clear(gl!.COLOR_BUFFER_BIT);
 
-      gl.useProgram(programInfo.program);
+      gl!.useProgram(programInfo.program);
 
       // Position attribute
-      gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
-      gl.enableVertexAttribArray(programInfo.attribLocations.vertexPosition);
-      gl.vertexAttribPointer(
+      gl!.bindBuffer(gl!.ARRAY_BUFFER, positionBuffer);
+      gl!.enableVertexAttribArray(programInfo.attribLocations.vertexPosition);
+      gl!.vertexAttribPointer(
         programInfo.attribLocations.vertexPosition,
         2,
-        gl.FLOAT,
+        gl!.FLOAT,
         false,
         0,
         0
       );
 
       // Lifetime attribute
-      gl.bindBuffer(gl.ARRAY_BUFFER, lifetimeBuffer);
-      gl.enableVertexAttribArray(programInfo.attribLocations.lifetime);
-      gl.vertexAttribPointer(
+      gl!.bindBuffer(gl!.ARRAY_BUFFER, lifetimeBuffer);
+      gl!.enableVertexAttribArray(programInfo.attribLocations.lifetime);
+      gl!.vertexAttribPointer(
         programInfo.attribLocations.lifetime,
         1,
-        gl.FLOAT,
+        gl!.FLOAT,
         false,
         0,
         0
@@ -263,27 +263,27 @@ export function WebGLParticles() {
       smoothMouseY = lerp(smoothMouseY, targetY, 0.05);
 
       // Calculate aspect ratio
-      const aspectRatio = canvas.width / canvas.height;
+      const aspectRatio = canvas!.width / canvas!.height;
 
       // Set uniforms
-      gl.uniform2f(
+      gl!.uniform2f(
         programInfo.uniformLocations.resolution,
-        canvas.width,
-        canvas.height
+        canvas!.width,
+        canvas!.height
       );
-      gl.uniform2f(
+      gl!.uniform2f(
         programInfo.uniformLocations.mousePosition,
         smoothMouseX,
         smoothMouseY
       );
-      gl.uniform1f(programInfo.uniformLocations.time, time * 0.001);
-      gl.uniform1f(programInfo.uniformLocations.aspectRatio, aspectRatio);
+      gl!.uniform1f(programInfo.uniformLocations.time, time * 0.001);
+      gl!.uniform1f(programInfo.uniformLocations.aspectRatio, aspectRatio);
 
       // Enable blending for transparency
-      gl.enable(gl.BLEND);
-      gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+      gl!.enable(gl!.BLEND);
+      gl!.blendFunc(gl!.SRC_ALPHA, gl!.ONE_MINUS_SRC_ALPHA);
 
-      gl.drawArrays(gl.POINTS, 0, numParticles);
+      gl!.drawArrays(gl!.POINTS, 0, numParticles);
     }
 
     function render(time: number) {

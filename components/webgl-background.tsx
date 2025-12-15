@@ -207,8 +207,8 @@ export function WebGLBackground() {
       height: number;
       delta: Vec2;
       gpgpu: any;
-      updateProgram: Program;
-      dropProgram: Program;
+      updateProgram!: Program;
+      dropProgram!: Program;
 
       constructor(renderer: Renderer) {
         this.renderer = renderer;
