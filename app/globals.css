@@ -48,9 +48,12 @@
   --font-serif: var(--font-merriweather);
 
   /* Custom spacing for consistent padding across app */
-  --spacing-page-mobile: 2rem;      /* 32px for mobile */
-  --spacing-page-tablet: 3rem;      /* 48px for tablet */
-  --spacing-page-desktop: 4rem;     /* 64px for desktop */
+  --spacing-page-mobile: 2rem;
+  /* 32px for mobile */
+  --spacing-page-tablet: 3rem;
+  /* 48px for tablet */
+  --spacing-page-desktop: 4rem;
+  /* 64px for desktop */
 
   /* Custom breakpoint at 768px for mobile/desktop switch */
   --breakpoint-mobile: 768px;
@@ -176,6 +179,7 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -184,12 +188,15 @@
 /* Hide scrollbar for horizontal scroll */
 @layer utilities {
   .scrollbar-hide {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
   }
 
   .scrollbar-hide::-webkit-scrollbar {
-    display: none;  /* Chrome, Safari and Opera */
+    display: none;
+    /* Chrome, Safari and Opera */
   }
 }
 
@@ -219,12 +226,14 @@
 }
 
 @keyframes eye-lid {
+
   from,
   40%,
   45%,
   to {
     transform: translateY(0);
   }
+
   42.5% {
     transform: translateY(17.5px);
   }
@@ -234,12 +243,14 @@
   from {
     transform: translateY(112.5px);
   }
+
   to {
     transform: translateY(15px);
   }
 }
 
 @keyframes pupil {
+
   from,
   37.5%,
   40%,
@@ -249,6 +260,7 @@
     stroke-dashoffset: 0;
     transform: translate(0, 0);
   }
+
   12.5%,
   25%,
   62.5%,
@@ -256,6 +268,7 @@
     stroke-dashoffset: 0;
     transform: translate(-35px, 0);
   }
+
   42.5% {
     stroke-dashoffset: 35;
     transform: translate(0, 17.5px);
@@ -263,20 +276,24 @@
 }
 
 @keyframes mouth-left {
+
   from,
   50% {
     stroke-dashoffset: -102;
   }
+
   to {
     stroke-dashoffset: 0;
   }
 }
 
 @keyframes mouth-right {
+
   from,
   50% {
     stroke-dashoffset: 102;
   }
+
   to {
     stroke-dashoffset: 0;
   }
@@ -286,6 +303,7 @@
   from {
     transform: translate(0, 0);
   }
+
   to {
     transform: translate(0, 22.5px);
   }
@@ -338,4 +356,43 @@
 .hide-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Marquee Animation */
+.marquee-container {
+  display: flex;
+  width: 100%;
+}
+
+.marquee-content {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee-reverse {
+  animation: marquee-reverse 30s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes marquee-reverse {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
 }

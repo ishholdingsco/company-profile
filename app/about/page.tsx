@@ -1,15 +1,46 @@
 "use client";
 
+import { motion } from "framer-motion";
+import Image from "next/image";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { Container } from "@/components/ui/container";
+import Link from "next/link";
+
+// Animation variants for reuse
+const fadeInUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0 }
+};
+
+const fadeIn = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2
+    }
+  }
+};
+
+const cardHover = {
+  rest: { scale: 1 },
+  hover: { scale: 1.02, transition: { duration: 0.3 } }
+};
 
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-black w-full flex flex-col">
-      <Header />
+      <Header variant="dark" />
 
-      {/* Bell Animation Section */}
-      <div className="flex-1 flex items-center justify-center relative overflow-hidden">
+      {/* Hero Section - Bell Animation */}
+      <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-black">
         <div
           className="bell-container off"
           onClick={(e) => e.currentTarget.classList.toggle("off")}
@@ -41,11 +72,498 @@ export default function AboutPage() {
             <div className="vr"></div>
           </div>
         </div>
-        <div className="button">Notify Me</div>
+        <div className="button">ISH TECHNOLOGIES</div>
         <div className="grain"></div>
-      </div>
+      </section>
 
-      <Footer />
+      {/* Ars Technologia Section */}
+      <section className="py-20 md:py-32 bg-white">
+        <Container>
+          <motion.div
+            className="max-w-3xl mx-auto"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            variants={fadeInUp}
+          >
+            {/* Title */}
+            <motion.h1
+              className="text-4xl md:text-6xl font-bold italic text-center mb-12"
+              style={{ fontFamily: "var(--font-merriweather)" }}
+              variants={fadeInUp}
+            >
+              Ars Technologia
+            </motion.h1>
+
+            {/* Definition */}
+            <motion.div
+              className="mb-16 text-sm md:text-base text-gray-700"
+              variants={fadeInUp}
+              transition={{ delay: 0.2 }}
+            >
+              <p className="mb-2">
+                <span className="font-bold italic">Ars Technologia</span> | /ärz tek-nə-ˈlō-jē-ə/
+              </p>
+              <p className="mb-1">noun, Latin</p>
+              <p className="mb-2">Definition:</p>
+              <ol className="list-decimal list-inside space-y-1 ml-2">
+                <li>The art of technology; the synthesis of creative craft and technical knowledge.</li>
+                <li>The disciplined practice of applying systematic methods with aesthetic sensibility.</li>
+                <li>The philosophy that technology, at its highest form, is an art.</li>
+              </ol>
+            </motion.div>
+
+            {/* Our Mission */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ margin: "-50px" }}
+              variants={fadeInUp}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              <h2
+                className="text-3xl md:text-4xl font-bold text-center mb-10"
+                style={{ fontFamily: "var(--font-merriweather)" }}
+              >
+                Our Mission
+              </h2>
+
+              <div className="space-y-6 text-gray-700 text-sm md:text-base leading-relaxed">
+                <motion.p variants={fadeInUp}>
+                  Investing in digital transformation of your enterprise should feel <span className="font-bold">free of anxiety</span>, make you feel <span className="font-bold">understood</span>, and bring <span className="font-bold">real impacts</span>.
+                </motion.p>
+
+                <motion.p variants={fadeInUp}>
+                  We are the <span className="font-bold">trusted</span> partner for you in crafting together the digital vision of your enterprise AI & Software Development; through <span className="font-bold italic">Intelligent</span> Enterprise Systems and <span className="font-bold italic underline">Human-Centered</span> Design, without interfering legacy process, to empower your enterprise in navigating the next digital age.
+                </motion.p>
+
+                <motion.p variants={fadeInUp}>
+                  We believe in our philosophy of Ars Technologia—where the art of technology is crafted to empower and make human lives better.
+                </motion.p>
+              </div>
+            </motion.div>
+          </motion.div>
+        </Container>
+      </section>
+
+      {/* Our Commitments Section */}
+      <section className="py-20 md:py-32 bg-white border-t border-gray-100">
+        <Container>
+          <motion.h2
+            className="text-3xl md:text-4xl font-bold mb-16"
+            style={{ fontFamily: "var(--font-merriweather)" }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ margin: "-50px" }}
+            variants={fadeInUp}
+            transition={{ duration: 0.6 }}
+          >
+            Our commitments for you
+          </motion.h2>
+
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-10"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ margin: "-50px" }}
+            variants={staggerContainer}
+          >
+            {[
+              { title: "We Listen First", desc: "When you're with us, we listen to your needs, goals, challenges, and ideas first before proposing the best solutions." },
+              { title: "Courage To Be Truthful", desc: "We will tell you what we think upfront if a solution will not work for your need so we can explore a better way together." },
+              { title: "Zero Pressure", desc: "We will never pressure you to make a decision. All decisions should be made by you at your pace." },
+              { title: "Reliable Delivery", desc: "We are committed to deliver every milestone on time without surprises. Transparent is our way of doing business." },
+              { title: "Smart Pace", desc: "There is no need to rush your digitalization journey. We'll work at the right pace for your organization to adapt." },
+              { title: "Future-proof Progress", desc: "Our designs are built to be future-proof and adaptable to changing business requirements." },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                className="border-l-2 border-gray-200 pl-6"
+                variants={fadeInUp}
+                transition={{ duration: 0.5 }}
+              >
+                <h3 className="text-lg font-bold mb-2">{item.title}</h3>
+                <p className="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </Container>
+      </section>
+
+      {/* Why Us Section */}
+      <section className="py-20 md:py-32 bg-white relative overflow-hidden">
+        {/* Top Marquee */}
+        <div className="absolute top-8 left-0 right-0 overflow-hidden pointer-events-none">
+          <div className="marquee-container">
+            <div className="marquee-content animate-marquee">
+              {[...Array(10)].map((_, i) => (
+                <Image
+                  key={i}
+                  src="/about/ISH.png"
+                  alt="ISH"
+                  width={200}
+                  height={80}
+                  className="mx-8"
+                />
+              ))}
+            </div>
+            <div className="marquee-content animate-marquee" aria-hidden="true">
+              {[...Array(10)].map((_, i) => (
+                <Image
+                  key={i}
+                  src="/about/ISH.png"
+                  alt="ISH"
+                  width={200}
+                  height={80}
+                  className="mx-8"
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Marquee - reverse direction */}
+        <div className="absolute bottom-8 left-0 right-0 overflow-hidden pointer-events-none">
+          <div className="marquee-container">
+            <div className="marquee-content animate-marquee-reverse">
+              {[...Array(10)].map((_, i) => (
+                <Image
+                  key={i}
+                  src="/about/ISH.png"
+                  alt="ISH"
+                  width={200}
+                  height={80}
+                  className="mx-8"
+                />
+              ))}
+            </div>
+            <div className="marquee-content animate-marquee-reverse" aria-hidden="true">
+              {[...Array(10)].map((_, i) => (
+                <Image
+                  key={i}
+                  src="/about/ISH.png"
+                  alt="ISH"
+                  width={200}
+                  height={80}
+                  className="mx-8"
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <Container className="relative z-10">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ margin: "-50px" }}
+            variants={fadeInUp}
+            transition={{ duration: 0.6 }}
+          >
+            <h2
+              className="text-3xl md:text-4xl font-bold mb-4"
+              style={{ fontFamily: "var(--font-merriweather)" }}
+            >
+              Why us?
+            </h2>
+            <p className="text-gray-500 text-sm mb-12">What makes us different</p>
+          </motion.div>
+
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ margin: "-50px" }}
+            variants={staggerContainer}
+          >
+            {[
+              {
+                title: "Engineered with Empathy",
+                desc: "Combination of Deep Tech capability and Human-Centered empathy. Our solutions are built to be highly reliable, scalable, and effortlessly intuitive for the end-user.",
+              },
+              {
+                title: "Portfolio-Piece Dedication",
+                desc: "We are hungry for success stories. We offer highly competitive rates because we treat your project as our future flagship case study. We don't just want to finish the job; we want to show it off.",
+              },
+              {
+                title: "Multi-Disciplinary",
+                desc: "Powered by experienced and multi-disciplinary team. We can answer your diverse needs without losing touch of domain expertise.",
+              },
+              {
+                title: "Change Management",
+                desc: "We make sure your adoption to new systems run smoothly through neat documentation and post launch support. We also won't interfere with your legacy process while you transition to new systems.",
+              },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                className="bg-white border border-gray-200 rounded-[30px] p-6 hover:shadow-lg transition-shadow cursor-pointer"
+                variants={fadeInUp}
+                whileHover={{ y: -5, transition: { duration: 0.2 } }}
+              >
+                <h3 className="text-lg font-bold mb-3">{item.title}</h3>
+                <p className="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </Container>
+      </section>
+
+      {/* The People Behind Section */}
+      <section className="py-20 md:py-32 bg-white overflow-hidden">
+        <Container>
+          <motion.h2
+            className="text-2xl md:text-4xl font-bold text-center mb-20 text-red-600"
+            style={{ fontFamily: "var(--font-merriweather)" }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ margin: "-50px" }}
+            variants={fadeInUp}
+            transition={{ duration: 0.6 }}
+          >
+            The people behind
+          </motion.h2>
+
+          {/* Leaders - Arch shaped cards */}
+          <motion.div
+            className="flex flex-wrap justify-center gap-16 md:gap-32 mb-24"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ margin: "-50px" }}
+            variants={staggerContainer}
+          >
+            {[
+              { name: "Harris", role: "", image: "/team/harris.png" },
+              { name: "Fawwaz", role: "", image: "/about/fawwaz.png" },
+            ].map((person, i) => (
+              <motion.div
+                key={i}
+                className="text-center"
+                variants={fadeInUp}
+                whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+              >
+                {/* Arch-shaped container */}
+                <div className="w-36 h-48 md:w-44 md:h-56 bg-gray-200 mx-auto mb-4 flex items-end justify-center overflow-hidden relative"
+                  style={{ borderRadius: "100px 100px 20px 20px" }}
+                >
+                  {person.image ? (
+                    <Image
+                      src={person.image}
+                      alt={person.name}
+                      fill
+                      className="object-cover object-top"
+                    />
+                  ) : (
+                    <span className="text-6xl text-gray-400 mb-4">👤</span>
+                  )}
+                </div>
+                <p className="text-lg font-bold">{person.name}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Teams Container - CSS Grid Layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-[auto_auto] gap-8 justify-center">
+
+            {/* Left Column - IT Team + Creative Team stacked */}
+            <div className="flex flex-col gap-8">
+
+              {/* IT Team */}
+              <motion.div
+                className="flex items-stretch gap-4"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ margin: "-50px" }}
+                variants={staggerContainer}
+              >
+                {/* Vertical Label */}
+                <div className="flex items-center">
+                  <div className="bg-gray-100 rounded-full px-3 py-6 h-fit">
+                    <span className="writing-vertical text-xs font-medium text-gray-600 whitespace-nowrap"
+                      style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
+                    >
+                      IT team
+                    </span>
+                  </div>
+                </div>
+
+                {/* 2x2 Grid */}
+                <div className="grid grid-cols-2 gap-4">
+                  {[
+                    { name: "Econ", role: "Full-Stack Engineer", image: "/about/Econ.png" },
+                    { name: "Nawaf", role: "DevOps Engineer", image: "/about/Nawaf.png" },
+                    { name: "Nadhif", role: "Data Engineer", image: "/about/Nadhif.png" },
+                    { name: "Zirly", role: "IoT & Instrumentation Engineer", image: "/about/Zirly.png" },
+                  ].map((person, i) => (
+                    <motion.div
+                      key={i}
+                      className="bg-gray-100 rounded-2xl p-4 w-32 md:w-50"
+                      variants={fadeInUp}
+                      whileHover={{ scale: 1.03, transition: { duration: 0.2 } }}
+                    >
+                      <div className="w-full h-28 md:h-32 bg-gray-300 rounded-xl flex flex-col items-center justify-end overflow-hidden relative">
+                        <Image
+                          src={person.image}
+                          alt={person.name}
+                          fill
+                          className={`${person.name === "Nawaf" ? "object-contain object-right-bottom" : "object-cover object-top"}`}
+                        />
+                        <div className="w-full p-2 bg-gradient-to-t from-black/50 to-transparent relative z-10">
+                          <p className="text-sm font-bold text-white">{person.name}</p>
+                          <p className="text-xs text-white/80 leading-tight">{person.role}</p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* Creative Team */}
+              <motion.div
+                className="flex items-stretch gap-4"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ margin: "-50px" }}
+                variants={staggerContainer}
+              >
+                {/* Vertical Label */}
+                <div className="flex items-center">
+                  <div className="bg-gray-100 rounded-full px-3 py-6 h-fit">
+                    <span className="text-xs font-medium text-gray-600 whitespace-nowrap"
+                      style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
+                    >
+                      Creative team
+                    </span>
+                  </div>
+                </div>
+
+                {/* 3 Cards Row */}
+                <div className="flex flex-col gap-3 md:flex-row">
+                  {[
+                    { name: "Finn", role: "Product Designer", image: "/about/Finn.png" },
+                    { name: "Surya", role: "UX Researcher", image: "/about/Surya.png" },
+                    { name: "Rici", role: "UI Designer", image: "/about/Rici.png" },
+                  ].map((person, i) => (
+                    <motion.div
+                      key={i}
+                      className="bg-gray-100 rounded-2xl p-4 w-28 md:w-32"
+                      variants={fadeInUp}
+                      whileHover={{ scale: 1.03, transition: { duration: 0.2 } }}
+                    >
+                      <div className="w-full h-24 md:h-28 bg-gray-300 rounded-xl flex flex-col items-center justify-end overflow-hidden relative">
+                        <Image
+                          src={person.image}
+                          alt={person.name}
+                          fill
+                          className={`${person.name === "Surya" ? "object-contain object-right-bottom" : "object-cover object-top"}`}
+                        />
+                        <div className="w-full p-2 bg-gradient-to-t from-black/50 to-transparent relative z-10">
+                          <p className="text-sm font-bold text-white">{person.name}</p>
+                          <p className="text-xs text-white/80 leading-tight">{person.role}</p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Right Column - Analyst Team (spans full height) */}
+            <motion.div
+              className="flex items-center gap-4 lg:self-center"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ margin: "-50px" }}
+              variants={staggerContainer}
+            >
+              {/* Cards */}
+              <div className="flex flex-col gap-4">
+                {[
+                  { name: "Guntur", role: "Policy Analyst", image: "/about/Guntur.png" },
+                  { name: "Jonathan", role: "Business Analyst", image: "/about/Jonathan.png" },
+                ].map((person, i) => (
+                  <motion.div
+                    key={i}
+                    className="text-center"
+                    variants={fadeInUp}
+                    whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+                  >
+                    {/* Arch-shaped container - Guntur normal, Jonathan inverted */}
+                    <div
+                      className={`w-36 h-40 md:w-44 md:h-50 bg-gray-200 mx-auto mb-4 flex ${i === 0 ? 'items-end' : 'items-start'} justify-center overflow-hidden relative`}
+                      style={{ borderRadius: i === 0 ? "100px 100px 20px 20px" : "20px 20px 100px 100px" }}
+                    >
+                      <Image
+                        src={person.image}
+                        alt={person.name}
+                        fill
+                        className={`object-cover ${i === 0 ? 'object-top' : 'object-bottom'}`}
+                      />
+                    </div>
+                    <p className="text-lg font-bold">{person.name}</p>
+                    <p className="text-xs text-gray-500">{person.role}</p>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Curved Label */}
+              <div className="flex items-center">
+                <div className="bg-gray-100 rounded-full px-3 py-6 h-fit">
+                  <span className="text-xs font-medium text-gray-600 whitespace-nowrap"
+                    style={{ writingMode: "vertical-rl" }}
+                  >
+                    Analyst team
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </Container>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 md:py-32 bg-[#080505] text-white overflow-hidden">
+        <Container>
+          <motion.div
+            className="text-center max-w-2xl mx-auto"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ margin: "-50px" }}
+            variants={fadeInUp}
+            transition={{ duration: 0.8 }}
+          >
+            <motion.h2
+              className="text-3xl md:text-5xl font-bold mb-6 leading-tight"
+              style={{ fontFamily: "var(--font-merriweather)" }}
+              variants={fadeInUp}
+            >
+              Tell us your wonderful digitalization idea.
+            </motion.h2>
+            <motion.p
+              className="text-white-200 mb-10 text-sm md:text-base"
+              variants={fadeInUp}
+              transition={{ delay: 0.2 }}
+            >
+              Not sure what you need? Free Initial consultation.
+            </motion.p>
+            <motion.div
+              variants={fadeInUp}
+              transition={{ delay: 0.4 }}
+            >
+              <Link
+                href="/contact"
+                className="inline-block border border-white px-8 py-3 text-sm font-medium hover:bg-white hover:text-[#003680] transition-colors rounded-[10px]"
+              >
+                I'm interested
+              </Link>
+            </motion.div>
+          </motion.div>
+        </Container>
+      </section>
+
+      <div className="bg-white">
+        <Footer />
+      </div>
 
       <style jsx global>{`
         .bell-container,
@@ -571,7 +1089,7 @@ export default function AboutPage() {
           font-size: 6em;
           font-family: monospace;
           background: #000;
-          bottom: -20em;
+          bottom: 10%;
           width: fit-content;
           height: fit-content;
           color: #000;

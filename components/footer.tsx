@@ -5,14 +5,15 @@ import { usePathname } from "next/navigation";
 import { Container } from "@/components/ui/container";
 
 interface FooterProps {
-  variant?: "default" | "blue";
+  variant?: "default" | "blue" | "white";
 }
 
 export function Footer({ variant = "default" }: FooterProps) {
   const pathname = usePathname();
   const isBlue = variant === "blue";
-  const textColor = isBlue ? "text-[#003680]" : "";
-  const borderColor = isBlue ? "border-[#003680]" : "border-foreground";
+  const isWhite = variant === "white";
+  const textColor = isBlue ? "text-[#003680]" : isWhite ? "text-white" : "";
+  const borderColor = isBlue ? "border-[#003680]" : isWhite ? "border-white" : "border-foreground";
 
   const navItems = [
     { href: "/", label: "Home" },
@@ -32,11 +33,10 @@ export function Footer({ variant = "default" }: FooterProps) {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`px-3 py-2 text-sm transition-all ${textColor} ${
-                    isActive
+                  className={`px-3 py-2 text-sm transition-all ${textColor} ${isActive
                       ? `border ${borderColor} rounded-[50px] font-medium`
                       : "hover:font-medium"
-                  }`}
+                    }`}
                 >
                   {item.label}
                 </Link>
@@ -65,11 +65,10 @@ export function Footer({ variant = "default" }: FooterProps) {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`px-6 py-3 text-sm transition-all ${textColor} ${
-                    isActive
+                  className={`px-6 py-3 text-sm transition-all ${textColor} ${isActive
                       ? `border ${borderColor} rounded-[50px] font-medium`
                       : "hover:font-medium"
-                  }`}
+                    }`}
                 >
                   {item.label}
                 </Link>
