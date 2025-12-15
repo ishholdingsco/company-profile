@@ -12,6 +12,7 @@ interface Project {
   title: string;
   subtitle: string;
   image: string;
+  mobileImage?: string;
   category: string;
   slug: string;
   size: "large" | "medium";
@@ -34,6 +35,7 @@ const projects: Project[] = [
     title: "FMS",
     subtitle: "Fleet Management System",
     image: "/project/product/fms/hero-1.png",
+    mobileImage: "/project/product/fms/fms-mobile.png",
     category: "product",
     slug: "fms",
     size: "medium",
@@ -44,6 +46,7 @@ const projects: Project[] = [
     title: "Game: \"His Name is Yanto\"",
     subtitle: "",
     image: "/project/product/yanto/hero-1.png",
+    mobileImage: "/project/product/yanto/yanto-mobile.png",
     category: "product",
     slug: "yanto",
     size: "medium",
@@ -185,12 +188,12 @@ export function ProjectsSection() {
 
                       {/* Image */}
                       <Image
-                        src={project.image}
+                        src={project.mobileImage || project.image}
                         alt={project.title}
                         fill
                         quality={100}
                         sizes="280px"
-                        className={`object-contain shadow-2xl transition-transform duration-300 group-hover:scale-105 ${
+                        className={`object-cover shadow-2xl transition-transform duration-300 group-hover:scale-105 ${
                           loadingImages[`${project.id}-mobile`] !== false ? "opacity-0" : "opacity-100"
                         }`}
                         style={{ borderRadius: "20px" }}
@@ -252,14 +255,33 @@ function ProjectCard({ project, index, loadingImages, setLoadingImages, height }
             </div>
           )}
 
-          {/* Image */}
+          {/* Image for tablet (md-lg) - use mobileImage if available */}
+          {project.mobileImage && (
+            <Image
+              src={project.mobileImage}
+              alt={project.title}
+              fill
+              quality={100}
+              sizes="(max-width: 1024px) 400px, 500px"
+              className={`lg:hidden object-cover shadow-2xl transition-transform duration-300 group-hover:scale-105 ${
+                loadingImages[project.id] !== false ? "opacity-0" : "opacity-100"
+              }`}
+              style={{ borderRadius: "20px" }}
+              priority={index === 0}
+              onLoad={() => {
+                setLoadingImages((prev) => ({ ...prev, [project.id]: false }));
+              }}
+            />
+          )}
+
+          {/* Image for desktop (lg+) - use regular image */}
           <Image
             src={project.image}
             alt={project.title}
             fill
             quality={100}
             sizes="(max-width: 768px) 280px, (max-width: 1024px) 400px, 500px"
-            className={`object-contain lg:object-cover shadow-2xl transition-transform duration-300 group-hover:scale-105 ${
+            className={`${project.mobileImage ? 'hidden lg:block' : ''} object-cover shadow-2xl transition-transform duration-300 group-hover:scale-105 ${
               loadingImages[project.id] !== false ? "opacity-0" : "opacity-100"
             }`}
             style={{ borderRadius: "20px" }}

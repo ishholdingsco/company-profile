@@ -46,7 +46,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
 
       <main className="w-full">
         {/* Hero Carousel Section */}
-        <section className="relative w-full h-screen">
+        <section className="relative w-full h-[50vh] lg:h-screen">
           {project.customLayout === "yanto" ? (
             <YantoHeroCarousel images={project.heroImages} interval={5000} />
           ) : (

@@ -60,7 +60,7 @@ export function ProjectHeroCarousel({
   };
 
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-black">
+    <div className="relative w-full h-full overflow-hidden bg-black">
       <AnimatePresence initial={false} mode="popLayout">
         <motion.div
           key={currentIndex}
