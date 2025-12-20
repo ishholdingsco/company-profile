@@ -36,11 +36,27 @@ const cardHover = {
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-black w-full flex flex-col">
-      <Header variant="dark" />
-
+    <>
       {/* Hero Section - Bell Animation */}
-      <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-black">
+      <section
+        style={{
+          position: 'relative',
+          minHeight: '100vh',
+          height: '100vh',
+          overflow: 'hidden',
+          display: 'flex',
+          flexDirection: 'row',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+          alignItems: 'center',
+          margin: 0,
+          background: '#000',
+          fontSize: 'calc(var(--_size) * 0.01)',
+          ['--_size' as any]: 'min(min(600px, 50vh), 50vw)',
+          ['--base-clr' as any]: '#b7b5b4',
+          ['--degofrot' as any]: '0.8',
+        }}
+      >
         <div
           className="bell-container off"
           onClick={(e) => e.currentTarget.classList.toggle("off")}
@@ -75,6 +91,10 @@ export default function AboutPage() {
         <div className="button">ISH TECHNOLOGIES</div>
         <div className="grain"></div>
       </section>
+
+      <div className="bg-white w-full">
+        <Header variant="light" />
+      </div>
 
       {/* Ars Technologia Section */}
       <section className="py-20 md:py-32 bg-white">
@@ -565,39 +585,27 @@ export default function AboutPage() {
         <Footer />
       </div>
 
-      <style jsx global>{`
-        .bell-container,
-        .bell-container *,
-        .bell-container *::before,
-        .bell-container *::after {
+      <style dangerouslySetInnerHTML={{__html: `
+        * {
           transition: filter 0.4s ease-in-out, box-shadow 0.4s ease-in-out,
-            opacity 0.4s ease-in-out, color 0.4s ease-in-out,
-            background 0.4s ease-in-out, text-shadow 0.4s ease-in-out;
+            opacity 0.4s ease-in-out, color 0.4s ease-in-out, background 0.4s ease-in-out,
+            text-shadow 0.4s ease-in-out;
+        }
+        *::before,
+        *::after {
+          transition: filter 0.4s ease-in-out, box-shadow 0.4s ease-in-out,
+            opacity 0.4s ease-in-out, color 0.4s ease-in-out, background 0.4s ease-in-out,
+            text-shadow 0.4s ease-in-out;
         }
 
         .bell-container {
-          font-size: calc(var(--_size) * 0.01);
-          --_size: min(min(600px, 50vh), 50vw);
-          --base-clr: #b7b5b4;
-          --degofrot: 0.8;
           width: 80em;
           height: 80em;
           opacity: 1;
           cursor: pointer;
           transform-origin: 50% -50vh;
           animation: 5s ease-in-out infinite bell;
-          position: relative;
         }
-
-        .bell-container * {
-          position: absolute;
-          left: 0;
-          right: 0;
-          top: 0;
-          bottom: 0;
-          margin: auto;
-        }
-
         @keyframes bell {
           0% {
             rotate: calc(1deg * var(--degofrot));
@@ -610,16 +618,21 @@ export default function AboutPage() {
           }
         }
 
+        .bell-container,
+        .bell-container * {
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          margin: auto;
+        }
+
         .rope {
           height: 50vh;
           width: 2em;
           translate: 0 -52%;
-          background: linear-gradient(
-              90deg,
-              #2d54744d 0%,
-              #000b 30%,
-              transparent 100%
-            ),
+          background: linear-gradient(90deg, #2d54744d 0%, #000b 30%, transparent 100%),
             repeating-linear-gradient(-70deg, #252525, #888 2%, #3a3a3a 3%);
         }
 
@@ -629,8 +642,8 @@ export default function AboutPage() {
           border-radius: 50%;
           translate: 0 -28em;
           background: var(--base-clr);
-          box-shadow: inset -1em -0.5em 2em 0.5em #fff,
-            inset 1em -1em 2em 3em #000, 0 -0.1em 0.4em 0.3em #c6eaffa8;
+          box-shadow: inset -1em -0.5em 2em 0.5em #fff, inset 1em -1em 2em 3em #000,
+            0 -0.1em 0.4em 0.3em #c6eaffa8;
         }
 
         .bell-base {
@@ -641,7 +654,6 @@ export default function AboutPage() {
           background: var(--base-clr);
           box-shadow: 0 -0.1em 0.4em 0.2em #c6eaffa8;
         }
-
         .bell-base:before {
           content: "";
           background-image: radial-gradient(
@@ -654,7 +666,6 @@ export default function AboutPage() {
           width: 100%;
           height: 80%;
         }
-
         .bell-base:after {
           content: "";
           background-image: radial-gradient(
@@ -669,13 +680,11 @@ export default function AboutPage() {
           height: 80%;
           transform: rotateY(180deg);
         }
-
-        .bell-base:nth-child(4) {
+        .bell-base:nth-child(2) {
           filter: brightness(3) blur(1em);
           scale: 0.74 0.84;
           translate: 0em -11em;
         }
-
         .shadow-l1 {
           width: 30em;
           height: 42em;
@@ -685,14 +694,12 @@ export default function AboutPage() {
           filter: blur(2em);
           background: #797a80;
         }
-
         .shadow-l2 {
           width: 130%;
           height: 90%;
           filter: blur(5em);
           translate: -6em 9em;
         }
-
         .shadow-l2::before {
           display: block;
           content: "";
@@ -704,13 +711,11 @@ export default function AboutPage() {
           scale: 1;
           background: #000000;
         }
-
         .glow {
           width: 100%;
           height: 100%;
           filter: brightness(2) blur(2em);
         }
-
         .glow::before {
           clip-path: polygon(
             9% 83%,
@@ -779,14 +784,12 @@ export default function AboutPage() {
           display: block;
           content: "";
         }
-
         .glow2 {
           width: 100%;
           height: 100%;
           filter: brightness(1) blur(0.3em);
           opacity: 0.1;
         }
-
         .glow2::before {
           clip-path: polygon(
             9.21% 83%,
@@ -839,7 +842,6 @@ export default function AboutPage() {
           display: block;
           content: "";
         }
-
         .left-glow {
           --lgc: #5d819666;
           width: 50%;
@@ -850,7 +852,6 @@ export default function AboutPage() {
           box-shadow: inset 1em 0em 1em 0.2em var(--lgc);
           clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
         }
-
         .left-glow2 {
           --lgc2: #5d819666;
           width: 49%;
@@ -865,7 +866,6 @@ export default function AboutPage() {
           translate: -19em 10.35em;
           clip-path: polygon(0 0, 100% 0, 100% 78%, 0 78%);
         }
-
         .r-glow {
           --lgc: #fffaf680;
           width: 50%;
@@ -877,7 +877,6 @@ export default function AboutPage() {
           clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
           transform: rotateY(180deg);
         }
-
         .r-glow2 {
           --lgc2: #fffaf680;
           width: 49%;
@@ -893,24 +892,21 @@ export default function AboutPage() {
           clip-path: polygon(0 0, 100% 0, 100% 78%, 0 78%);
           transform: rotateY(180deg) rotateZ(-2deg);
         }
-
         .mid-ring.small {
           translate: 0.04em -8em;
           scale: 0.8 0.5;
         }
-
         .mid-ring {
           width: 64%;
           height: 10%;
           border-radius: 50%;
           translate: -0.1em 10em;
           box-shadow: inset -0.3em 1.3em 0.4em -1em #fff5,
-            -0.2em -1.2em 0.4em -0.4em #505050,
-            -0.1em -1.8em 0.4em -0.4em #fff5, 0 -2.5em 0.4em -1em #000000;
+            -0.2em -1.2em 0.4em -0.4em #505050, -0.1em -1.8em 0.4em -0.4em #fff5,
+            0 -2.5em 0.4em -1em #000000;
           mix-blend-mode: hard-light;
           filter: brightness(0.8);
         }
-
         .mid-ring::before,
         .mid-ring::after {
           content: "";
@@ -922,15 +918,12 @@ export default function AboutPage() {
           border-radius: 50%;
           position: absolute;
         }
-
         .mid-ring::after {
           right: -2%;
         }
-
         .mid-ring::before {
           left: -2%;
         }
-
         .bell-buff-t {
           background: #fff2;
           width: 72%;
@@ -939,17 +932,14 @@ export default function AboutPage() {
           translate: 0 16em;
           filter: blur(1em);
         }
-
         .bell-buff {
           background: linear-gradient(90deg, black 40%, var(--base-clr) 90%);
           width: 88%;
           height: 20%;
           border-radius: 50% 50% 50% 50% / 50% 50% 30% 30%;
           translate: 0 20em;
-          box-shadow: inset 1em 0 2em -1em #5d819666,
-            inset -1em 0 2em -1em #fff;
+          box-shadow: inset 1em 0 2em -1em #5d819666, inset -1em 0 2em -1em #fff;
         }
-
         .bell-btm {
           width: 88%;
           height: 18%;
@@ -957,7 +947,6 @@ export default function AboutPage() {
           translate: 0 23em;
           background: linear-gradient(90deg, black 40%, var(--base-clr) 90%);
         }
-
         .bell-btm2 {
           width: 74%;
           height: 12%;
@@ -966,15 +955,13 @@ export default function AboutPage() {
           background: #fffff6;
           box-shadow: 0 0 1em 0.6em #ffe9d4, -0.8em 0.2em 2em 1em #cca37f,
             -5.4em -0.6em 3em -1em #ce6e1abb, 6em -0.6em 3em -1em #ce6e1abb,
-            inset 0em 30.3em 0.3em -30em #c7962d,
-            inset 0 -2em 2em -2em #ffe9d4, inset 0em -1em 2em 1em #ce6e1a66;
+            inset 0em 30.3em 0.3em -30em #c7962d, inset 0 -2em 2em -2em #ffe9d4,
+            inset 0em -1em 2em 1em #ce6e1a66;
           filter: brightness(1);
         }
-
         .off .bell-btm2 {
           filter: brightness(0.02);
         }
-
         .bell-ring-container {
           width: 74%;
           height: 24%;
@@ -982,23 +969,21 @@ export default function AboutPage() {
           translate: 0 29.2em;
           overflow: hidden;
         }
-
         .bell-ring {
           width: 12em;
           height: 12em;
           background: #fff;
           border-radius: 50%;
           translate: 0 -6em;
-          box-shadow: 0 0.8em 1em -0.3em #f8e1d0,
-            inset 0 -6em 4em -4em #e3b695, inset 0 1em 3em 1em #fff4,
-            inset 0 2em 3em 1em #fff, inset 0 100em 0 100em #2c2c2c;
+          box-shadow: 0 0.8em 1em -0.3em #f8e1d0, inset 0 -6em 4em -4em #e3b695,
+            inset 0 1em 3em 1em #fff4, inset 0 2em 3em 1em #fff,
+            inset 0 100em 0 100em #2c2c2c;
         }
-
         .off .bell-ring {
           background: #000;
-          box-shadow: 0 0.8em 1em -0.3em #f8e1d000,
-            inset 0 -6em 4em -4em #e3b69500, inset 0 1em 3em 1em #fff0,
-            inset 0 -2em 3em 1em #fff2, inset 0 100em 0 100em #000;
+          box-shadow: 0 0.8em 1em -0.3em #f8e1d000, inset 0 -6em 4em -4em #e3b69500,
+            inset 0 1em 3em 1em #fff0, inset 0 -2em 3em 1em #fff2,
+            inset 0 100em 0 100em #000;
         }
 
         .bell-rays {
@@ -1009,7 +994,6 @@ export default function AboutPage() {
           translate: 0 -4em;
           border-radius: 50%;
         }
-
         .bell-rays::before {
           content: "";
           display: block;
@@ -1029,11 +1013,9 @@ export default function AboutPage() {
           );
           animation: radiate 1s linear infinite;
         }
-
         .off .bell-rays {
           opacity: 0;
         }
-
         @keyframes radiate {
           0% {
             rotate: 0deg;
@@ -1049,7 +1031,6 @@ export default function AboutPage() {
           translate: 0 124em;
           opacity: 0.2;
         }
-
         .volumetric .vl {
           width: 100%;
           height: 100%;
@@ -1057,7 +1038,6 @@ export default function AboutPage() {
           rotate: 22deg;
           box-shadow: inset 40em 0 20em -20em #fff1;
         }
-
         .volumetric .vr {
           width: 100%;
           height: 100%;
@@ -1065,19 +1045,19 @@ export default function AboutPage() {
           rotate: -22deg;
           box-shadow: inset -40em 0 20em -20em #fff1;
         }
-
         .off .volumetric {
           opacity: 0;
         }
 
         .grain {
           z-index: 10;
-          position: fixed;
+          position: absolute;
           pointer-events: none;
           width: 100%;
           height: 100%;
           top: 0;
-          left: 0;
+          bottom: 0;
+          margin: auto;
           background: radial-gradient(circle at 50% 50%, #000, #0000),
             url("data:image/svg+xml,%3Csvg viewBox='0 0 600 600' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
           filter: contrast(100%) brightness(200%) grayscale(1) opacity(0.168);
@@ -1085,11 +1065,11 @@ export default function AboutPage() {
         }
 
         .button {
-          position: absolute;
+          position: relative;
           font-size: 6em;
           font-family: monospace;
           background: #000;
-          bottom: 10%;
+          top: 8em;
           width: fit-content;
           height: fit-content;
           color: #000;
@@ -1100,16 +1080,12 @@ export default function AboutPage() {
           box-shadow: inset 0 0.04em 0.06em 0 #fff, inset 0 1em 1em 0 #fff5,
             inset 0 0.2em 0.2em 0 #e3b695;
           animation: 5s ease-in-out infinite lumenbtn;
-          left: 50%;
-          transform: translateX(-50%);
         }
-
         .button:hover {
           color: #fff;
           text-shadow: 0 -1px 3px #fff;
           transition: all 0.16s ease-in-out;
         }
-
         .button::before,
         .button::after {
           content: "";
@@ -1121,7 +1097,6 @@ export default function AboutPage() {
           left: 0;
           right: 0;
         }
-
         .button::before {
           background: #e3b695;
           scale: 2;
@@ -1130,14 +1105,12 @@ export default function AboutPage() {
           border-radius: 100%;
           animation: 5s ease-in-out infinite lumen;
         }
-
         .button::after {
           background: #000c;
           z-index: -1;
           filter: blur(0.3em);
           border-radius: 30%;
         }
-
         @keyframes lumenbtn {
           0% {
             box-shadow: inset 0 0.04em 0.06em 0 #fff,
@@ -1155,7 +1128,6 @@ export default function AboutPage() {
               inset calc(-0.2em * var(--degofrot)) 0.2em 0.4em 0 #e3b695;
           }
         }
-
         @keyframes lumen {
           0% {
             translate: calc(-0.8em * var(--degofrot));
@@ -1172,7 +1144,7 @@ export default function AboutPage() {
           opacity: 0;
           pointer-events: none;
         }
-      `}</style>
-    </div>
+      `}} />
+    </>
   );
 }
