@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Merriweather, IBM_Plex_Sans } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { UNDER_CONSTRUCTION } from "./config";
 import { UnderConstruction } from "@/components/under-construction";
@@ -35,6 +36,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* React Grab - Development only */}
+        {process.env.NODE_ENV === "development" && (
+          <Script
+            src="//unpkg.com/react-grab/dist/index.global.js"
+            crossOrigin="anonymous"
+            strategy="beforeInteractive"
+          />
+        )}
+      </head>
       <body
         className={`${plusJakartaSans.variable} ${merriweather.variable} ${ibmPlexSans.variable} antialiased`}
       >
