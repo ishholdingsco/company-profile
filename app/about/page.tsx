@@ -37,6 +37,9 @@ const cardHover = {
 export default function AboutPage() {
   return (
     <>
+      {/* Header with dark variant for black hero background */}
+      <Header variant="dark" />
+
       {/* Hero Section - Bell Animation */}
       <section
         style={{
@@ -88,13 +91,12 @@ export default function AboutPage() {
             <div className="vr"></div>
           </div>
         </div>
-        <div className="button">ISH TECHNOLOGIES</div>
+        <div className="hero-text">
+          Bring out the <span className="bold-text">Genius</span> in <span className="bold-text">You</span>.<br />
+          ISH Technologies and Consulting
+        </div>
         <div className="grain"></div>
       </section>
-
-      <div className="bg-white w-full">
-        <Header variant="light" />
-      </div>
 
       {/* Ars Technologia Section */}
       <section className="py-20 md:py-32 bg-white">
@@ -190,12 +192,12 @@ export default function AboutPage() {
             variants={staggerContainer}
           >
             {[
-              { title: "We Listen First", desc: "When you're with us, we listen to your needs, goals, challenges, and ideas first before proposing the best solutions." },
-              { title: "Courage To Be Truthful", desc: "We will tell you what we think upfront if a solution will not work for your need so we can explore a better way together." },
-              { title: "Zero Pressure", desc: "We will never pressure you to make a decision. All decisions should be made by you at your pace." },
-              { title: "Reliable Delivery", desc: "We are committed to deliver every milestone on time without surprises. Transparent is our way of doing business." },
-              { title: "Smart Pace", desc: "There is no need to rush your digitalization journey. We'll work at the right pace for your organization to adapt." },
-              { title: "Future-proof Progress", desc: "Our designs are built to be future-proof and adaptable to changing business requirements." },
+              { title: "We Listen First", desc: `We dive into your "why" before we touch the "how." We build what you need, not just what you ask for.` },
+              { title: "Thoughtful Product", desc: "We ensure you build the right thing—not just build things right." },
+              { title: "Zero Friction", desc: "We are communicative, collaborative, and fast. No corporate jargon, just straight talk and quick movement." },
+              { title: "Reliable Delivery", desc: "We keep our commitments. Deadlines, scope, quality—what we agree, we deliver." },
+              { title: "Smart Value", desc: "Cost-effective without cutting corners. Maximum impact for your investment." },
+              { title: "Transparent Progress", desc: "Shared online project boards, regular updates, no surprises. You always know where things stand." },
             ].map((item, i) => (
               <motion.div
                 key={i}
@@ -273,7 +275,7 @@ export default function AboutPage() {
           </div>
         </div>
 
-        <Container className="relative z-10">
+        <Container className="relative z-10 py-20">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -353,8 +355,8 @@ export default function AboutPage() {
             variants={staggerContainer}
           >
             {[
-              { name: "Harris", role: "", image: "/team/harris.png" },
-              { name: "Fawwaz", role: "", image: "/about/fawwaz.png" },
+              { name: "Harris", role: "Project Manager", image: "/team/harris.png" },
+              { name: "Fawwaz", role: "Product Manager", image: "/about/fawwaz.png" },
             ].map((person, i) => (
               <motion.div
                 key={i}
@@ -378,6 +380,7 @@ export default function AboutPage() {
                   )}
                 </div>
                 <p className="text-lg font-bold">{person.name}</p>
+                <p className="text-xs text-gray-500">{person.role}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -1064,83 +1067,26 @@ export default function AboutPage() {
           mix-blend-mode: screen;
         }
 
-        .button {
+        .hero-text {
           position: relative;
-          font-size: 6em;
-          font-family: monospace;
-          background: #000;
-          top: 8em;
-          width: fit-content;
-          height: fit-content;
-          color: #000;
-          cursor: pointer;
-          padding: 0.4em 1.2em;
-          border-radius: 0.4em;
-          text-shadow: 0 -1px 3px #fff0;
-          box-shadow: inset 0 0.04em 0.06em 0 #fff, inset 0 1em 1em 0 #fff5,
-            inset 0 0.2em 0.2em 0 #e3b695;
-          animation: 5s ease-in-out infinite lumenbtn;
-        }
-        .button:hover {
+          font-size: 4em;
+          font-family: var(--font-plus-jakarta-sans);
           color: #fff;
-          text-shadow: 0 -1px 3px #fff;
-          transition: all 0.16s ease-in-out;
-        }
-        .button::before,
-        .button::after {
-          content: "";
-          display: block;
+          text-align: center;
+          top: 15em;
           width: 100%;
-          height: 54%;
-          position: absolute;
-          top: 6em;
-          left: 0;
-          right: 0;
-        }
-        .button::before {
-          background: #e3b695;
-          scale: 2;
-          z-index: -2;
-          filter: blur(12px);
-          border-radius: 100%;
-          animation: 5s ease-in-out infinite lumen;
-        }
-        .button::after {
-          background: #000c;
-          z-index: -1;
-          filter: blur(0.3em);
-          border-radius: 30%;
-        }
-        @keyframes lumenbtn {
-          0% {
-            box-shadow: inset 0 0.04em 0.06em 0 #fff,
-              inset calc(-0.2em * var(--degofrot)) 1em 1em 0 #fff5,
-              inset calc(-0.2em * var(--degofrot)) 0.2em 0.4em 0 #e3b695;
-          }
-          50% {
-            box-shadow: inset 0 0.04em 0.06em 0 #fff,
-              inset calc(0.2em * var(--degofrot)) 1em 1em 0 #fff5,
-              inset calc(0.2em * var(--degofrot)) 0.2em 0.4em 0 #e3b695;
-          }
-          100% {
-            box-shadow: inset 0 0.04em 0.06em 0 #fff,
-              inset calc(-0.2em * var(--degofrot)) 1em 1em 0 #fff5,
-              inset calc(-0.2em * var(--degofrot)) 0.2em 0.4em 0 #e3b695;
-          }
-        }
-        @keyframes lumen {
-          0% {
-            translate: calc(-0.8em * var(--degofrot));
-          }
-          50% {
-            translate: calc(0.8em * var(--degofrot));
-          }
-          100% {
-            translate: calc(-0.8em * var(--degofrot));
-          }
+          padding: 1em 2em;
+          line-height: 1.4;
+          text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
 
-        .off + .button {
+        .bold-text {
+          font-weight: 700;
+          font-style: italic;
+          color: #fff;
+        }
+
+        .off + .hero-text {
           opacity: 0;
           pointer-events: none;
         }
