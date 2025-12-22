@@ -487,7 +487,7 @@ export default function AboutPage() {
                     {[
                       { name: "Econ", role: "Full-Stack Engineer", image: "/about/Econ.png" },
                       { name: "Nawaf", role: "DevOps Engineer", image: "/about/Nawaf.png" },
-                      { name: "Nadhif", role: "Data Engineer", image: "/about/Nadhif.png" },
+                      { name: "Nadhif", role: "AI & ML Engineer", image: "/about/Nadhif.png" },
                       { name: "Zirly", role: "IoT & Instrumentation Engineer", image: "/about/Zirly.png" },
                     ].map((person, i) => (
                       <motion.div
@@ -557,7 +557,7 @@ export default function AboutPage() {
                   {[
                     { name: "Econ", role: "Full-Stack Engineer", image: "/about/Econ.png" },
                     { name: "Nawaf", role: "DevOps Engineer", image: "/about/Nawaf.png" },
-                    { name: "Nadhif", role: "Data Engineer", image: "/about/Nadhif.png" },
+                    { name: "Nadhif", role: "AI & ML Engineer", image: "/about/Nadhif.png" },
                     { name: "Zirly", role: "IoT & Instrumentation Engineer", image: "/about/Zirly.png" },
                   ].map((person, i) => (
                     <motion.div
