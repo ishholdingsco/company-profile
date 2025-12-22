@@ -18,10 +18,8 @@ export default function NotFound() {
             className="flex justify-center"
           >
             <svg
-              className="face"
+              className="face w-full max-w-[200px] md:max-w-[280px] lg:max-w-[320px] h-auto"
               viewBox="0 0 320 380"
-              width="320px"
-              height="380px"
               aria-label="A 404 becomes a face, looks to the sides, and blinks."
             >
               <g
@@ -89,10 +87,10 @@ export default function NotFound() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="space-y-4"
           >
-            <h2 className="text-4xl md:text-5xl font-bold font-serif text-[#003680]">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-serif text-[#003680]">
               Page Not Found
             </h2>
-            <p className="text-base md:text-lg font-sans text-gray-600 max-w-4xl mx-auto whitespace-nowrap">
+            <p className="text-sm md:text-base lg:text-lg font-sans text-gray-600 max-w-xl mx-auto px-4">
               Oops! The page you are looking for does not exist or has been moved.
             </p>
           </motion.div>
