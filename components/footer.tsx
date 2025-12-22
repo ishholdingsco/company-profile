@@ -45,7 +45,7 @@ export function Footer({ variant = "default" }: FooterProps) {
           </nav>
           <div className="flex justify-center">
             <a
-              href="https://id.linkedin.com/company/soft-roc"
+              href="https://www.linkedin.com/company/ish-technologies-and-consulting/"
               target="_blank"
               rel="noopener noreferrer"
               className={`text-sm hover:font-medium transition-all ${textColor}`}
@@ -78,7 +78,7 @@ export function Footer({ variant = "default" }: FooterProps) {
 
           {/* LinkedIn Link */}
           <a
-            href="https://id.linkedin.com/company/soft-roc"
+            href="https://www.linkedin.com/company/ish-technologies-and-consulting/"
             target="_blank"
             rel="noopener noreferrer"
             className={`text-sm hover:font-medium transition-all ${textColor}`}
