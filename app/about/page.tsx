@@ -773,7 +773,7 @@ export default function AboutPage() {
                   <div className="flex gap-4 min-w-max">
                     {[
                       { name: "Guntur", role: "Policy Analyst", image: "/about/Guntur.png", linkedin: "https://www.linkedin.com/in/guntur-iqbal/" },
-                      { name: "Jonathan", role: "Business Analyst", image: "/about/Jonathan.png", linkedin: "https://x.com/masjonnnn" },
+                      { name: "Jonathan", role: "Business Analyst", image: "/about/Jonathan.png", linkedin: "https://www.instagram.com/jonathanadrl" },
                     ].map((person, i) => (
                       <motion.div
                         key={i}
@@ -866,7 +866,7 @@ export default function AboutPage() {
                 <div className="flex flex-col gap-4 md:flex-row md:gap-6 shrink-0">
                   {[
                     { name: "Guntur", role: "Policy Analyst", image: "/about/Guntur.png", linkedin: "https://www.linkedin.com/in/guntur-iqbal/" },
-                    { name: "Jonathan", role: "Business Analyst", image: "/about/Jonathan.png", linkedin: "https://x.com/masjonnnn" },
+                    { name: "Jonathan", role: "Business Analyst", image: "/about/Jonathan.png", linkedin: "https://www.instagram.com/jonathanadrl" },
                   ].map((person, i) => (
                     <motion.div
                       key={i}
