@@ -422,7 +422,14 @@ export default function AboutPage() {
                       <span className="text-6xl text-gray-400 mb-4">👤</span>
                     )}
                   </div>
-                  <p className="text-base md:text-lg font-bold underline">{person.name}</p>
+                  <Link
+                    href={person.name === "Harris" ? "https://www.linkedin.com/in/harristio-adam/" : "https://www.linkedin.com/in/fawwazanvilen/"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-base md:text-lg font-bold underline hover:text-blue-600 transition-colors"
+                  >
+                    {person.name}
+                  </Link>
                   <p className="text-xs text-black">{person.role}</p>
                 </motion.div>
               ))}
@@ -468,7 +475,14 @@ export default function AboutPage() {
                     <span className="text-6xl text-gray-400 mb-4">👤</span>
                   )}
                 </div>
-                <p className="text-lg font-bold underline">{person.name}</p>
+                <Link
+                  href={person.name === "Harris" ? "https://www.linkedin.com/in/harristio-adam/" : "https://www.linkedin.com/in/fawwazanvilen/"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-lg font-bold underline hover:text-blue-600 transition-colors"
+                >
+                  {person.name}
+                </Link>
                 <p className="text-xs text-black">{person.role}</p>
               </motion.div>
             ))}
@@ -485,10 +499,10 @@ export default function AboutPage() {
                 <div className="overflow-x-auto pb-4 scrollbar-hide -mx-8 px-8">
                   <div className="flex gap-4 min-w-max">
                     {[
-                      { name: "Econ", role: "Full-Stack Engineer", image: "/about/Econ.png" },
-                      { name: "Nawaf", role: "DevOps Engineer", image: "/about/Nawaf.png" },
-                      { name: "Nadhif", role: "AI & ML Engineer", image: "/about/Nadhif.png" },
-                      { name: "Zirly", role: "IoT & Instrumentation Engineer", image: "/about/Zirly.png" },
+                      { name: "Econ", role: "Full-Stack Engineer", image: "/about/Econ.png", linkedin: "https://x.com/AshecOne" },
+                      { name: "Nawaf", role: "DevOps Engineer", image: "/about/Nawaf.png", linkedin: "https://www.linkedin.com/in/nawaf-alfarizki-2790b8244/" },
+                      { name: "Nadhif", role: "AI & ML Engineer", image: "/about/Nadhif.png", linkedin: "https://www.linkedin.com/in/nadhiftaher/" },
+                      { name: "Zirly", role: "IoT & Instrumentation Engineer", image: "/about/Zirly.png", linkedin: "https://www.linkedin.com/in/zirly-sukarno/" },
                     ].map((person, i) => (
                       <motion.div
                         key={i}
@@ -517,7 +531,14 @@ export default function AboutPage() {
                             />
                           </div>
                           <div className="absolute bottom-4 left-4 text-left z-10">
-                            <p className="text-sm font-bold text-black underline">{person.name}</p>
+                            <Link
+                              href={person.linkedin}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-sm font-bold text-black underline hover:text-blue-600 transition-colors"
+                            >
+                              {person.name}
+                            </Link>
                             <p className="text-xs text-black leading-tight max-w-25">{person.role}</p>
                           </div>
                         </div>
@@ -555,10 +576,10 @@ export default function AboutPage() {
                 {/* 2x2 Grid */}
                 <div className="grid grid-cols-2 gap-4 md:gap-6">
                   {[
-                    { name: "Econ", role: "Full-Stack Engineer", image: "/about/Econ.png" },
-                    { name: "Nawaf", role: "DevOps Engineer", image: "/about/Nawaf.png" },
-                    { name: "Nadhif", role: "AI & ML Engineer", image: "/about/Nadhif.png" },
-                    { name: "Zirly", role: "IoT & Instrumentation Engineer", image: "/about/Zirly.png" },
+                    { name: "Econ", role: "Full-Stack Engineer", image: "/about/Econ.png", linkedin: "https://x.com/AshecOne" },
+                    { name: "Nawaf", role: "DevOps Engineer", image: "/about/Nawaf.png", linkedin: "https://www.linkedin.com/in/nawaf-alfarizki-2790b8244/" },
+                    { name: "Nadhif", role: "AI & ML Engineer", image: "/about/Nadhif.png", linkedin: "https://www.linkedin.com/in/nadhiftaher/" },
+                    { name: "Zirly", role: "IoT & Instrumentation Engineer", image: "/about/Zirly.png", linkedin: "https://www.linkedin.com/in/zirly-sukarno/" },
                   ].map((person, i) => (
                     <motion.div
                       key={i}
@@ -590,7 +611,14 @@ export default function AboutPage() {
                         </div>
                         {/* Text overlay at middle left */}
                         <div className="absolute md:bottom-20 lg:bottom-25 left-4 md:left-5 lg:left-6 text-left z-10">
-                          <p className="text-base md:text-lg font-bold text-black underline">{person.name}</p>
+                          <Link
+                            href={person.linkedin}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-base md:text-lg font-bold text-black underline hover:text-blue-600 transition-colors"
+                          >
+                            {person.name}
+                          </Link>
                           <p className="text-xs text-black leading-tight max-w-35">{person.role}</p>
                         </div>
                       </div>
@@ -608,9 +636,9 @@ export default function AboutPage() {
                 <div className="overflow-x-auto pb-4 scrollbar-hide -mx-8 px-8">
                   <div className="flex gap-4 min-w-max">
                     {[
-                      { name: "Finn", role: "Product Designer", image: "/about/Finn.png" },
-                      { name: "Surya", role: "UX Researcher", image: "/about/Surya.png" },
-                      { name: "Rici", role: "UI Designer", image: "/about/Rici.png" },
+                      { name: "Finn", role: "Product Designer", image: "/about/Finn.png", linkedin: "https://www.linkedin.com/in/mr-arifinsyah/" },
+                      { name: "Surya", role: "UX Researcher", image: "/about/Surya.png", linkedin: "https://www.linkedin.com/in/suryac-tra/" },
+                      { name: "Rici", role: "UI Designer", image: "/about/Rici.png", linkedin: "https://www.linkedin.com/in/elivina-ragil/" },
                     ].map((person, i) => (
                       <motion.div
                         key={i}
@@ -644,7 +672,14 @@ export default function AboutPage() {
                             />
                           </div>
                           <div className="absolute top-4 left-3 text-left z-10">
-                            <p className="text-sm font-bold text-black underline">{person.name}</p>
+                            <Link
+                              href={person.linkedin}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-sm font-bold text-black underline hover:text-blue-600 transition-colors"
+                            >
+                              {person.name}
+                            </Link>
                             <p className="text-xs text-black leading-tight max-w-20">{person.role}</p>
                           </div>
                         </div>
@@ -682,9 +717,9 @@ export default function AboutPage() {
                 {/* 3 Cards Row */}
                 <div className="flex flex-col gap-4 md:flex-row md:gap-6 shrink-0">
                   {[
-                    { name: "Finn", role: "Product Designer", image: "/about/Finn.png" },
-                    { name: "Surya", role: "UX Researcher", image: "/about/Surya.png" },
-                    { name: "Rici", role: "UI Designer", image: "/about/Rici.png" },
+                    { name: "Finn", role: "Product Designer", image: "/about/Finn.png", linkedin: "https://www.linkedin.com/in/mr-arifinsyah/" },
+                    { name: "Surya", role: "UX Researcher", image: "/about/Surya.png", linkedin: "https://www.linkedin.com/in/suryac-tra/" },
+                    { name: "Rici", role: "UI Designer", image: "/about/Rici.png", linkedin: "https://www.linkedin.com/in/elivina-ragil/" },
                   ].map((person, i) => (
                     <motion.div
                       key={i}
@@ -712,7 +747,14 @@ export default function AboutPage() {
                         </div>
                         {/* Text overlay at top left */}
                         <div className="absolute md:top-12 lg:top-15 left-3 md:left-3 lg:left-4 text-left z-10">
-                          <p className="text-base md:text-lg font-bold text-black underline">{person.name}</p>
+                          <Link
+                            href={person.linkedin}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-base md:text-lg font-bold text-black underline hover:text-blue-600 transition-colors"
+                          >
+                            {person.name}
+                          </Link>
                           <p className="text-xs text-black leading-tight max-w-30">{person.role}</p>
                         </div>
                       </div>
@@ -730,8 +772,8 @@ export default function AboutPage() {
                 <div className="overflow-x-auto pb-4 scrollbar-hide -mx-8 px-8">
                   <div className="flex gap-4 min-w-max">
                     {[
-                      { name: "Guntur", role: "Policy Analyst", image: "/about/Guntur.png" },
-                      { name: "Jonathan", role: "Business Analyst", image: "/about/Jonathan.png" },
+                      { name: "Guntur", role: "Policy Analyst", image: "/about/Guntur.png", linkedin: "https://www.linkedin.com/in/guntur-iqbal/" },
+                      { name: "Jonathan", role: "Business Analyst", image: "/about/Jonathan.png", linkedin: "https://x.com/masjonnnn" },
                     ].map((person, i) => (
                       <motion.div
                         key={i}
@@ -774,7 +816,18 @@ export default function AboutPage() {
                               textAlign: i === 0 ? 'left' : 'right'
                             }}
                           >
-                            <p className="text-sm font-bold text-black underline">{person.name}</p>
+                            {person.linkedin ? (
+                              <Link
+                                href={person.linkedin}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-sm font-bold text-black underline hover:text-blue-600 transition-colors"
+                              >
+                                {person.name}
+                              </Link>
+                            ) : (
+                              <p className="text-sm font-bold text-black underline">{person.name}</p>
+                            )}
                             <p className="text-xs text-black leading-tight max-w-25">{person.role}</p>
                           </div>
                         </div>
@@ -812,8 +865,8 @@ export default function AboutPage() {
                 {/* Horizontal container with 2 people */}
                 <div className="flex flex-col gap-4 md:flex-row md:gap-6 shrink-0">
                   {[
-                    { name: "Guntur", role: "Policy Analyst", image: "/about/Guntur.png" },
-                    { name: "Jonathan", role: "Business Analyst", image: "/about/Jonathan.png" },
+                    { name: "Guntur", role: "Policy Analyst", image: "/about/Guntur.png", linkedin: "https://www.linkedin.com/in/guntur-iqbal/" },
+                    { name: "Jonathan", role: "Business Analyst", image: "/about/Jonathan.png", linkedin: "https://x.com/masjonnnn" },
                   ].map((person, i) => (
                     <motion.div
                       key={i}
@@ -857,7 +910,18 @@ export default function AboutPage() {
                             textAlign: i === 0 ? 'left' : 'right'
                           }}
                         >
-                          <p className="text-lg font-bold text-black underline">{person.name}</p>
+                          {person.linkedin ? (
+                            <Link
+                              href={person.linkedin}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-lg font-bold text-black underline hover:text-blue-600 transition-colors"
+                            >
+                              {person.name}
+                            </Link>
+                          ) : (
+                            <p className="text-lg font-bold text-black underline">{person.name}</p>
+                          )}
                           <p className="text-xs text-black leading-tight">{person.role}</p>
                         </div>
                       </div>
