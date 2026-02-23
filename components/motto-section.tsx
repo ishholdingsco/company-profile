@@ -70,7 +70,7 @@ export function MottoSection() {
             style={{ fontFamily: "var(--font-merriweather)" }}
             className="text-4xl md:text-6xl lg:text-7xl italic font-normal text-black"
           >
-            Ars technologia
+            Ars Technologia
           </h2>
         </motion.div>
       </div>
